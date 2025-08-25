@@ -5,7 +5,6 @@ project:
 website:
   title: "Home"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
-  page-footer: "Made with ❤️ and Quarto"
   sidebar:
     style: "docked"
     contents:
@@ -16,7 +15,7 @@ website:
           - viz_start_to_finish.qmd
     tools: 
       - icon: github
-        href: https://github.com/tylermcinnes/visualization_day  
+        href: https://github.com/GenomicsAotearoa/visualization_day
 
 
 format:
@@ -26,4 +25,6 @@ format:
     fontsize: 18px
     theme: cosmo
     css: styles.css
+    include-after-body: footer.html
+
 

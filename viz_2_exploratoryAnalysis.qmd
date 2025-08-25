@@ -1,13 +1,13 @@
 ---
-title: Visualization for ourselves - Exploratory Analysis
+title: Visualisation for ourselves - Exploratory Analysis
 toc: true
 ---
 
-Visualization is most often thought of as something we do for other people, to share some piece of knowledge we have. But equally important is the role visualization can play in us learning something about our data. Visualization can reveal trends or associations that we would otherwise struggle to identify in observations stored in rows and columns. 
+Visualisation is most often thought of as something we do for other people, to share some piece of knowledge we have. But equally important is the role visualisation can play in us learning something about our data. Visualisation can reveal trends or associations that we would otherwise struggle to identify in observations stored in rows and columns. 
 
 In this section we will perform some quick data visualizations that we can use for our own observations. The output of this section does not need to be overly attractive, but it does need to be clear and should 'standalone' (*i.e.,* should speak for itself, without the need of accompanying notes).
 
-The aims for this section are to give you the opportunity to practice some of the most important code used in visualizations and to force you to think about visualization: what types of figures work well for certain data, how to display the information you want to convey. 
+The aims for this section are to give you the opportunity to practice some of the most important code used in visualizations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey. 
 
 We will examine one type of graph to represent four different types of data: distribution, correlation, parts of a whole, and evolution (change over time). 
 
@@ -19,7 +19,7 @@ Distribution matters!
 
 ### Beeswarm plots with ggbeeswarm
 
-Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualization.
+Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
 Beeswarm plots can be made using a standalone package (install.packages("beeswarm")) or using a package that extends ggplot2 (install.packages("ggbeeswarm")). We will use the later, since it let's us work within the ggplot format we have looked at already. 
 
@@ -79,7 +79,7 @@ geom_quasirandom() is a function very similar to geom_beeswarm(), but instead of
 
 Personally, I find these two plots give **very** different impressions of the data. In the plot below, the wide shape (particularly for the Chinstrap species) is reminiscent of a normal distribution and it subconciously reminds me of that. Looking at the plot above, I don't immediately think of a normal distribution. It's easy to imagine a situation where the wrong choice of plot and a lapse in concentration could give the wrong impression.
 
-Your choice of visualization can have a strong impact on what people see. 
+Your choice of visualisation can have a strong impact on what people see. 
 
 :::
 
@@ -291,7 +291,7 @@ ggplot(stocks, aes(x = date,
 
 Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Looking more closely you will notice that Stock A has not increased in value and is almost exactly where it started. 
 
-Because stacked area plots can be misleading, they are not recommended as a type of visualization.
+Because stacked area plots can be misleading, they are not recommended as a type of visualisation.
 
 You can check the actual change in value of Stock A by repeating the code for the line or single variable area plot, changing the code to filter(stock == "Stock A") (and updating the figure title of course). 
 

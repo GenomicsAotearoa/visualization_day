@@ -1,5 +1,5 @@
 ---
-title: Exemplar visualizations - how far can we take it?
+title: Exemplar visualisations - how far can we take it?
 toc: true
 ---
 
@@ -7,22 +7,22 @@ We've seen how to make 'quick and dirty' plots for ourselves. Now we will give y
 
 The aim of this section is to give you a set of resources that you can use to find examples and inspiration for your own work, as well as starting to look at elements of design. 
 
-Here we will provide guidelines on design and visualization while highlighting key examples from the scientific community. The good news is that there is an avid visualization community online - check out the [30 day chart challenge](https://www.linkedin.com/feed/hashtag/?keywords=30daychartchallenge&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A7303019867069136896) or the [datavisualization](https://www.linkedin.com/feed/hashtag/?keywords=datavisualization) hashtag on LinkedIn as a starting point. 
+Here we will provide guidelines on design and visualisation while highlighting key examples from the scientific community. The good news is that there is an avid visualisation community online - check out the [30 day chart challenge](https://www.linkedin.com/feed/hashtag/?keywords=30daychartchallenge&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A7303019867069136896) or the [datavisualization](https://www.linkedin.com/feed/hashtag/?keywords=datavisualization) hashtag on LinkedIn as a starting point. 
 
 
 ## From the community
 
 ### Cédric Scherer
 
-[Cédric Scherer's Data Visualization Gallery](https://www.cedricscherer.com/top/dataviz/#SciAm)
+[Cédric Scherer's Data Visualisation Gallery](https://www.cedricscherer.com/top/dataviz/#SciAm)
 
-When looking through this gallery, note that while some plots are very complex, they are built from basic elements. Each visualization is carefully designed: colour palettes are interesting but not overwhelming. There is adequate spacing between plot space and titles, axes, and text. Paler text (grey instead of black) makes overall images gentler. Cédric is a master of design as well as code, and all these visualizations demonstrate careful thought and planning. 
+When looking through this gallery, note that while some plots are very complex, they are built from basic elements. Each visualisation is carefully designed: colour palettes are interesting but not overwhelming. There is adequate spacing between plot space and titles, axes, and text. Paler text (grey instead of black) makes overall images gentler. Cédric is a master of design as well as code, and all these visualizations demonstrate careful thought and planning. 
 
 ![](images/CedricScherer_USviews_votes_simpsons.jpg)
 
 This image comes from Cédric Scherer, and shows the relationship between the number of US Views and the number of votes on IMDb (a site that hosts voting on tv/movie quality). It looks like US viewers are heavy contributors in the IMDb voting system!
 
-Key things to note about this visualization: 
+Key things to note about this visualisation: 
 
 - Use of a lower alpha value is a functional way to represent density. In addition to the wider scatter plot, there's a clear pattern of higher density which probably contributes heavily to the overall trend line. 
 
@@ -36,7 +36,7 @@ Key things to note about this visualization:
 
 ### The gallery of Dr Nicola Rennie
 
-[Dr Nicola Rennie](https://nrennie.rbind.io) is a data visualization specialist and active community leader (*note*, the link can be used to find a list of Dr Rennie's publications, and some of those offer in-depth run-throughs of visualization practices). Nicola has created a Shiny app to function as a [gallery](https://nrennie.rbind.io/30DayChartChallenge/) for all their 30daychartchallenge entries. Not only is this a stunning gallery with a wide array of chart types and top quality visualization ideas, but [all of the code is available on github](https://github.com/nrennie/30DayChartChallenge/tree/main) (to navigate to the R code: click on a given year (*e.g.,* 2022), then click on scripts, then open the file for a given plot).
+[Dr Nicola Rennie](https://nrennie.rbind.io) is a data visualisation specialist and active community leader (*note*, the link can be used to find a list of Dr Rennie's publications, and some of those offer in-depth run-throughs of visualisation practices). Nicola has created a Shiny app to function as a [gallery](https://nrennie.rbind.io/30DayChartChallenge/) for all their 30daychartchallenge entries. Not only is this a stunning gallery with a wide array of chart types and top quality visualisation ideas, but [all of the code is available on github](https://github.com/nrennie/30DayChartChallenge/tree/main) (to navigate to the R code: click on a given year (*e.g.,* 2022), then click on scripts, then open the file for a given plot).
 
 #### Excerise: Take a few minutes to explore Nicola's gallery and make some observations about the charts. What do you like? Do you see anything you would do differently? Can you identify a use for one of these charts for visualizing your own data?
 
@@ -95,4 +95,4 @@ The [R for Data Science, 2E](https://r4ds.hadley.nz/) book (available free, onli
 
 ## Summary
 
-Elements of design, or the ability to create attention-capturing visuals, is not widely taught (in my experience) in the science sector, but there is a range of useful material and dialogue on visualization available to you. Remember that everyone will have their own personal preference, and it's important to balance style with clarity. Simplicity is always going to be a powerful factor, and within a single document having a cohesive theme is key. 
+Elements of design, or the ability to create attention-capturing visuals, is not widely taught (in my experience) in the science sector, but there is a range of useful material and dialogue on visualisation available to you. Remember that everyone will have their own personal preference, and it's important to balance style with clarity. Simplicity is always going to be a powerful factor, and within a single document having a cohesive theme is key. 

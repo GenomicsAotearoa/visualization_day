@@ -1,31 +1,28 @@
 ---
-title: "From Start to Finish: Visualizing Your Data"
-subtitle: "Visualization Day"
+title: "From Start to Finish: Visualising Your Data"
+subtitle: "Visualisation Day"
 image: profile.png
 about: # https://quarto.org/docs/websites/website-about.html
   template: trestles
   links:
     - icon: github
       text: Github
-      href: https://github.com/tylermcinnes
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/tyler-mcinnes-bb787bb4/
+      href: https://github.com/GenomicsAotearoa/visualization_day
 ---
 
-Good visualization is about more than just writing the correct code. Visualization is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualizations which accurately communicate a message. 
+Good visualization is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualizations which accurately communicate a message. 
 
 ## This workshop has five sections
 
 The basic code template for ggplot.
 
-Visualization for our selves (exploratory analysis).
+Visualisation for our selves (exploratory analysis).
 
 Examples of good visualization (with code).
 
 Iteratively building a figure.
 
-Visualization from start to finish.
+Visualisation from start to finish.
 
 
 

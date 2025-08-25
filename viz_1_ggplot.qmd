@@ -1,5 +1,5 @@
 ---
-title: Visualization with ggplot2
+title: Visualisation with ggplot2
 toc: true
 ---
 

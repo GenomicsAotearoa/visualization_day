@@ -1,12 +1,10 @@
 ---
-title: "Start to Finish Visualizing your Data"
-author: "Tyler McInnes"
-date: last-modified
+title: "Start to Finish Visualising your Data"
 output: html_document
 toc: true
 ---
 
-If you want to start practicing visualizations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualization of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
+If you want to start practicing visualizations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
 
 Check out the [tidytuesday github](https://github.com/rfordatascience/tidytuesday) to see all the data.
 
@@ -15,13 +13,13 @@ In this episode we are going to access some of the tidytuesday data and go throu
 
 ## Overview
 
-Together, we are going to go from start to finish and create a visualization. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualize the data in a meaningful way.
+Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualize the data in a meaningful way.
 
-*Note:* Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualization (in Python!). The poster warns us: "I have to admit, this screencast is 80% me orienting to this week's data". The comments section immediately responds that "80% orienting to the data is real life!"
+*Note:* Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualisation (in Python!). The poster warns us: "I have to admit, this screencast is 80% me orienting to this week's data". The comments section immediately responds that "80% orienting to the data is real life!"
 
 ### Aims
 
-To demonstrate the full process of exploratory analysis, data transformation, and visualization.
+To demonstrate the full process of exploratory analysis, data transformation, and visualisation.
 
 Generate discussion, via questions and exercises, about the data and the validity of our modifications and decisions.
 
@@ -29,7 +27,7 @@ To generate a figure that is clear, conveys a message, and is visually appealing
 
 ### How this will work
 
-I will work through all the code required to create the end product visualization. You can follow along exactly, or you can opt to deviate from my example (*e.g.,* during data transformation step you might choose to keep 25 samples while I keep 20, you might choose to use the median while I use the mean). If you are newer to ggplot2, then I recommend you follow exactly. If you are more confident, then modify the code as you see fit.
+I will work through all the code required to create the end product visualisation. You can follow along exactly, or you can opt to deviate from my example (*e.g.,* during data transformation step you might choose to keep 25 samples while I keep 20, you might choose to use the median while I use the mean). If you are newer to ggplot2, then I recommend you follow exactly. If you are more confident, then modify the code as you see fit.
 
 You will be provided with a full and complete copy of all this code, to use as a template for your own work.
 
@@ -101,12 +99,12 @@ There are many options, but some things that stood out to me:
 
 ### Brand Rating
 
-Looking at the data I was interested in Brand, Rating_Value, and Rating_Count. My aim is to generate a visualization which will show which brands consistently have high ratings for their different products, with the intention that a person with little to no knowledge about perfume (like myself) can get an idea of reliable brands.
+Looking at the data I was interested in Brand, Rating_Value, and Rating_Count. My aim is to generate a visualisation which will show which brands consistently have high ratings for their different products, with the intention that a person with little to no knowledge about perfume (like myself) can get an idea of reliable brands.
 
 **Exercise:** Mentally visualize what this figure might look like. What are the key components we will need to convey?
 
 ::: {.callout-tip collapse="true"}
-## Mental visualization
+## Mental visualisation
 
 Need to convey the average rating for a brand, as well as the variance. Do not need to visualize all brands, only those with consistently high ratings. Boxplots (and violin plots, jitter plots *etc.,*) are a good way to show the distribution of scores. 
 
@@ -144,7 +142,7 @@ parfumo_data_clean |> summary()
 
 The summary() function is very useful here. Looking at the column for Rating_Value, I can see that the mean and median values are around 7.3-7.4, and the range is 0 - 10. At this time I'm also looking at the Rating_Count variable, and seeing that the range there is 2 - 2,732. That tells me that some perfumes were only rated twice. I'm very suspicious that the brands Natura and Sarahs Creations have only a single perfume which was rated only two or three times, which allows them to get perfect scores. Similarly, any other brand with a score that seems too good to be true could be the result of this low-sampling bias.
 
-**Exercise:** Is my hypothesis (very high scores are the result of low sampling bias) true? What type of visualization would help us to test this? In the space below, create a quick plot to ask whether there is a low-sampling bias present.
+**Exercise:** Is my hypothesis (very high scores are the result of low sampling bias) true? What type of visualisation would help us to test this? In the space below, create a quick plot to ask whether there is a low-sampling bias present.
 
 ```{r}
 
@@ -207,7 +205,7 @@ In the callout box below, we move through a whole series of transformation steps
 
 - **Create and store the *brandRatingData* object:** A dataframe of 20 rows and three variables, consisting of the 20 brands with the highest average rating (the mean rating across all perfumes for the brand), as well as the number of perfumes in each brand. 
 
-While these steps are an important part of visualization, they are somewhat repetitive and time-consuming and therefore have been compressed and skipped for the sake of this workflow. You can view all of the code and detailed explanations for what steps were taken in the callout box. 
+While these steps are an important part of visualisation, they are somewhat repetitive and time-consuming and therefore have been compressed and skipped for the sake of this workflow. You can view all of the code and detailed explanations for what steps were taken in the callout box. 
 
 **Exercise: The above transformations include two user-defined thresholds which determine what data is included in further analyses. Discuss the thresholds used and whether you believe they are reasonable and logical. What approach would you take in this situation?** 
 
@@ -243,7 +241,7 @@ Compare what we are doing today with a task like cooking a dinner. When cooking 
 
 Sanity checks are a way to engage with your data and make sure your results make logical sense. Examples include, but are in no way limited to: confirming data types (dates in date columns) and plausible ranges (human age should be between 0 - 120), checking distributions (especially if a statistical method assumes normality, but also for the presence of outliers), validate relationships (longer genes should probably have more mutations than shorter genes, larger genomes should have larger filesizes), data volume (rows and columns should remain the same between steps - unless you are filtering, treatment vs control groups should have equal numbers).
 
-Sanity checks are an entire arm of bioinformatics and data science, much the same way good visualization is. It's a skill that takes time and effort to build.
+Sanity checks are an entire arm of bioinformatics and data science, much the same way good visualisation is. It's a skill that takes time and effort to build.
 :::
 
 ### Transformations cont
@@ -372,7 +370,7 @@ Is anything different between what you expected and/or described and what the ob
 If you are new to the tidyverse, you have expected to see more columns, but group_by() and summarize() are determining what columns are generated and saved in the new object. The two filter() calls and the arrange() call control which rows are kept and the order we see them in.
 :::
 
-With the brandRatingData object stored, we can now proceed to visualization.
+With the brandRatingData object stored, we can now proceed to visualisation.
 
 :::
 
@@ -399,18 +397,18 @@ brandRatingData
 
 
 
-## Visualization I
+## Visualisation I
 
-In this example we will create a visualization of the top 20 perfume brands based on the average rating. The **aim** is to provide a novice with information about perfume brands so that they could pick a perfume with some confidence (*e.g.,* if doing online shopping).
+In this example we will create a visualisation of the top 20 perfume brands based on the average rating. The **aim** is to provide a novice with information about perfume brands so that they could pick a perfume with some confidence (*e.g.,* if doing online shopping).
 
-It is critically important to identify exactly what you are aiming to represent with your visualization. Biological data is often complex and, at least when publishing, space is often at a premium and figures tend to be information dense. You must consider the tension between including more information and readability.
+It is critically important to identify exactly what you are aiming to represent with your visualisation. Biological data is often complex and, at least when publishing, space is often at a premium and figures tend to be information dense. You must consider the tension between including more information and readability.
 
 In this workshop we are also aiming to create a figure that is visually appealing. We want to use elements of design such as line and colour theory *etc.,* to capture and hold attention, whether this is during a live presentation or in a static format such as a journal.
 
 
-### Building a visualization - sketch I
+### Building a visualisation - sketch I
 
-To start a visualization I will 'sketch' a figure to determine different ways to display the data. A boxplot is a great place to start since I know we are showing average ratings (even though we have so far calculated based on the mean and a boxplot uses medians).
+To start a visualisation I will 'sketch' a figure to determine different ways to display the data. A boxplot is a great place to start since I know we are showing average ratings (even though we have so far calculated based on the mean and a boxplot uses medians).
 
 ```{r}
 ggplot(data = perfume_brand_data,
@@ -419,7 +417,7 @@ ggplot(data = perfume_brand_data,
   geom_boxplot()
 ```
 
-**Exercise:** Why is this a poor visualization, and what can be done to improve it?
+**Exercise:** Why is this a poor visualisation, and what can be done to improve it?
 
 ::: {.callout-tip collapse="true"}
 ## Criticizing the boxplot
@@ -442,7 +440,7 @@ Fundamentally, I don't think the boxplot works. While it does show the median an
 
 #### Exercise: Test out some other geoms and see if you can identify something that you like
 
-### Building a visualization - sketch II
+### Building a visualisation - sketch II
 
 *Note:* In reality you might sketch out a handful of different plots to find one that suits. Here we will jump ahead to something I think works.
 
@@ -476,7 +474,7 @@ ggplot(brandRatingData,
 
 By mapping average rating and the number of perfumes to colour and size (within the geom_point() function), we make the figure more visually interesting and more informative. For example, we can see that Ensar Oud/Oriscent has plenty of perfumes to choose from, while Nabeel has fewer. The plot overall looks 'cleaner' and less cluttered, yet actually includes more information.
 
-This is the basis for a good visualization.
+This is the basis for a good visualisation.
 
 ### Refining geom_point()
 
@@ -546,7 +544,7 @@ brandRatingData <- parfumo_data_clean |>
   head(n = 20)
 ```
 
-Before we map avg_rating_count to colour we will consider *accessibility*. A colour palette, or visualization in general, is accessible if it is something that everyone can see. The most regularly discussed examples of accessibility include text size, a colour palette that can be seen by colour-blind individuals, and more recently whether the image is gentle or overwhelming. 
+Before we map avg_rating_count to colour we will consider *accessibility*. A colour palette, or visualisation in general, is accessible if it is something that everyone can see. The most regularly discussed examples of accessibility include text size, a colour palette that can be seen by colour-blind individuals, and more recently whether the image is gentle or overwhelming. 
 
 ::: {.callout-tip}
 For an example of 'gentle vs overwhelming', go to Tools, Global Options, Appearance, and in the Editor theme box, check "Gob". I personally would not enjoy spending time looking at my RStudio console if the editor was stuck in "Gob", and I prefer the much more gentle Idle Fingers theme. 
@@ -580,7 +578,7 @@ ggplot(brandRatingData,
   ) 
 ```
 
-This version of the visualization is:
+This version of the visualisation is:
 
 a) more visually interesting, with eye catching colours.
 
@@ -594,7 +592,7 @@ d) suitable for conveying the basic information (Brand rating) at a glance. Even
 
 ## Final exercise
 
-Use the information we have discussed, and the lessons from earlier, to trial out some different geoms and visualization styles. See what code you can apply (*e.g.,* changing size/colour) with other geoms. 
+Use the information we have discussed, and the lessons from earlier, to trial out some different geoms and visualisation styles. See what code you can apply (*e.g.,* changing size/colour) with other geoms. 
 
 
 ## Summary
