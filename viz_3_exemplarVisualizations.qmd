@@ -3,7 +3,7 @@ title: Exemplar visualisations - how far can we take it?
 toc: true
 ---
 
-We've seen how to make 'quick and dirty' plots for ourselves. Now we will give you a glimpse of just how far you can take your visualizations. For this section we are looking at both code complexity and fundamental elements of design. 
+We've seen how to make 'quick and dirty' plots for ourselves. Now we will give you a glimpse of just how far you can take your visualisations. For this section we are looking at both code complexity and fundamental elements of design. 
 
 The aim of this section is to give you a set of resources that you can use to find examples and inspiration for your own work, as well as starting to look at elements of design. 
 
@@ -12,7 +12,7 @@ Here we will provide guidelines on design and visualisation while highlighting k
 
 ## From the community
 
-### Cédric Scherer
+### The gallery of Cédric Scherer
 
 [Cédric Scherer's Data Visualisation Gallery](https://www.cedricscherer.com/top/dataviz/#SciAm)
 
@@ -52,16 +52,16 @@ Key things to note about this visualisation:
 2022, Day 1 (Part to whole) - This yellow on purple has slightly lower contrast but, at least to my eyes, is much nicer and easier to read. 
 :::
 
-### Isaac Arrayo
+### #TidyTuesday
 
 [Isaac Arrayo: towards data science](https://towardsdatascience.com/explaining-my-favourite-tidytuesday-projects-e44bfe988813)
 
-Isaac Arrayo gives us a breakdown of four plots from #tidytuesday (a community effort where people are invited to create visualizations of a provided dataset). We see four diverse plot types, the rationale for each plot, and how these plots might be applied to a more 'standard' dataset (*i.e.,* an in-real-life example).
+Isaac Arrayo gives us a breakdown of four plots from #tidytuesday, a community effort where people are invited to create visualisations of a provided dataset. We see four diverse plot types, the rationale for each plot, and how these plots might be applied to a more 'standard' dataset (*i.e.,* an in-real-life example).
 
 
 ## Resources and Showcase
 
-A collection of resources - if you have any recommendations, reach out to me on LinkedIn or by opening an issue on github and I'll add them here.
+A collection of resources - if you have any recommendations, feel free to [Contact us](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/ContactUs.html) or [open an issue on github](https://github.com/GenomicsAotearoa/visualization_day) and we'll add them here.
 
 ### Galleries, books, workshops
 

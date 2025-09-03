@@ -5,9 +5,9 @@ toc: true
 
 Visualisation is most often thought of as something we do for other people, to share some piece of knowledge we have. But equally important is the role visualisation can play in us learning something about our data. Visualisation can reveal trends or associations that we would otherwise struggle to identify in observations stored in rows and columns. 
 
-In this section we will perform some quick data visualizations that we can use for our own observations. The output of this section does not need to be overly attractive, but it does need to be clear and should 'standalone' (*i.e.,* should speak for itself, without the need of accompanying notes).
+In this section we will perform some quick data visualisations that we can use for our own observations. The output of this section does not need to be overly attractive, but it does need to be clear and should 'standalone' (*i.e.,* should speak for itself, without the need of accompanying notes).
 
-The aims for this section are to give you the opportunity to practice some of the most important code used in visualizations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey. 
+The aims for this section are to give you the opportunity to practice some of the most important code used in visualisations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey. 
 
 We will examine one type of graph to represent four different types of data: distribution, correlation, parts of a whole, and evolution (change over time). 
 
@@ -21,7 +21,7 @@ Distribution matters!
 
 Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
-Beeswarm plots can be made using a standalone package (install.packages("beeswarm")) or using a package that extends ggplot2 (install.packages("ggbeeswarm")). We will use the later, since it let's us work within the ggplot format we have looked at already. 
+Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the later, since it let's us work within the ggplot format we have looked at already. 
 
 
 #### Packages and setup
@@ -37,7 +37,7 @@ library(tidyverse) # We will use tidyverse later
 
 #### Beeswarm plots
 
-Like with the geom_boxplot() we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data. 
+Like with the `geom_boxplot()` we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data. 
 
 ```{r}
 #| warning: false
@@ -46,15 +46,15 @@ ggplot(data = penguins,
                       y = flipper_length_mm)) +
   geom_beeswarm()
 ```
-**Note:** *When running this code, ggplot gives us a warning that rows were removed due to missing values. I've added a hidden line of code to suppress these warnings.*
+**Note:** *When running this code, ggplot gives us a warning that rows were removed due to missing values. This workshop material has a hidden line of code to suppress these warnings.*
 
 With this plain plot we can see what beeswarm is doing - when points on the y axis share a value they are moved horizontally so that overlapping points can be identified. This concept is commonly referred to as "jitter", and "jitter plots" are a class of chart. Beeswarm plots are an implementation of jitter plots that aim to be compact with as little as possible overlap of points. This gives us the ability to see density through the width of the plot, similar to how a violin plot (geom_violin) works. 
 
 Distribution plots are a good opportunity to introduce two new parameters we can adjust in ggplot: size and alpha. 
 
-- Size is simply the size of the data point. We can assign a single value for all points, or can assign a continuous variable. 
+- **Size** is simply the size of the data point. We can assign a single value for all points, or can assign a continuous variable. 
 
-- Alpha is the level of transparency. When data points are too large (from the size argument), or too numerous, the points can overlap one another (a problem called "overplotting"). This is particularly problematic outside of beeswarm. When we set alpha to something less than 1, the points become somewhat transparent. Therefore, if two points overlap one another, it is clear from the change in colour (as two transparent but overlapping points are darker than a single point). 
+- **Alpha** is the level of transparency. When data points are too large (from the size argument), or too numerous, the points can overlap one another (a problem called "overplotting"). This is particularly problematic outside of beeswarm. When we set alpha to something less than 1, the points become somewhat transparent. Therefore, if two points overlap one another, it is clear from the change in colour (as two transparent but overlapping points are darker than a single point). 
 
 ```{r}
 #| warning: false
@@ -65,12 +65,12 @@ ggplot(data = penguins,
   geom_beeswarm(size = 2, alpha = 0.7)
 ```
 
-(I'd argue that increasing the size and decreasing the alpha has *decreased* the quality of our plot, but it's just for the purpose of demonstration).
+(Here, one could argue that increasing the size and decreasing the alpha has *decreased* the quality of our plot, but it's just for the purpose of demonstration).
 
 
 ### geom_quasirandom and dangerous distributions
 
-geom_quasirandom() is a function very similar to geom_beeswarm(), but instead of strictly moving points, they are quasi-randomly moved. 
+`geom_quasirandom()` is a function very similar to `geom_beeswarm()`, but instead of strictly moving points, they are quasi-randomly moved. 
 
 #### Exercise: Compare the plot below with the plot above. What is different between them? 
 
@@ -94,7 +94,7 @@ ggplot(data = penguins,
 ```
 
 #### Theme and labels
-We can add two other functions to make this plot much easier to read. First, the theme_minimal() function is a quick way to set a global theme to the plot and make it less cluttered. The second function is labs(), which we use to add a title and x and y axes labels. We will cover themes more later, but adding theme_minimal() to every plot we do today will keep them looking tidy and coherent.
+We can add two other functions to make this plot much easier to read. First, the `theme_minimal()` function is a quick way to set a global theme to the plot and make it less cluttered. The second function is `labs()`, which we use to add a title and x and y axes labels. We will cover themes more later, but adding `theme_minimal()` to every plot we do today will keep them looking tidy and coherent.
 
 ```{r}
 #| warning: false
@@ -113,9 +113,9 @@ ggplot(data = penguins,
 
 ### Heatmaps with geom_tile()
 
-Heatmaps can be used to visualize values across two dimensions using colour. In a biological context this could be gene expression values across a range of genes for a set of samples. This is often combined with some type of clustering (*e.g.,* unsupervised hierarchical clustering with k-means) to identify patterns of gene expression which differ between sample groups. 
+Heatmaps can be used to visualise values across two dimensions using colour. In a biological context this could be gene expression values across a range of genes for a set of samples. This is often combined with some type of clustering (*e.g.,* unsupervised hierarchical clustering with k-means) to identify patterns of gene expression which differ between sample groups. 
 
-Here we will use geom_tile() to create a particular type of heatmap called a "calendar heatmap", which will display a value on a given day for a selected time period. The example below is captured from github, which display the number of commits (saves) a user made across the year.
+Here we will use `geom_tile()` to create a particular type of heatmap called a "calendar heatmap", which will display a value on a given day for a selected time period. The example below is captured from github, which display the number of commits (saves) a user made across the year.
 
 ![Github annual contributions](images/calendar_tile_plot.png)
 
@@ -145,7 +145,7 @@ month_data |> head()
 
 #### geom_tile()
 
-Now we will create the plot with geom_tile(). Like with the geom_boxplot() we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With geom_tile() we will always need to use aes() to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with "fill = ". In our example we will map the count variable to fill. 
+Now we will create the plot with `geom_tile()`. Like with the `geom_boxplot()` we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With `geom_tile()` we will always need to use `aes()` to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with "fill = ". In our example we will map the count variable to fill. 
 ```{r}
 ggplot(data = month_data,
        mapping = aes(x = week, 
@@ -158,15 +158,15 @@ This is a good starting point in that we have functionally sketched the data int
 
 To correct these issues we will: 
 
-- Swap the x and y axis with the aes() function.
+- Swap the x and y axis with the `aes()` function.
 
-- Use the scale_y_reverse() function to reverse the Y-axis (which will now be weeks) so that the last value (week 5) is placed at the bottom.  
+- Use the `scale_y_reverse()` function to reverse the Y-axis (which will now be weeks) so that the last value (week 5) is placed at the bottom.  
 
-- Add the scale_fill_viridis_c() function to change the colour of the fill. The "scale_[argument]_viridis" set of functions are used to select a colour blind-friendly pallette with high contrast. 
+- Add the `scale_fill_viridis_c()` function to change the colour of the fill. The "scale_[argument]_viridis" set of functions are used to select a colour blind-friendly pallette with high contrast. 
 
-- Use the labs() function to add title, x and y axis labels, and rename the fill (legend) variable.
+- Use the `labs()` function to add title, x and y axis labels, and rename the fill (legend) variable.
 
-- Additionally, we will add colour = "white" as an argument for geom_tile(), which will result in a fine white grid separating our tiles, and add the theme_minimal() function to reduce the visual clutter of the grey background in the plot.
+- Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
 
 #### Exercise: Use the code block and tips above to create an improved version of the calendar heatmap.
 
@@ -227,14 +227,14 @@ stocks <- tibble(
 
 ::: {.callout-tip collapse="true"}
 ## What is set.seed?
-What is set.seed? set.seed() is a function that feeds into any function that will randomly select or generate values. If we all use set.seed with the same number value, we will all get the same results, even though we are about to 'randomly' simulate some data. 
-In future you can use any numeric value for set.seed(), so long as you keep it consistent within experiments. 
+What is set.seed? `set.seed()` is a function that feeds into any function that will randomly select or generate values. If we all use set.seed with the same number value, we will all get the same results, even though we are about to 'randomly' simulate some data. 
+In future you can use any numeric value for `set.seed()`, so long as you keep it consistent within experiments. 
 
 :::
 
 ### Line chart with geom_line()
 
-The simplest plot for change over time is geom_line(). 
+The simplest plot for change over time is `geom_line()`. 
 
 ```{r}
 ggplot(stocks %>% filter(stock == "Stock C"), 
@@ -249,7 +249,7 @@ ggplot(stocks %>% filter(stock == "Stock C"),
 
 ### Visual interest with geom_area()
 
-The geom_area() function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.
+The `geom_area()` function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.
 
 ```{r}
 ggplot(stocks %>% filter(stock == "Stock B"), 
@@ -257,20 +257,24 @@ ggplot(stocks %>% filter(stock == "Stock B"),
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
-            size = 0.5) +  # Keeps the line for clarity
+            linewidth = 0.5) +  # Keeps the line for clarity
   labs(title = "Stock B Price Over Time (Area Chart)", 
         x = "Date", 
         y = "Price") +
   theme_minimal()
 ```
 
-The choice of geom_line() or geom_area() is purely aesthetic. 
+The choice of `geom_line()` or `geom_area()` is purely aesthetic. 
 
 ### Stacked area chart
 
-The stacked area chart can be used to create a strong visual impact, especially if the correct colours are chosen. Here's an example from Cédric Scherer:
+The stacked area chart can be used to create a strong visual impact, especially if the correct colours are chosen. Here's an awesome example from [Cédric Scherer](https://www.cedricscherer.com/tags/ggplot2/):
 
-[Appearance of the popular X-Men](images/CedricScherer_stackedAreaPlot.jpg)
+![Appearance of the popular X-Men](images/CedricScherer_stackedAreaPlot.jpg)
+
+\
+
+Let's create a stacked area charts of our stocks:
 
 ```{r}
 ggplot(stocks, aes(x = date, 
@@ -291,11 +295,11 @@ ggplot(stocks, aes(x = date,
 
 Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Looking more closely you will notice that Stock A has not increased in value and is almost exactly where it started. 
 
-Because stacked area plots can be misleading, they are not recommended as a type of visualisation.
+Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
 
 You can check the actual change in value of Stock A by repeating the code for the line or single variable area plot, changing the code to filter(stock == "Stock A") (and updating the figure title of course). 
 
-An alternative to stacked area plots is the use of facet, which will allow us to visualize multiple stocks at once by creating individual panels. 
+An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels. 
 
 :::
 
@@ -304,6 +308,6 @@ An alternative to stacked area plots is the use of facet, which will allow us to
 
 The two key messages from this episode are:
 
-- There are lots of different chart types available to you, and they mostly follow the same template with slight variations in the geom_() function and the arguments supplied.
+- There are lots of different chart types available to you, and they mostly follow the same template with slight variations in the `geom_*()` function and the arguments supplied.
 
-- How you visualize your data can have an impact on what other people see. The human brain is amazing, but even on our best days we make assumptions, or can be distracted, and reach the wrong conclusion. Strive to make your data as clear and transparent as possible. 
+- How you visualise your data can have an impact on what other people see. The human brain is amazing, but even on our best days we make assumptions, or can be distracted, and reach the wrong conclusion. Strive to make your data as clear and transparent as possible. 

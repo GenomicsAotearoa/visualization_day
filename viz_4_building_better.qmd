@@ -6,7 +6,7 @@ toc: true
 
 The purpose of this episode is to:
 
-- solidify the template of ggplot2 in your so that you can remember and confidently create a basic plot 
+- solidify the template of ggplot2 in your mind so that you can remember and confidently create a basic plot 
 
 and 
 
@@ -17,7 +17,7 @@ This episode follows the outline produced by the very skilled data visualizer CÃ
 
 ## The data
 
-The example dataset we are using for this session comes from [Wilderlab](https://www.wilderlab.co.nz/), a company based in Aotearoa who provide eDNA monitoring and testing services (primarily from water samples). When a client orders DNA testing through Wilderlab they have the option of making their results public as a way to "provide a useful resource for scientists, conservationists, educators, and anyone else with an interest in Aotearoa's biodiversity, water quality and biosecurity". We will access a small subset of the data which I have accessed and curated for the workshop. It is currently stored on github as a .tsv file. 
+The example dataset we are using for this session comes from [Wilderlab](https://www.wilderlab.co.nz/), a company based in Aotearoa who provide eDNA monitoring and testing services (primarily from water samples). When a client orders DNA testing through Wilderlab they have the option of making their results public as a way to "*provide a useful resource for scientists, conservationists, educators, and anyone else with an interest in Aotearoa's biodiversity, water quality and biosecurity*". We will access a small subset of the data which I have accessed and curated for the workshop. It is currently stored on github as a .tsv file. 
 
 eDNA sequences are assigned a taxonomy, and when multiple sequences map to the same taxonomic unit (in our case to the level of the same genus), those additional sequences contribute to the variable called Count. I selected the 10 Groups (a classification level, *e.g.,* Birds, Fish, Diatoms, Plants) with the highest number of sequences (that is, the groups with the most species diversity), randomly selected 500 of these sequences for each group, and saved the data to a file. We can now look at Count (the abundance) of these sequences and see if this varies across Groups. 
 
@@ -31,10 +31,10 @@ Birds, Ciliates, Diatoms, Fish, Insects, Mammals, Molluscs, Other, Plants, Worms
 For the sake of honesty, if the above explanation of how I created our data subset sounds arbitrary - it is. Originally I wanted an example look at the relationship between Group diversity (number of species) and Count (abundance). I hypothesised that a Group like mammals would have low diversity but high counts, while a Group like Insects would have high diversity but lower counts (based on what I know about animal diversity and how I think body size will impact eDNA abundance). Notably, some Groups had *a lot* of diversity, and as I built the workshop and some of the figures I realised that having too many sequences made the data points difficult to differentiate. Eventually I trimmed the original data set so that each group had 500 randomly selected sequences. This made visualisation easier, but forced me to re-work the example. 
 :::
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 
-top_group_counts <- read.delim("https://raw.githubusercontent.com/tylermcinnes/visualization_day/refs/heads/main/data/eDNA_group_counts.tsv")
+top_group_counts <- read.delim("https://raw.githubusercontent.com/GenomicsAotearoa/visualization_day/refs/heads/main/data/eDNA_group_counts.tsv")
 ```
 
 ### Familiarise yourself with the data
@@ -73,7 +73,7 @@ geom_boxplot()
 
 This figure shows us the Count variable is highly skewed (the majority of values are small, with some values many fold higher). 
 
-**Exercise:** use the summary() function and look at the outcome for the Count variable. Note the min, mean, median and maximum value. More advanced R users could use the filter() and nrow() functions to ask how many rows have a Count value that is 10 times greater than the Count median (or ask this question using whatever functions you are familiar with).   
+**Exercise:** use the `summary()` function and look at the outcome for the Count variable. Note the min, mean, median and maximum value. More advanced R users could use the `filter()` and `nrow()` functions to ask how many rows have a Count value that is 10 times greater than the Count median (or ask this question using whatever functions you are familiar with).   
 
 ::: {.callout-tip collapse="true"}
 ## Solution
@@ -109,13 +109,13 @@ mapping = aes(x = log(Count), y = Group)) +
 geom_boxplot()
 ```
  
- Generally we will find that sometimes switching the layout like this can provide us with clearer visualisation, sometimes due to labels, sometimes for aesthetics. In this case, I think the group labels read much more clearly when stacked vertically on top of one another with the new layout. I encourage you to think about small changes like this when creating your visualizations.
+ Generally we will find that sometimes switching the layout like this can provide us with clearer visualisation, sometimes due to labels, sometimes for aesthetics. In this case, I think the group labels read much more clearly when stacked vertically on top of one another with the new layout. I encourage you to think about small changes like this when creating your visualisations.
 
 ### Sort the data 
 
 Sorted data will be easier to interpret, with a lower cognitive load. Note: we should **only** sort data if there is *no inherent structure* - I don't believe Mammals are inherently 'higher' than Fish, so I can sort these groups based on another feature. Sometimes we will have internal structure, either some kind of hierarchy or grouping (e.g., case vs control) and it is not appropriate to apply sorting.
 
-This is where we need to bring in some of our data transformation skills. This is *not* the focus of this episode, so we won't go into this, but we are using a function, fct_reorder(), to re-order the Group variable based on data from the Count variable, where Count is ordered based on median. The mutate() function can be used to create a new variable, or in this case rearrange an existing variable. 
+This is where we need to bring in some of our data transformation skills. This is *not* the focus of this episode, so we won't go into this, but we are using a function, `fct_reorder()`, to re-order the Group variable based on data from the Count variable, where Count is ordered based on median. The `mutate()` function can be used to create a new variable, or in this case rearrange an existing variable. 
 
 (Disclaimer, building this workshop I knew what I wanted to do and used chatGPT to guide me through the process.)
 ```{r}
@@ -134,7 +134,7 @@ This is immediately clearer, with a considerably lower cognitive load. Easily ob
 
 #### Outliers
 
-In boxplots, outliers are identified as values that are more than 1.5 times the interquartile range **above** or **below** the third and first quartile, respectively. In our data these outliers are reasonably numerous. This could be due to inherently variable data, due either to biological or technical reasons, site differences *etc*.,. Without wanting to make assumptions about the data we can experiment with visualizations and choose how we want to present this data. 
+In boxplots, outliers are identified as values that are more than 1.5 times the interquartile range **above** or **below** the third and first quartile, respectively. In our data these outliers are reasonably numerous. This could be due to inherently variable data, due either to biological or technical reasons, site differences *etc*.,. Without wanting to make assumptions about the data we can experiment with visualisations and choose how we want to present this data. 
 
 ## Better visualisation
 
@@ -203,7 +203,7 @@ You will probably agree that some of these geoms are much more suitable than oth
 
 #### Alpha
 
-A particularly useful argument with the geom_point() function is alpha, which controls the opacity/transparency of the points. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it's usefulness will become more apparent shortly.
+A particularly useful argument with the `geom_point()` function is alpha, which controls the opacity/transparency of the points. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it's usefulness will become more apparent shortly.
 
 ```{r}
 groupCounts + 
@@ -220,9 +220,9 @@ groupCounts +
   geom_boxplot(colour = "gray", outlier.alpha = 0) +
   geom_point(size = 3, alpha = 0.2)
 ```
-Note that we've included a new argument in geom_boxplot(): "outlier.alpha = 0". The boxplot geom normally adds points that are considered outliers (greater than 1.5 times the interquartile range above or below the 1st or 3rd quartile). Since these points are going to be represented by the geom_point() function, we need to set outlier.alpha to 0 so that they are functionally invisible (and are therefore not printed twice). 
+Note that we've included a new argument in `geom_boxplot(outlier.alpha = 0)`. The boxplot geom normally adds points that are considered outliers (greater than 1.5 times the interquartile range above or below the 1st or 3rd quartile). Since these points are going to be represented by the `geom_point()` function, we need to set outlier.alpha to 0 so that they are functionally invisible (and are therefore not printed twice). 
 
-While the above demonstrates the concept of combining geoms, it's not very functional. The high density of our points on a straight line is creating a strong effect that is over-powering other visualizations. We can change the points from being on a single line to spaced apart with the geom_jitter() function.
+While the above demonstrates the concept of combining geoms, it's not very functional. The high density of our points on a straight line is creating a strong effect that is over-powering other visualisations. We can change the points from being on a single line to spaced apart with the `geom_jitter()` function.
 
 ```{r}
 groupCounts + 
@@ -248,7 +248,7 @@ There are some really cool things we can do by combining geoms, and here your im
 
 Let's look at how each of our Groups compares to the average (and in this case, we will use mean instead of the median we have been using with our box plots). 
 
-First, we will visualize the Group means with the stat_summary function. 
+First, we will visualise the Group means with the `stat_summary()` function. 
 
 ```{r}
 groupCounts +
@@ -294,7 +294,7 @@ groupCounts +
               width = 0.2)
 ```
 
-Geom order matters! Note how the summary points (black) are obscured by the coloured points produced by geom_jitter()? We can switch the order so that the jitter points are drawn first, and the summary points placed on top. 
+Geom order matters! Note how the summary points (black) are obscured by the coloured points produced by `geom_jitter()`? We can switch the order so that the jitter points are drawn first, and the summary points placed on top. 
 
 ```{r}
 groupCounts +
@@ -345,15 +345,18 @@ This isn't necessarily something you would do in many types of plots, but is use
 
 ### Saving a plot
 
-We can run the code below to save a plot with a given set of dimensions. The default is inches, but we can set this to cm or pixels.
+`ggsave()` will save the most recently created plot. We can run the code below to save a plot with a given set of dimensions. The default is inches, but we can set this to cm or pixels with the argument `units = "cm"` or `units = "px"`.
 
 ```{r}
 ggsave("boxplot.png", height = 10, width = 8)
 
 ```
 
-## Summary
+### Summary
 
-By saving some of the ggplot2 code into an object, we can quickly and easily iterate on a plot, letting us sketch out different plot types and styles. The theme function let's us save a set of traits that we can use across all of our visualizations, giving us a cohesive look across a single document.
-
-Geom functions can be combined in different ways to build up a complex chart, while still sticking to our basic template. 
+::: {.callout-tip}
+### Key take-aways
+- Save some of the ggplot2 code into an object, to quickly and easily iterate on a plot, letting us sketch out different plot types and styles. 
+- Use the theme function to save a set of traits that we can use across all of our visualisations, giving us a cohesive look across a single document.
+- Geom functions can be combined in different ways to build up a complex chart, while still sticking to our basic template.  
+:::

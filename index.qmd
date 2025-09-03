@@ -10,15 +10,15 @@ about: # https://quarto.org/docs/websites/website-about.html
       href: https://github.com/GenomicsAotearoa/visualization_day
 ---
 
-Good visualization is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualizations which accurately communicate a message. 
+Good visualisation is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualisations which accurately communicate a message. 
 
 ## This workshop has five sections
 
-The basic code template for ggplot.
+The basic code template for `ggplot2`.
 
-Visualisation for our selves (exploratory analysis).
+Visualisation for ourselves (exploratory analysis).
 
-Examples of good visualization (with code).
+Examples of good visualisation (with code).
 
 Iteratively building a figure.
 
@@ -30,3 +30,7 @@ Visualisation from start to finish.
 ## Why are we doing this? 
 
 Because some plots look like [this](https://docs.google.com/presentation/d/1PyuGRbqPpjMoswuTMbgOqHfe6Uc-wji7uEJkxyxI9Jw/edit#slide=id.p) (Credit to Dr. Joseph Guhlin for this presentation).
+
+## Credit
+
+This workshop was developed by [Tyler McInnes](https://github.com/tylermcinnes), while he was a [Bioinformatics Training Coordinator at Genomics Aotearoa](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members)

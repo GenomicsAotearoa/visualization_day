@@ -20,9 +20,9 @@ website:
 
 format:
   html:
-    mainfont: "sarif"
+    mainfont: "Mukta"
     monofont: "monospace"
-    fontsize: 18px
+    fontsize: 20px
     theme: cosmo
     css: styles.css
     include-after-body: footer.html

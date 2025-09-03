@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0d541e23d31eb3f5bb5918984f04ddb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2b9b11468e6a1fa41e6b82fe5f3fd8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -232,8 +232,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Visualisation is most often thought of as something we do for other people, to share some piece of knowledge we have. But equally important is the role visualisation can play in us learning something about our data. Visualisation can reveal trends or associations that we would otherwise struggle to identify in observations stored in rows and columns.</p>
-<p>In this section we will perform some quick data visualizations that we can use for our own observations. The output of this section does not need to be overly attractive, but it does need to be clear and should ‘standalone’ (<em>i.e.,</em> should speak for itself, without the need of accompanying notes).</p>
-<p>The aims for this section are to give you the opportunity to practice some of the most important code used in visualizations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey.</p>
+<p>In this section we will perform some quick data visualisations that we can use for our own observations. The output of this section does not need to be overly attractive, but it does need to be clear and should ‘standalone’ (<em>i.e.,</em> should speak for itself, without the need of accompanying notes).</p>
+<p>The aims for this section are to give you the opportunity to practice some of the most important code used in visualisations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey.</p>
 <p>We will examine one type of graph to represent four different types of data: distribution, correlation, parts of a whole, and evolution (change over time).</p>
 <section id="distribution" class="level2">
 <h2 class="anchored" data-anchor-id="distribution">Distribution</h2>
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="beeswarm-plots-with-ggbeeswarm" class="level3">
 <h3 class="anchored" data-anchor-id="beeswarm-plots-with-ggbeeswarm">Beeswarm plots with ggbeeswarm</h3>
 <p>Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.</p>
-<p>Beeswarm plots can be made using a standalone package (install.packages(“beeswarm”)) or using a package that extends ggplot2 (install.packages(“ggbeeswarm”)). We will use the later, since it let’s us work within the ggplot format we have looked at already.</p>
+<p>Beeswarm plots can be made using a standalone package (<code>install.packages("beeswarm")</code>) or using a package that extends ggplot2 (<code>install.packages("ggbeeswarm")</code>). We will use the later, since it let’s us work within the ggplot format we have looked at already.</p>
 <section id="packages-and-setup" class="level4">
 <h4 class="anchored" data-anchor-id="packages-and-setup">Packages and setup</h4>
 <p>Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages.</p>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="beeswarm-plots" class="level4">
 <h4 class="anchored" data-anchor-id="beeswarm-plots">Beeswarm plots</h4>
-<p>Like with the geom_boxplot() we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data.</p>
+<p>Like with the <code>geom_boxplot()</code> we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
@@ -286,12 +286,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><strong>Note:</strong> <em>When running this code, ggplot gives us a warning that rows were removed due to missing values. I’ve added a hidden line of code to suppress these warnings.</em></p>
+<p><strong>Note:</strong> <em>When running this code, ggplot gives us a warning that rows were removed due to missing values. This workshop material has a hidden line of code to suppress these warnings.</em></p>
 <p>With this plain plot we can see what beeswarm is doing - when points on the y axis share a value they are moved horizontally so that overlapping points can be identified. This concept is commonly referred to as “jitter”, and “jitter plots” are a class of chart. Beeswarm plots are an implementation of jitter plots that aim to be compact with as little as possible overlap of points. This gives us the ability to see density through the width of the plot, similar to how a violin plot (geom_violin) works.</p>
 <p>Distribution plots are a good opportunity to introduce two new parameters we can adjust in ggplot: size and alpha.</p>
 <ul>
-<li><p>Size is simply the size of the data point. We can assign a single value for all points, or can assign a continuous variable.</p></li>
-<li><p>Alpha is the level of transparency. When data points are too large (from the size argument), or too numerous, the points can overlap one another (a problem called “overplotting”). This is particularly problematic outside of beeswarm. When we set alpha to something less than 1, the points become somewhat transparent. Therefore, if two points overlap one another, it is clear from the change in colour (as two transparent but overlapping points are darker than a single point).</p></li>
+<li><p><strong>Size</strong> is simply the size of the data point. We can assign a single value for all points, or can assign a continuous variable.</p></li>
+<li><p><strong>Alpha</strong> is the level of transparency. When data points are too large (from the size argument), or too numerous, the points can overlap one another (a problem called “overplotting”). This is particularly problematic outside of beeswarm. When we set alpha to something less than 1, the points become somewhat transparent. Therefore, if two points overlap one another, it is clear from the change in colour (as two transparent but overlapping points are darker than a single point).</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
@@ -307,12 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>(I’d argue that increasing the size and decreasing the alpha has <em>decreased</em> the quality of our plot, but it’s just for the purpose of demonstration).</p>
+<p>(Here, one could argue that increasing the size and decreasing the alpha has <em>decreased</em> the quality of our plot, but it’s just for the purpose of demonstration).</p>
 </section>
 </section>
 <section id="geom_quasirandom-and-dangerous-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="geom_quasirandom-and-dangerous-distributions">geom_quasirandom and dangerous distributions</h3>
-<p>geom_quasirandom() is a function very similar to geom_beeswarm(), but instead of strictly moving points, they are quasi-randomly moved.</p>
+<p><code>geom_quasirandom()</code> is a function very similar to <code>geom_beeswarm()</code>, but instead of strictly moving points, they are quasi-randomly moved.</p>
 <section id="exercise-compare-the-plot-below-with-the-plot-above.-what-is-different-between-them" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-compare-the-plot-below-with-the-plot-above.-what-is-different-between-them">Exercise: Compare the plot below with the plot above. What is different between them?</h4>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -350,7 +350,7 @@ Dangers of distributions
 </section>
 <section id="theme-and-labels" class="level4">
 <h4 class="anchored" data-anchor-id="theme-and-labels">Theme and labels</h4>
-<p>We can add two other functions to make this plot much easier to read. First, the theme_minimal() function is a quick way to set a global theme to the plot and make it less cluttered. The second function is labs(), which we use to add a title and x and y axes labels. We will cover themes more later, but adding theme_minimal() to every plot we do today will keep them looking tidy and coherent.</p>
+<p>We can add two other functions to make this plot much easier to read. First, the <code>theme_minimal()</code> function is a quick way to set a global theme to the plot and make it less cluttered. The second function is <code>labs()</code>, which we use to add a title and x and y axes labels. We will cover themes more later, but adding <code>theme_minimal()</code> to every plot we do today will keep them looking tidy and coherent.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
@@ -376,8 +376,8 @@ Dangers of distributions
 <h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
 <section id="heatmaps-with-geom_tile" class="level3">
 <h3 class="anchored" data-anchor-id="heatmaps-with-geom_tile">Heatmaps with geom_tile()</h3>
-<p>Heatmaps can be used to visualize values across two dimensions using colour. In a biological context this could be gene expression values across a range of genes for a set of samples. This is often combined with some type of clustering (<em>e.g.,</em> unsupervised hierarchical clustering with k-means) to identify patterns of gene expression which differ between sample groups.</p>
-<p>Here we will use geom_tile() to create a particular type of heatmap called a “calendar heatmap”, which will display a value on a given day for a selected time period. The example below is captured from github, which display the number of commits (saves) a user made across the year.</p>
+<p>Heatmaps can be used to visualise values across two dimensions using colour. In a biological context this could be gene expression values across a range of genes for a set of samples. This is often combined with some type of clustering (<em>e.g.,</em> unsupervised hierarchical clustering with k-means) to identify patterns of gene expression which differ between sample groups.</p>
+<p>Here we will use <code>geom_tile()</code> to create a particular type of heatmap called a “calendar heatmap”, which will display a value on a given day for a selected time period. The example below is captured from github, which display the number of commits (saves) a user made across the year.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/calendar_tile_plot.png" class="img-fluid figure-img"></p>
@@ -421,7 +421,7 @@ Dangers of distributions
 </section>
 <section id="geom_tile" class="level4">
 <h4 class="anchored" data-anchor-id="geom_tile">geom_tile()</h4>
-<p>Now we will create the plot with geom_tile(). Like with the geom_boxplot() we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With geom_tile() we will always need to use aes() to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with “fill =”. In our example we will map the count variable to fill.</p>
+<p>Now we will create the plot with <code>geom_tile()</code>. Like with the <code>geom_boxplot()</code> we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With <code>geom_tile()</code> we will always need to use <code>aes()</code> to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with “fill =”. In our example we will map the count variable to fill.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> month_data,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> week, </span>
@@ -439,11 +439,11 @@ Dangers of distributions
 <p>This is a good starting point in that we have functionally sketched the data into the plot type. However, we can see that it the layout does not match our expectations for a calendar: it reads the days in reverse (Saturday, Friday, Thursday <em>etc.,</em>), and has the week on the x axis. It is also missing a title, and axes labels, and it doesn’t have particularly high contrast between high and low values.</p>
 <p>To correct these issues we will:</p>
 <ul>
-<li><p>Swap the x and y axis with the aes() function.</p></li>
-<li><p>Use the scale_y_reverse() function to reverse the Y-axis (which will now be weeks) so that the last value (week 5) is placed at the bottom.</p></li>
-<li><p>Add the scale_fill_viridis_c() function to change the colour of the fill. The “scale_[argument]_viridis” set of functions are used to select a colour blind-friendly pallette with high contrast.</p></li>
-<li><p>Use the labs() function to add title, x and y axis labels, and rename the fill (legend) variable.</p></li>
-<li><p>Additionally, we will add colour = “white” as an argument for geom_tile(), which will result in a fine white grid separating our tiles, and add the theme_minimal() function to reduce the visual clutter of the grey background in the plot.</p></li>
+<li><p>Swap the x and y axis with the <code>aes()</code> function.</p></li>
+<li><p>Use the <code>scale_y_reverse()</code> function to reverse the Y-axis (which will now be weeks) so that the last value (week 5) is placed at the bottom.</p></li>
+<li><p>Add the <code>scale_fill_viridis_c()</code> function to change the colour of the fill. The “scale_[argument]_viridis” set of functions are used to select a colour blind-friendly pallette with high contrast.</p></li>
+<li><p>Use the <code>labs()</code> function to add title, x and y axis labels, and rename the fill (legend) variable.</p></li>
+<li><p>Additionally, we will add colour = “white” as an argument for <code>geom_tile()</code>, which will result in a fine white grid separating our tiles, and add the <code>theme_minimal()</code> function to reduce the visual clutter of the grey background in the plot.</p></li>
 </ul>
 </section>
 <section id="exercise-use-the-code-block-and-tips-above-to-create-an-improved-version-of-the-calendar-heatmap." class="level4">
@@ -529,14 +529,14 @@ What is set.seed?
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>What is set.seed? set.seed() is a function that feeds into any function that will randomly select or generate values. If we all use set.seed with the same number value, we will all get the same results, even though we are about to ‘randomly’ simulate some data. In future you can use any numeric value for set.seed(), so long as you keep it consistent within experiments.</p>
+<p>What is set.seed? <code>set.seed()</code> is a function that feeds into any function that will randomly select or generate values. If we all use set.seed with the same number value, we will all get the same results, even though we are about to ‘randomly’ simulate some data. In future you can use any numeric value for <code>set.seed()</code>, so long as you keep it consistent within experiments.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="line-chart-with-geom_line" class="level3">
 <h3 class="anchored" data-anchor-id="line-chart-with-geom_line">Line chart with geom_line()</h3>
-<p>The simplest plot for change over time is geom_line().</p>
+<p>The simplest plot for change over time is <code>geom_line()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stock <span class="sc">==</span> <span class="st">"Stock C"</span>), </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
@@ -557,22 +557,18 @@ What is set.seed?
 </section>
 <section id="visual-interest-with-geom_area" class="level3">
 <h3 class="anchored" data-anchor-id="visual-interest-with-geom_area">Visual interest with geom_area()</h3>
-<p>The geom_area() function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.</p>
+<p>The <code>geom_area()</code> function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stock <span class="sc">==</span> <span class="st">"Stock B"</span>), </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">"black"</span>, </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"black"</span>, </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Keeps the line for clarity</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Keeps the line for clarity</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stock B Price Over Time (Area Chart)"</span>, </span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, </span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Price"</span>) <span class="sc">+</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -581,22 +577,30 @@ What is set.seed?
 </div>
 </div>
 </div>
-<p>The choice of geom_line() or geom_area() is purely aesthetic.</p>
+<p>The choice of <code>geom_line()</code> or <code>geom_area()</code> is purely aesthetic.</p>
 </section>
 <section id="stacked-area-chart" class="level3">
 <h3 class="anchored" data-anchor-id="stacked-area-chart">Stacked area chart</h3>
-<p>The stacked area chart can be used to create a strong visual impact, especially if the correct colours are chosen. Here’s an example from Cédric Scherer:</p>
-<p><a href="images/CedricScherer_stackedAreaPlot.jpg">Appearance of the popular X-Men</a></p>
+<p>The stacked area chart can be used to create a strong visual impact, especially if the correct colours are chosen. Here’s an awesome example from <a href="https://www.cedricscherer.com/tags/ggplot2/">Cédric Scherer</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/CedricScherer_stackedAreaPlot.jpg" class="img-fluid figure-img"></p>
+<figcaption>Appearance of the popular X-Men</figcaption>
+</figure>
+</div>
+<p><br>
+</p>
+<p>Let’s create a stacked area charts of our stocks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks, <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> price, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> stock)) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span>  <span class="co"># Fill areas with transparency</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Area Chart of Stock Prices Over Time"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Price"</span>, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Stock"</span>) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks, <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> price, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> stock)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span>  <span class="co"># Fill areas with transparency</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Area Chart of Stock Prices Over Time"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Price"</span>, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Stock"</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -620,9 +624,9 @@ What is set.seed?
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Looking more closely you will notice that Stock A has not increased in value and is almost exactly where it started.</p>
-<p>Because stacked area plots can be misleading, they are not recommended as a type of visualisation.</p>
+<p>Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.</p>
 <p>You can check the actual change in value of Stock A by repeating the code for the line or single variable area plot, changing the code to filter(stock == “Stock A”) (and updating the figure title of course).</p>
-<p>An alternative to stacked area plots is the use of facet, which will allow us to visualize multiple stocks at once by creating individual panels.</p>
+<p>An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels.</p>
 </div>
 </div>
 </div>
@@ -633,8 +637,8 @@ What is set.seed?
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>The two key messages from this episode are:</p>
 <ul>
-<li><p>There are lots of different chart types available to you, and they mostly follow the same template with slight variations in the geom_() function and the arguments supplied.</p></li>
-<li><p>How you visualize your data can have an impact on what other people see. The human brain is amazing, but even on our best days we make assumptions, or can be distracted, and reach the wrong conclusion. Strive to make your data as clear and transparent as possible.</p></li>
+<li><p>There are lots of different chart types available to you, and they mostly follow the same template with slight variations in the <code>geom_*()</code> function and the arguments supplied.</p></li>
+<li><p>How you visualise your data can have an impact on what other people see. The human brain is amazing, but even on our best days we make assumptions, or can be distracted, and reach the wrong conclusion. Strive to make your data as clear and transparent as possible.</p></li>
 </ul>
 
 

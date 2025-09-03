@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap');
+
+
+
 /* General page styling */
 body {
     background-color: #f7f9fc;  /* Very light blue background for a soft feel */
     color: #4a4a4a;  /* Dark gray text color for good readability */
-    font-family: Arial, sans-serif;  /* Font family for a clean, modern look */
+    font-family: 'Mukta', Helvetica Neue, Arial, sans-serif;  /* Font family for a clean, modern look */
     line-height: 1.6;
     margin: 0;
     padding: 0;

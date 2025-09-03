@@ -4,7 +4,7 @@ output: html_document
 toc: true
 ---
 
-If you want to start practicing visualizations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
+If you want to start practicing visualisations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
 
 Check out the [tidytuesday github](https://github.com/rfordatascience/tidytuesday) to see all the data.
 
