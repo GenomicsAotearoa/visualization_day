@@ -8,22 +8,22 @@ If you want to start practicing visualisations, a really great place to start is
 
 Check out the [tidytuesday github](https://github.com/rfordatascience/tidytuesday) to see all the data.
 
-In this episode we are going to access some of the tidytuesday data and go through the process of visualizing the data. There are hundreds of example datasets available, and some of them are very interesting! Part of the aim of this episode is to explore a dataset that we are not familiar with. This material is based on my first experience participating in tidytuesday, and I had no idea what the data was like or what to expect. 
+In this episode we are going to access some of the tidytuesday data and go through the process of visualising the data. There are hundreds of example datasets available, and some of them are very interesting! Part of the aim of this episode is to explore a dataset that we are not familiar with. This material is based on my first experience participating in tidytuesday, and I had no idea what the data was like or what to expect. 
 
 
 ## Overview
 
 Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualize the data in a meaningful way.
 
-*Note:* Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualisation (in Python!). The poster warns us: "I have to admit, this screencast is 80% me orienting to this week's data". The comments section immediately responds that "80% orienting to the data is real life!"
+*Note: Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualisation (in Python!). The poster warns us: "I have to admit, this screencast is 80% me orienting to this week's data". The comments section immediately responds that "80% orienting to the data is real life!"*
 
 ### Aims
 
-To demonstrate the full process of exploratory analysis, data transformation, and visualisation.
+- To demonstrate the full process of exploratory analysis, data transformation, and visualisation.
 
-Generate discussion, via questions and exercises, about the data and the validity of our modifications and decisions.
+- Generate discussion, via questions and exercises, about the data and the validity of our modifications and decisions.
 
-To generate a figure that is clear, conveys a message, and is visually appealing.
+- To generate a figure that is clear, conveys a message, and is visually appealing.
 
 ### How this will work
 
@@ -35,15 +35,17 @@ You will be provided with a full and complete copy of all this code, to use as a
 
 ### Packages
 
-For this section we are going to need dplyr, readr, and ggplot. We can load them separately, or we can load the whole tidyverse package.
+For this section we are going to need dplyr, readr, and ggplot. We can load them separately, or we can load the whole tidyverse package:
 
-```{r}
-#| echo: false
+```{r message=FALSE} 
 
 library(tidyverse)
 
-# Alternatively, load the tidyverse packages individually:
+```
 
+Alternatively, load the tidyverse packages individually:
+
+```{r message=FALSE}
 # library(dplyr)
 # library(readr)
 # library(ggplot)
@@ -61,7 +63,7 @@ parfumo_data_clean <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 
 The first step in exploratory analysis is to understand our data. This is the equivalent of picking up a wrapped present, feeling the weight, how solid it is, maybe giving it a little bit of a shake, and trying to figure out what's inside. With our data, we are trying to build a light-weight mental model - what each object is storing, whether the data is numeric, are there missing values, are there biases between groups, is the data normally distributed *etc., etc.,*. 
 
-Useful functions here include dim(), colnames(), head(), summary(), str(), class(), and many others. You will develop a set of favourites and defaults.
+Useful functions here include `dim()`, `colnames()`, `head()`, `summary()`, `str()`, `class()`, and many others. You will develop a set of favourites and defaults.
 
 ```{r}
 parfumo_data_clean |> head()
@@ -134,13 +136,13 @@ Natura and Sarahs Creations share the top score of 10. No need for further analy
 Since we use base 10, many surveys and tests tend to be scored out of 10. To see two brands with what look like perfect scores makes me very suspicious, especially given it's a mean - this would require every single person to have rated every single one of their perfumes as a 10. Either they truly are perfect or, more likely, this is due to a very small number of ratings on a single type of perfume.
 :::
 
-If you are confident in these results, I recommend you re-run summary() and look at the data. Does it change your opinion?
+If you are confident in these results, I recommend you re-run `summary()` and look at the data. Does it change your opinion?
 
 ```{r}
 parfumo_data_clean |> summary()
 ```
 
-The summary() function is very useful here. Looking at the column for Rating_Value, I can see that the mean and median values are around 7.3-7.4, and the range is 0 - 10. At this time I'm also looking at the Rating_Count variable, and seeing that the range there is 2 - 2,732. That tells me that some perfumes were only rated twice. I'm very suspicious that the brands Natura and Sarahs Creations have only a single perfume which was rated only two or three times, which allows them to get perfect scores. Similarly, any other brand with a score that seems too good to be true could be the result of this low-sampling bias.
+The `summary()` function is very useful here. Looking at the column for Rating_Value, I can see that the mean and median values are around 7.3-7.4, and the range is 0 - 10. At this time I'm also looking at the Rating_Count variable, and seeing that the range there is 2 - 2,732. That tells me that some perfumes were only rated twice. I'm very suspicious that the brands Natura and Sarahs Creations have only a single perfume which was rated only two or three times, which allows them to get perfect scores. Similarly, any other brand with a score that seems too good to be true could be the result of this low-sampling bias.
 
 **Exercise:** Is my hypothesis (very high scores are the result of low sampling bias) true? What type of visualisation would help us to test this? In the space below, create a quick plot to ask whether there is a low-sampling bias present.
 
@@ -148,8 +150,9 @@ The summary() function is very useful here. Looking at the column for Rating_Val
 
 ```
 
-::: {.callout-tip collapse="true"}
-## Solution
+## Assessing data biases and relationships
+
+### Relationship between rating count and rating value
 
 I am assuming there is a negative relationship between avg_Rating and Rating_count (fewer ratings allow for a higher avg score). A scatter plot, made with geom_point(), with Rating_Count and Rating_Value on the x and y, is a quick and easy way to visualize a relationship like this.
 
@@ -160,16 +163,22 @@ ggplot(data = parfumo_data_clean,
   geom_point()
 ```
 
-**Warning: 29279 rows removed. Missing values or values outside the scale range** - what is this? This warning appears when we attempt to plot values that are outside of the range of the X or Y axis. However, this warning also appears when there is missing data. In this case we know the range of values is 0 - 10, and from the summary() function know that both the Rating variables have 29,279 missing rows. During our initial look at summary(), we noted approx 30,000 missing rows (NAs), leaving approx 30,000 rows of data. If our initial data set didn't have missing values, this warning would be concerning.
+::: {.callout-warning collapse="true"}
+## Warning: 29279 rows removed. 
+**Missing values or values outside the scale range** - what is this? This warning appears when we attempt to plot values that are outside of the range of the X or Y axis. However, this warning also appears when there is missing data. In this case we know the range of values is 0 - 10, and from the summary() function know that both the Rating variables have 29,279 missing rows. During our initial look at summary(), we noted approx 30,000 missing rows (NAs), leaving approx 30,000 rows of data. If our initial data set didn't have missing values, this warning would be concerning.
 
 Warnings can be suppressed, but since we won't be keeping them in the final plot it's not critical and I prefer to leave them showing while working through exploratory analysis plots.
-:::
 
-It seems there is a relationship between Rating_Value and Rating_Count - one we can probably conceptualize quite well! Scents with fewer ratings exhibit the highest and lowest values. Why is this? Presumably all perfumes receive some very high and very low scores based on personal preference. If a perfume has only a small number of ratings, the rating_value is skewed towards those extreme scores. Perfumes with more ratings are gravitating towards a point just below 7.5. This matches with mean and median Rating_Value of 7.35 and 7.40, respectively, which we noted from the summary() function at the start of this episode. It makes sense that as the number of ratings increases, the average rating converges on a middle-ground. 
+:::  
+
+
+
+It seems there is a relationship between Rating_Value and Rating_Count - one we can probably conceptualize quite well! Scents with fewer ratings exhibit the highest and lowest values. Why is this? Presumably all perfumes receive some very high and very low scores based on personal preference. If a perfume has only a small number of ratings, the rating_value is skewed towards those extreme scores. Perfumes with more ratings are gravitating towards a point just below 7.5. This matches with mean and median Rating_Value of 7.35 and 7.40, respectively, which we noted from the `summary()` function at the start of this episode. It makes sense that as the number of ratings increases, the average rating converges on a middle-ground. 
 
 Importantly, I think this is reasonable grounds to filter our data based on a Rating_Count threshold, since perfumes with a low Rating_Count can be skewed. I need to define a filter threshold, and I'll use the median value of Rating_Count (19): rows (perfumes) will only be kept if they have been rated 19 times or more. 
 
-#### An aside
+
+### Relationship between rating count and release year
 
 I'll also take a guess that there will be relationship between Rating_Count and Release_Year. I imagine that newer perfumes will have more ratings due to the internet, marketing, and population. This is important because if we are filtering based on a Rating_Count threshold, we need to be aware this is reducing the likelihood of older Brands appearing.
 
@@ -181,9 +190,10 @@ ggplot(data = parfumo_data_clean,
 
 #### Decisions
 
-I have decided to filter perfumes/rows based on a criteria of having been rated 19 or more times (based on the median rating_Count of 19). Perfumes rated fewer than 19 times will be excluded from the analysis.
+I have decided to filter perfumes/rows based on a criteria of having been rated 19 or more times (based on the median rating_Count of 19). Perfumes rated fewer than 19 times will be excluded from the analysis. I have also decided to remove brands with only a small number of perfumes (less than 20), as what I am interested in is getting a robust assessment of each brands overall rating, consistent across their perfumes.  
 
-**Exercise:** Discuss with others - do you agree with the decision to filter like this? Can you propose an alternative method? Is our threshold of 19 reasonable?
+**Exercise:** Discuss with others - do you agree with the decision to filter like this? Can you propose an alternative method? Is our threshold of 19 reasonable? Would you keep all brands regardless of number of perfumes? 
+
 
 
 
@@ -209,7 +219,7 @@ While these steps are an important part of visualisation, they are somewhat repe
 
 **Exercise: The above transformations include two user-defined thresholds which determine what data is included in further analyses. Discuss the thresholds used and whether you believe they are reasonable and logical. What approach would you take in this situation?** 
 
-*Note:* the thresholds, and the logic behind them, are described in more detail in the callout box.
+*Note:* the thresholds, and the logic behind them, are described in more detail in the callout box below:
 
 ::: {.callout-note collapse="true"}
 
@@ -217,9 +227,9 @@ While these steps are an important part of visualisation, they are somewhat repe
 
 ### Filtering for low rating counts
 
-The summary() function reveals that the median number of Rating_Counts is 19, so I'm choosing to keep only rows which have 19 or more ratings. You may decide to change this number or keep it as is.
+The `summary()` function reveals that the median number of Rating_Counts is 19, so I'm choosing to keep only rows which have 19 or more ratings. You may decide to change this number or keep it as is.
 
-The code below will use filter() to discard all rows which *do not* meet the threshold (equal to or greater than 19), and will then repeat the steps we did earlier - grouping perfume by Brand, calculating the average rating for those brands, and returning the highest scores.
+The code below will use `filter()` to discard all rows which *do not* meet the threshold (equal to or greater than 19), and will then repeat the steps we did earlier - grouping perfume by Brand, calculating the average rating for those brands, and returning the highest scores.
 
 ```{r}
 parfumo_data_clean |> 
@@ -230,7 +240,7 @@ parfumo_data_clean |>
   head()
 ```
 
-The new average ratings are much more plausible. They are also higher than the mean and median (from the summary() function), which is a good *sanity check*. If my highest scoring brands were lower than the mean or median, I would know I have made a critical error. This might seem obvious, but it's important to constantly perform these mental checks.
+The new average ratings are much more plausible. They are also higher than the mean and median (from the `summary()` function), which is a good *sanity check*. If my highest scoring brands were lower than the mean or median, I would know I have made a critical error. This might seem obvious, but it's important to constantly perform these mental checks.
 
 ::: {.callout-tip collapse="true"}
 ## Sanity Checks
@@ -244,11 +254,11 @@ Sanity checks are a way to engage with your data and make sure your results make
 Sanity checks are an entire arm of bioinformatics and data science, much the same way good visualisation is. It's a skill that takes time and effort to build.
 :::
 
-### Transformations cont
+### Transformations continued
 
 We've taken the step of removing perfumes that had too few ratings to be accurate. Since we are investigating *Brands*, rather than individual perfumes, it's logical to ask whether any Brands are scoring highly because they have only one or two perfumes that perform well (a "one-hit-wonder" brand).
 
-To test this hypothesis, we can take advantage of the fact that the summarize() function can simultaneously calculate multiple summaries. We will re-run the code from above, but this time include an additional line so that we can see both the average rating *and* the number of perfumes contributing to the rating.
+To test this hypothesis, we can take advantage of the fact that the `summarize()` function can simultaneously calculate multiple summaries. We will re-run the code from above, but this time include an additional line so that we can see both the average rating *and* the number of perfumes contributing to the rating.
 
 ```{r}
 parfumo_data_clean |> 
@@ -307,7 +317,7 @@ keep_brands |> rm()
 
 ```
 
-**Exercise:** Take five minutes to look at this code and predict the output - do you understand what we have done here? Manipulating objects like this is a *critical skill*. Take one more look at the code and make sure you understand each line of code and what the output is. Use head(), summary() or any other functions to check the output. Note any observations.
+**Exercise:** Take five minutes to look at this code and predict the output - do you understand what we have done here? Manipulating objects like this is a *critical skill*. Take one more look at the code and make sure you understand each line of code and what the output is. Use `head()`, `summary()` or any other functions to check the output. Note any observations.
 
 ::: {.callout-tip collapse="true"}
 ## Observations
@@ -319,21 +329,21 @@ The above lines of code are:
 
 - Grouping perfumes by brand. 
 
-- The summarize() function is creating two new variables: avg_Rating, which is the overall average rating for a **Brand** and number_Perfumes, which is the number of perfumes that were rated for this brand. 
+- The `summarize()` function is creating two new variables: avg_Rating, which is the overall average rating for a **Brand** and number_Perfumes, which is the number of perfumes that were rated for this brand. 
 
-- Another filter(), this time keeping only those brands with 20 or more perfumes (which have a Rating_Count of 19 or more).
+- Another `filter()`, this time keeping only those brands with 20 or more perfumes (which have a Rating_Count of 19 or more).
 
 - Arrange (sort) the brands by their overall score (from highest to lowest), and keep only the top 10 brands. 
 
-keep_brands is therefore the 10 perfume brands we are interested in: after filtering, they have the highest average rating. Because of how summarize() works, keep_brands only has the new variables we created - avg_Rating and number_Perfumes (plus the Brand names).
+keep_brands is therefore the 10 perfume brands we are interested in: after filtering, they have the highest average rating. Because of how `summarize()` works, keep_brands only has the new variables we created - avg_Rating and number_Perfumes (plus the Brand names).
 
-Next, use the Brand variable in keep_brands to pull out all the data from parfumo_data_clean. Here, filter() is being used just like above, but instead of filtering on a "greater than" threshold, we are filtering on whether or not the parfumo_data_clean Brand element is found in the keep_brand object. 
+Next, use the Brand variable in keep_brands to pull out all the data from parfumo_data_clean. Here, `filter()` is being used just like above, but instead of filtering on a "greater than" threshold, we are filtering on whether or not the parfumo_data_clean Brand element is found in the keep_brand object. 
 
 **This has introduced a critical error**. It has kept only the brands we want, but we have *not* specified that we only want those perfumes with a Rating_Count of 19 or more (we have filtered for *all* perfumes produced by the brands we selected).
 
 *It is very easy to make a mistake like this*
 
-Which is why we must always be thinking of sanity checks. The summary() function shows us that the min value in Rating_Count is 2, which is how I realised that somewhere, I'd lost my filtering threshold. 
+Which is why we must always be thinking of sanity checks. The `summary()` function shows us that the min value in Rating_Count is 2, which is how I realised that somewhere, I'd lost my filtering threshold. 
 
 perfume_brand_data |> summary()
 
@@ -367,7 +377,7 @@ Is anything different between what you expected and/or described and what the ob
 ::: {.callout-tip collapse="TRUE"}
 ## Variables in tidyverse
 
-If you are new to the tidyverse, you have expected to see more columns, but group_by() and summarize() are determining what columns are generated and saved in the new object. The two filter() calls and the arrange() call control which rows are kept and the order we see them in.
+If you are new to the tidyverse, you have expected to see more columns, but `group_by()` and `summarize()` are determining what columns are generated and saved in the new object. The two `filter()` calls and the `arrange()` call control which rows are kept and the order we see them in.
 :::
 
 With the brandRatingData object stored, we can now proceed to visualisation.
@@ -397,7 +407,7 @@ brandRatingData
 
 
 
-## Visualisation I
+## Visualisation 
 
 In this example we will create a visualisation of the top 20 perfume brands based on the average rating. The **aim** is to provide a novice with information about perfume brands so that they could pick a perfume with some confidence (*e.g.,* if doing online shopping).
 
@@ -444,7 +454,7 @@ Fundamentally, I don't think the boxplot works. While it does show the median an
 
 *Note:* In reality you might sketch out a handful of different plots to find one that suits. Here we will jump ahead to something I think works.
 
-First, we will switch to using brandRatingData, where we have calculated the Brand average rating, and we will show the average with a geom_point function. You will see that while we lose some information switching from a boxplot to a geom_point() plot, this will allow us to include other information which may be more informative.
+First, we will switch to using brandRatingData, where we have calculated the Brand average rating, and we will show the average with a geom_point function. You will see that while we lose some information switching from a boxplot to a `geom_point()` plot, this will allow us to include other information which may be more informative.
 
 ::: {.callout-tip collapse="true"}
 ## The importance of transforming your data
@@ -453,9 +463,9 @@ While this workshop is primarily focused on the tools and code you need to visua
 
 :::
 
-brandRatingData is already formated to have Brands arranged by avg_Rating, but in case that wasn't true, the code includes reorder() to sort by avg_Rating.
+brandRatingData is already formated to have Brands arranged by avg_Rating, but in case that wasn't true, the code includes `reorder()` to sort by avg_Rating.
 
-The labs() function is used to add a title, and clearer x and y axis labels.
+The `labs()` function is used to add a title, and clearer x and y axis labels.
 
 ```{r}
 ggplot(brandRatingData, 
@@ -509,17 +519,17 @@ ggplot(brandRatingData,
   guides(color = "none")
 ```
 
--   scale_color_gradient() is a function to set colours through a given gradient. Useful if you have an overall brand or theme colour (*e.g.,* University of Otago tends to use blue and gold, so I've chosen blue).
+-   `scale_color_gradient()` is a function to set colours through a given gradient. Useful if you have an overall brand or theme colour (*e.g.,* University of Otago tends to use blue and gold, so I've chosen blue).
 
--   scale_size() provides control over the size of the geom_point data points. We can set the upper/lower limits, and the 'granularity' (*i.e.,* a difference between a large and a small value by having a greater range). Larger point sizes here (compared to our first plot) make the figure look less empty. Having points that overlap (Guerlain) may not be appropriate in all settings, but visually it makes the plot less 'rigid' and is more interesting. Note this function also sets the name to "Number of perfumes".
+-   `scale_size()` provides control over the size of the geom_point data points. We can set the upper/lower limits, and the 'granularity' (*i.e.,* a difference between a large and a small value by having a greater range). Larger point sizes here (compared to our first plot) make the figure look less empty. Having points that overlap (Guerlain) may not be appropriate in all settings, but visually it makes the plot less 'rigid' and is more interesting. Note this function also sets the name to "Number of perfumes".
 
 -   By controlling both size and colour, the new plot focuses our attention, starting at the darker top right and letting our eyes move down and to the left (which is loosely our order of preference for brands). You can switch dark and light blue and re-build the plot, notice how much it impacts where our attention is drawn!
 
--   theme_light() sets the background space of the plot to white rather than a darker gray. Test this by changing it to theme_dark(). There are a set of available pre-made themes, and we can also control our own themes.
+-   `theme_light()` sets the background space of the plot to white rather than a darker gray. Test this by changing it to `theme_dark()`. There are a set of available pre-made themes, and we can also control our own themes.
 
--   theme() is used to control almost everything else within the plot. Here we are setting three different sizes: the *plot title*, the axis *names*, and the axis *text*. Title and names are further differentiated by setting typeface to bold. This highlights *an important feature of design:* we naturally look for patterns and similarities, therefore we can use a point of difference to make something **stand out**.
+-   `theme()` is used to control almost everything else within the plot. Here we are setting three different sizes: the *plot title*, the axis *names*, and the axis *text*. Title and names are further differentiated by setting typeface to bold. This highlights *an important feature of design:* we naturally look for patterns and similarities, therefore we can use a point of difference to make something **stand out**.
 
-- guides() is being used here to remove colour from the legend (color = "none"). Use size = "none" to remove the size legend. We have done this because while colour is being used to add visual interest, it isn't really providing us with novel information (it is repeating the same information we get from looking at where the point sits on the x axis). 
+- `guides()` is being used here to remove colour from the legend (color = "none"). Use size = "none" to remove the size legend. We have done this because while colour is being used to add visual interest, it isn't really providing us with novel information (it is repeating the same information we get from looking at where the point sits on the x axis). 
 
 Using this information as a guide, you could make many fine scale tweaks to your plot, changing it to suit your specific data and situation.
 
@@ -529,7 +539,7 @@ Looking at this plot, what can I do to enhance the visuals to be cleaner, more d
 
 Currently, colour is not being fully utilised - it is mapped to the Brand average rating, which is already shown via the x axis. Thinking back to earlier themes on number of ratings and number of perfumes per brand, we could use colour to represent some of our data around the rating_Count variable.
 
-To do this, we will re-build the brandRatingData object with an additional variable calculated by the summarize() function, calling it avg_rating_count and then map it to colour.  
+To do this, we will re-build the brandRatingData object with an additional variable calculated by the `summarize()` function, calling it avg_rating_count and then map it to colour.  
 
 ```{r}
 # Add a new summarize output: the average rating count.
@@ -550,9 +560,9 @@ Before we map avg_rating_count to colour we will consider *accessibility*. A col
 For an example of 'gentle vs overwhelming', go to Tools, Global Options, Appearance, and in the Editor theme box, check "Gob". I personally would not enjoy spending time looking at my RStudio console if the editor was stuck in "Gob", and I prefer the much more gentle Idle Fingers theme. 
 :::
 
-The viridis R package is one example of a package that claims* to have colour-blind friendly colour palettes (* I'm not colour-blind and cannot confirm). In addition to mapping avg_rating_count to colour and using the scale_color_viridis() function with the "magma" argument, I've also tweaked some of the arguments in theme() to make the overall text package look cleaner and softer. 
+The viridis R package is one example of a package that claims* to have colour-blind friendly colour palettes (* I'm not colour-blind and cannot confirm). In addition to mapping avg_rating_count to colour and using the `scale_color_viridis()` function with the "magma" argument, I've also tweaked some of the arguments in `theme()` to make the overall text package look cleaner and softer. 
 
-```{r}
+```{r message=FALSE}
 library(viridis)
 
 # install.packages("ggtext")
@@ -597,8 +607,8 @@ Use the information we have discussed, and the lessons from earlier, to trial ou
 
 ## Summary
 
-Before we can visualize our data we may have to transform it in some way or another. We may have to make difficult choices around thresholds of significance or what data to include or remove. 
+- Before we can visualise our data we may have to transform it in some way or another. We may have to make difficult choices around thresholds of significance or what data to include or remove. 
 
-Careful choice of geoms and mapping allow us to show data on more than just two or three axes. 
+- Careful choice of geoms and mapping allow us to show data on more than just two or three axes. 
 
-The goal isn't *just* to show the data. It's to excite the audience, to capture and retain attention in an **extremely** noisy world. 
+- The goal isn't *just* to show the data. It's to excite the audience, to capture and retain attention in an **extremely** noisy world. 

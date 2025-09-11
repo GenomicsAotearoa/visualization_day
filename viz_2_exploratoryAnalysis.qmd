@@ -21,7 +21,7 @@ Distribution matters!
 
 Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
-Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the later, since it let's us work within the ggplot format we have looked at already. 
+Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. 
 
 
 #### Packages and setup

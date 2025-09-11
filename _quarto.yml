@@ -10,9 +10,9 @@ website:
     contents:
           - viz_1_ggplot.qmd
           - viz_2_exploratoryAnalysis.qmd
-          - viz_3_exemplarVisualizations.qmd
+          - viz_3_exemplarVisualisations.qmd
           - viz_4_building_better.qmd
-          - viz_start_to_finish.qmd
+          - viz_5_start_to_finish.qmd
     tools: 
       - icon: github
         href: https://github.com/GenomicsAotearoa/visualization_day

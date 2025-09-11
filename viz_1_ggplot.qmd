@@ -11,6 +11,7 @@ Load the palmerpenguins package for an example dataset, ggplot2 for the plotting
 
 ```{r}
 # install.packages("palmerpenguins")
+# install.packages("tidyverse") # tidyverse contains ggplot2 and dplyr
 library(palmerpenguins)
 library(ggplot2)
 library(dplyr)
@@ -97,6 +98,52 @@ ggplot(data = penData,
        y = "Flipper length (mm)") +
   ggtitle("Bill depth vs flipper length") 
 ```
+
+::: {.callout-tip collapse="true"}
+## Create this plot with NZ bird themed colours
+
+Geoffrey Thomson has created a beautiful colour package for ggplot that allows you to chose NZ native birds as colour palette themes for making plots. [See their website here for more details.](https://g-thomson.github.io/Manu/)
+
+Here's how to use it:
+
+First, install the package from github:  
+(we have commented it out here to prevent this server re-installing the package)
+```{r message=FALSE}
+# install.packages("devtools")
+# devtools::install_github("G-Thomson/Manu")
+```
+
+Then, load the library and have a look at the palette names:
+```{r}
+library(Manu)
+names(manu_palettes)
+```
+
+Now you can have a look at the colours in each palette using the code below. Here we will use Kererū as an example:
+
+```{r}
+kereru <- get_pal("Kereru") # save as new object for using in plot later
+print_pal(kereru)
+```
+
+Now, remake the plot from earlier using your chosen bird. 
+```{r}
+ggplot(data = penData,
+       mapping = aes(x = bill_length_mm,
+                     y = flipper_length_mm,
+                     colour = species,
+                     shape = sex)) +
+  geom_point(size = 2, alpha = 1) + 
+  scale_colour_manual(values = kereru) +
+  labs(x = "Bill depth (mm)",
+       y = "Flipper length (mm)") +
+  ggtitle("Bill depth vs flipper length") 
+```
+
+As there are only 3 variables (i.e., 3 species), ggplot has automatically used the first 3 colours from the colour palette. 
+
+:::
+
 
 ## Summary
 

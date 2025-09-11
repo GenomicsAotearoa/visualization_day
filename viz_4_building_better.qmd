@@ -323,7 +323,7 @@ groupCounts +
               width = 0.2) +
   geom_vline(aes(xintercept = top10_group_avg), 
                   colour = "gray50", 
-                  size = 0.6, 
+                  linewidth = 0.6, 
                   alpha = 0.8) +
   stat_summary(colour = "gray60",
                 fun = mean, 
@@ -354,9 +354,6 @@ ggsave("boxplot.png", height = 10, width = 8)
 
 ### Summary
 
-::: {.callout-tip}
-### Key take-aways
 - Save some of the ggplot2 code into an object, to quickly and easily iterate on a plot, letting us sketch out different plot types and styles. 
 - Use the theme function to save a set of traits that we can use across all of our visualisations, giving us a cohesive look across a single document.
 - Geom functions can be combined in different ways to build up a complex chart, while still sticking to our basic template.  
-:::
