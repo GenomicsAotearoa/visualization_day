@@ -59,9 +59,9 @@ Some things to note about the format:
 
 -   The ggplot formula is a slight break away from the use of pipes.
 
--   There are actually two separate functions here: the ggplot() function, which is used to specify the data and map the variables, and the geom_boxplot() function which is used to create the actual plot. Because we want these two functions to work together, at the very end of the ggplot() function, we have added a "+" symbol. RStudio interprets this to mean "The ggplot function has finished, but it must be interpreted in the context of the next function".
+-   There are actually two separate functions here: the `ggplot()` function, which is used to specify the data and map the variables, and the `geom_boxplot()` function which is used to create the actual plot. Because we want these two functions to work together, at the very end of the `ggplot()` function, we have added a "+" symbol. RStudio interprets this to mean "The ggplot function has finished, but it must be interpreted in the context of the next function".
 
--   geom_boxplot() is the function for making boxplots. To make a bar plot we would use geom_bar(), to make a scatter plot we use geom_point() *etc.,*. Type geom\_ in the console and scroll the dropdown menu to see the different geom types - there are plenty!
+-   `geom_boxplot()` is the function for making boxplots. To make a bar plot we would use `geom_bar()`, to make a scatter plot we use `geom_point()` *etc.,*. Type `geom_` in the console and scroll the dropdown menu to see the different geom types - there are plenty!
 
 ## Extending the ggplot format
 
@@ -77,7 +77,7 @@ In all cases, these new arguments and functions follow the template as outlined 
 
 This example creates a more complex plot, but these new arguments and functions follow the template as outlined above. We continue to use indentations and new lines to keep our code organised and tidy. 
 
-```{r}
+```{r message=FALSE}
 # Load the viridis library, which supplies a colour scheme that is
 # sensitive to colour-blindness.
 
