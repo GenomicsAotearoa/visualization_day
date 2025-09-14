@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Home"
+  title: "Visualisation Day"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
   sidebar:
     style: "docked"
