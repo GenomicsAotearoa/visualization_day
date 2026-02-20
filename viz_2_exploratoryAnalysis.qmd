@@ -1,7 +1,9 @@
 ---
-title: Visualisation for ourselves - Exploratory Analysis
+title: ""
 toc: true
 ---
+
+# Visualisation for ourselves - Exploratory Analysis
 
 Visualisation is most often thought of as something we do for other people, to share some piece of knowledge we have. But equally important is the role visualisation can play in us learning something about our data. Visualisation can reveal trends or associations that we would otherwise struggle to identify in observations stored in rows and columns. 
 
@@ -17,14 +19,14 @@ Distribution plots are a good place to start any data analysis, because many sta
 
 Distribution matters! 
 
-### Beeswarm plots with ggbeeswarm
+## Beeswarm plots with ggbeeswarm
 
 Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
 Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. 
 
 
-#### Packages and setup
+### Packages and setup
 Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages.
 
 ```{r}
@@ -35,7 +37,7 @@ library(palmerpenguins)
 library(tidyverse) # We will use tidyverse later
 ```
 
-#### Beeswarm plots
+### Beeswarm plots
 
 Like with the `geom_boxplot()` we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data. 
 
@@ -125,7 +127,7 @@ That's a lot of commits!
 
 We will create a simple calendar heatmap to demonstrate the concept. Remember, the goal here is to expose you to different types of plots and for you to practice using ggplot2.
 
-#### Generating example data
+##### Generating example data
 First, we will generate some example data. Copy and paste this code, because it is not central to our understanding:
 ```{r}
 set.seed(0982)
@@ -143,7 +145,7 @@ month_data <- tibble(
 month_data |> head()  
 ```
 
-#### geom_tile()
+##### geom_tile()
 
 Now we will create the plot with `geom_tile()`. Like with the `geom_boxplot()` we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With `geom_tile()` we will always need to use `aes()` to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with "fill = ". In our example we will map the count variable to fill. 
 ```{r}
@@ -168,7 +170,7 @@ To correct these issues we will:
 
 - Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
 
-#### Exercise: Use the code block and tips above to create an improved version of the calendar heatmap.
+##### Exercise: Use the code block and tips above to create an improved version of the calendar heatmap.
 
 You do not need to do all of these changes, but try them out if you can! Remember to add a "+" at the end of each line when adding new functions. 
 

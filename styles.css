@@ -25,14 +25,24 @@ body {
   /* Heading styles with background highlight */
   h1, h2, h3 {
     color: #3b5998;  /* Soft blue for headings */
+    margin-top: 5px;
+    margin-bottom: 20px; 
     padding: 5px;
     background-color: #eaf1fb;  /* Very light blue background for heading highlights */
+    border-radius: 5px;
+  }
+
+  h4, h5 {
+    color: #3b5998;  /* Soft blue for headings */
+    margin-top: 5px;
+    margin-bottom: 20px; 
+    padding: 5px;
     border-radius: 5px;
   }
   
   /* Link styles */
   a {
-    color: #3b5998;  /* Muted yellow color for links */
+    color: #3b5998;  
     text-decoration: none;
   }
   

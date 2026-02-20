@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Start to Finish Visualising your Data – Visualisation Day</title>
+<title>viz_5_start_to_finish – Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./viz_4_building_better.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -105,10 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Start to Finish Visualising your Data – Visualisation Day">
+<meta property="og:title" content="– Visualisation with ggplot2">
 <meta property="og:description" content="">
 <meta property="og:image" content="viz_5_start_to_finish_files/figure-html/unnamed-chunk-8-1.png">
-<meta property="og:site_name" content="Visualisation Day">
+<meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -135,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation Day</a> 
+      <a href="./">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -188,7 +189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <li><a href="#start-to-finish-visualising-your-data" id="toc-start-to-finish-visualising-your-data" class="nav-link active" data-scroll-target="#start-to-finish-visualising-your-data">Start to Finish Visualising your Data</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#aims" id="toc-aims" class="nav-link" data-scroll-target="#aims">Aims</a></li>
   <li><a href="#how-this-will-work" id="toc-how-this-will-work" class="nav-link" data-scroll-target="#how-this-will-work">How this will work</a></li>
@@ -220,37 +223,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#final-exercise" id="toc-final-exercise" class="nav-link" data-scroll-target="#final-exercise">Final exercise</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Start to Finish Visualising your Data</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="start-to-finish-visualising-your-data" class="level1">
+<h1>Start to Finish Visualising your Data</h1>
 <p>If you want to start practicing visualisations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!</p>
 <p>Check out the <a href="https://github.com/rfordatascience/tidytuesday">tidytuesday github</a> to see all the data.</p>
 <p>In this episode we are going to access some of the tidytuesday data and go through the process of visualising the data. There are hundreds of example datasets available, and some of them are very interesting! Part of the aim of this episode is to explore a dataset that we are not familiar with. This material is based on my first experience participating in tidytuesday, and I had no idea what the data was like or what to expect.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualize the data in a meaningful way.</p>
+<p>Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualise the data in a meaningful way.</p>
 <p><em>Note: Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualisation (in Python!). The poster warns us: “I have to admit, this screencast is 80% me orienting to this week’s data”. The comments section immediately responds that “80% orienting to the data is real life!”</em></p>
 <section id="aims" class="level3">
 <h3 class="anchored" data-anchor-id="aims">Aims</h3>
@@ -332,7 +322,7 @@ dbl  (3): Release_Year, Rating_Value, Rating_Count
  Length:59325       Min.   : 0.000   Min.   :   2.00   Length:59325      
  Class :character   1st Qu.: 6.900   1st Qu.:   6.00   Class :character  
  Mode  :character   Median : 7.400   Median :  19.00   Mode  :character  
-                    Mean   : 7.347   Mean   :  60.66                     
+                    Mean   : 7.347   Mean   :  60.65                     
                     3rd Qu.: 7.900   3rd Qu.:  62.00                     
                     Max.   :10.000   Max.   :2732.00                     
                     NA's   :29279    NA's   :29279                       
@@ -467,7 +457,7 @@ Interpreting these results
  Length:59325       Min.   : 0.000   Min.   :   2.00   Length:59325      
  Class :character   1st Qu.: 6.900   1st Qu.:   6.00   Class :character  
  Mode  :character   Median : 7.400   Median :  19.00   Mode  :character  
-                    Mean   : 7.347   Mean   :  60.66                     
+                    Mean   : 7.347   Mean   :  60.65                     
                     3rd Qu.: 7.900   3rd Qu.:  62.00                     
                     Max.   :10.000   Max.   :2732.00                     
                     NA's   :29279    NA's   :29279                       
@@ -1093,17 +1083,9 @@ Tip
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
-<div class="bottom-banner">
-  <div class="banner-left">
-    <img src="images/GA-Logo-BioinformaticsTraining-white.png" alt="GA traininglogo" class="banner-logo" style="height:45px; width:auto;">
-  </div>
-  <div class="banner-right">
-    Made with <span class="heart">❤️</span> and 
-    <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html" target="_blank" style="color: #4fc3f7; text-decoration: underline;">Quarto</a>
-  </div>
-</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1503,6 +1485,15 @@ Tip
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./viz_4_building_better.html" class="pagination-link" aria-label="Building Better Plots">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Building Better Plots</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -1,11 +1,13 @@
 ---
-title: Visualisation with ggplot2
+title: "" 
 toc: true
 ---
 
+# Visualisation with ggplot2
+
 In this section we will cover the basic format of ggplot functions. We will note the format and key arguments. This code will be repeated throughout the workshop, and provided frequently as a template: therefore, the goal is not to memorise, but to be able to recognise and interpret while we build in complexity throughout the day. 
 
-#### Load packages and prep data
+## Load packages and prep data
 
 Load the palmerpenguins package for an example dataset, ggplot2 for the plotting functions, and dplyr for the pipe (|>).
 

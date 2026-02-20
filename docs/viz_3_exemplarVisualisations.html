@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exemplar visualisations - how far can we take it? – Visualisation Day</title>
+<title>viz_3_exemplarvisualisations – Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./viz_4_building_better.html" rel="next">
+<link href="./viz_2_exploratoryAnalysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,10 +72,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Exemplar visualisations - how far can we take it? – Visualisation Day">
+<meta property="og:title" content="– Visualisation with ggplot2">
 <meta property="og:description" content="">
 <meta property="og:image" content="images/CedricScherer_USviews_votes_simpsons.jpg">
-<meta property="og:site_name" content="Visualisation Day">
+<meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -100,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation Day</a> 
+      <a href="./">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -153,7 +155,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#from-the-community" id="toc-from-the-community" class="nav-link active" data-scroll-target="#from-the-community">From the community</a>
+  <li><a href="#exemplar-visualisations---how-far-can-we-take-it" id="toc-exemplar-visualisations---how-far-can-we-take-it" class="nav-link active" data-scroll-target="#exemplar-visualisations---how-far-can-we-take-it">Exemplar visualisations - how far can we take it?</a>
+  <ul class="collapse">
+  <li><a href="#from-the-community" id="toc-from-the-community" class="nav-link" data-scroll-target="#from-the-community">From the community</a>
   <ul class="collapse">
   <li><a href="#the-gallery-of-cédric-scherer" id="toc-the-gallery-of-cédric-scherer" class="nav-link" data-scroll-target="#the-gallery-of-cédric-scherer">The gallery of Cédric Scherer</a></li>
   <li><a href="#the-gallery-of-dr-nicola-rennie" id="toc-the-gallery-of-dr-nicola-rennie" class="nav-link" data-scroll-target="#the-gallery-of-dr-nicola-rennie">The gallery of Dr Nicola Rennie</a></li>
@@ -161,34 +165,23 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#resources-and-showcase" id="toc-resources-and-showcase" class="nav-link" data-scroll-target="#resources-and-showcase">Resources and Showcase</a>
   <ul class="collapse">
-  <li><a href="#galleries-books-workshops" id="toc-galleries-books-workshops" class="nav-link" data-scroll-target="#galleries-books-workshops">Galleries, books, workshops</a></li>
+  <li><a href="#the-r-graph-gallery" id="toc-the-r-graph-gallery" class="nav-link" data-scroll-target="#the-r-graph-gallery">The r-graph-gallery</a></li>
+  <li><a href="#from-data-to-viz" id="toc-from-data-to-viz" class="nav-link" data-scroll-target="#from-data-to-viz">from Data to Viz</a></li>
+  <li><a href="#r-for-data-science-2e" id="toc-r-for-data-science-2e" class="nav-link" data-scroll-target="#r-for-data-science-2e">R for Data Science, 2E</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Exemplar visualisations - how far can we take it?</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="exemplar-visualisations---how-far-can-we-take-it" class="level1">
+<h1>Exemplar visualisations - how far can we take it?</h1>
 <p>We’ve seen how to make ‘quick and dirty’ plots for ourselves. Now we will give you a glimpse of just how far you can take your visualisations. For this section we are looking at both code complexity and fundamental elements of design.</p>
 <p>The aim of this section is to give you a set of resources that you can use to find examples and inspiration for your own work, as well as starting to look at elements of design.</p>
 <p>Here we will provide guidelines on design and visualisation while highlighting key examples from the scientific community. The good news is that there is an avid visualisation community online - check out the <a href="https://www.linkedin.com/feed/hashtag/?keywords=30daychartchallenge&amp;highlightedUpdateUrns=urn%3Ali%3Aactivity%3A7303019867069136896">30 day chart challenge</a> or the <a href="https://www.linkedin.com/feed/hashtag/?keywords=datavisualization">datavisualization</a> hashtag on LinkedIn as a starting point.</p>
@@ -243,15 +236,13 @@ Observations from the gallery
 <section id="resources-and-showcase" class="level2">
 <h2 class="anchored" data-anchor-id="resources-and-showcase">Resources and Showcase</h2>
 <p>A collection of resources - if you have any recommendations, feel free to <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/ContactUs.html">Contact us</a> or <a href="https://github.com/GenomicsAotearoa/visualization_day">open an issue on github</a> and we’ll add them here.</p>
-<section id="galleries-books-workshops" class="level3">
-<h3 class="anchored" data-anchor-id="galleries-books-workshops">Galleries, books, workshops</h3>
-<section id="the-r-graph-gallery" class="level4">
-<h4 class="anchored" data-anchor-id="the-r-graph-gallery">The r-graph-gallery</h4>
+<section id="the-r-graph-gallery" class="level3">
+<h3 class="anchored" data-anchor-id="the-r-graph-gallery">The r-graph-gallery</h3>
 <p><a href="https://r-graph-gallery.com/ggplot2-package.html">The r-graph-gallery</a></p>
 <p>The R graph gallery has a section on ggplot and it highlights some of the exciting features: custom fonts, pre-built themes, interactive plots - there’s a lot going on.</p>
 </section>
-<section id="from-data-to-viz" class="level4">
-<h4 class="anchored" data-anchor-id="from-data-to-viz">from Data to Viz</h4>
+<section id="from-data-to-viz" class="level3">
+<h3 class="anchored" data-anchor-id="from-data-to-viz">from Data to Viz</h3>
 <p>I highly recommend <a href="https://www.data-to-viz.com/">from Data to Viz</a> as a resource for thinking about your data and what type of chart might be appropriate.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -268,10 +259,9 @@ Observations from the gallery
 </div>
 <p>You can also click on a given plot type in the decision tree to open up a panel and view information about the plot type. Each plot also has a <a href="https://www.data-to-viz.com/graph/bubble.html">dedicated page</a> that gives a full breakdown of the plot, explaining the required variables and some <em>beautiful</em> examples.</p>
 </section>
-<section id="r-for-data-science-2e" class="level4">
-<h4 class="anchored" data-anchor-id="r-for-data-science-2e">R for Data Science, 2E</h4>
+<section id="r-for-data-science-2e" class="level3">
+<h3 class="anchored" data-anchor-id="r-for-data-science-2e">R for Data Science, 2E</h3>
 <p>The <a href="https://r4ds.hadley.nz/">R for Data Science, 2E</a> book (available free, online) is the go to resource for anyone learning the tidyverse, and it has a great section on ggplot2!</p>
-</section>
 </section>
 </section>
 <section id="summary" class="level2">
@@ -280,17 +270,9 @@ Observations from the gallery
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
-<div class="bottom-banner">
-  <div class="banner-left">
-    <img src="images/GA-Logo-BioinformaticsTraining-white.png" alt="GA traininglogo" class="banner-logo" style="height:45px; width:auto;">
-  </div>
-  <div class="banner-right">
-    Made with <span class="heart">❤️</span> and 
-    <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html" target="_blank" style="color: #4fc3f7; text-decoration: underline;">Quarto</a>
-  </div>
-</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -690,6 +672,18 @@ Observations from the gallery
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./viz_2_exploratoryAnalysis.html" class="pagination-link" aria-label="Visualisation for ourselves - Exploratory Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Visualisation for ourselves - Exploratory Analysis</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./viz_4_building_better.html" class="pagination-link" aria-label="Building Better Plots">
+        <span class="nav-page-text">Building Better Plots</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

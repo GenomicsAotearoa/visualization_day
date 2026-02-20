@@ -1,7 +1,9 @@
 ---
-title: Exemplar visualisations - how far can we take it?
+title: ""
 toc: true
 ---
+
+# Exemplar visualisations - how far can we take it?
 
 We've seen how to make 'quick and dirty' plots for ourselves. Now we will give you a glimpse of just how far you can take your visualisations. For this section we are looking at both code complexity and fundamental elements of design. 
 
@@ -63,15 +65,14 @@ Isaac Arrayo gives us a breakdown of four plots from #tidytuesday, a community e
 
 A collection of resources - if you have any recommendations, feel free to [Contact us](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/ContactUs.html) or [open an issue on github](https://github.com/GenomicsAotearoa/visualization_day) and we'll add them here.
 
-### Galleries, books, workshops
 
-#### The r-graph-gallery
+### The r-graph-gallery
 
 [The r-graph-gallery](https://r-graph-gallery.com/ggplot2-package.html)
 
 The R graph gallery has a section on ggplot and it highlights some of the exciting features: custom fonts, pre-built themes, interactive plots - there's a lot going on. 
 
-#### from Data to Viz
+### from Data to Viz
 
 I highly recommend [from Data to Viz](https://www.data-to-viz.com/) as a resource for thinking about your data and what type of chart might be appropriate. 
 
@@ -85,7 +86,7 @@ You can also click on a given plot type in the decision tree to open up a panel 
 
 
 
-#### R for Data Science, 2E
+### R for Data Science, 2E
 
 The [R for Data Science, 2E](https://r4ds.hadley.nz/) book (available free, online) is the go to resource for anyone learning the tidyverse, and it has a great section on ggplot2!
 

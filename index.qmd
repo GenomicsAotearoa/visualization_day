@@ -1,18 +1,12 @@
 ---
-title: "From Start to Finish: Visualising Your Data"
-subtitle: "Visualisation Day"
-image: profile.png
-about: # https://quarto.org/docs/websites/website-about.html
-  template: trestles
-  links:
-    - icon: github
-      text: Github
-      href: https://github.com/GenomicsAotearoa/visualization_day
+title: ""
 ---
+
+# From Start to Finish: Visualising Your Data
 
 Good visualisation is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualisations which accurately communicate a message. 
 
-## This workshop has five sections
+### This workshop has five sections
 
 The basic code template for `ggplot2`.
 
@@ -27,10 +21,22 @@ Visualisation from start to finish.
 
 
 
-## Why are we doing this? 
+### Why are we doing this? 
 
 Because some plots look like [this](https://docs.google.com/presentation/d/1PyuGRbqPpjMoswuTMbgOqHfe6Uc-wji7uEJkxyxI9Jw/edit#slide=id.p) (Credit to Dr. Joseph Guhlin for this presentation).
 
-## Credit
+### Credit
 
-This workshop was developed by [Tyler McInnes](https://github.com/tylermcinnes), while he was a [Bioinformatics Training Coordinator at Genomics Aotearoa](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members)
+This workshop was created by [Tyler McInnes](https://github.com/tylermcinnes), while he was a [Bioinformatics Training Coordinator at Genomics Aotearoa](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members), and has been developed further by [Chloé van der Burg](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#get-to-know-the-team).
+
+::: {style="background: #FFFFFF; text-align:center; padding: 1.5rem; border-radius: 8px; max-width: 800px; margin: 0 auto;"}
+
+
+### {style="background: #eaf1fb; text-align:center;"}
+
+
+[![](theme-images/GA-Logo-Bioinformatics-Training-black.png){width=80%}](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/)
+
+Made with [❤️](https://docs.carpentries.org/policies/coc/) and [Quarto](https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html)
+
+:::

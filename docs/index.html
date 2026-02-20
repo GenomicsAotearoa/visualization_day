@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>From Start to Finish: Visualising Your Data – Visualisation Day</title>
+<title>Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,6 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -69,10 +70,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="From Start to Finish: Visualising Your Data – Visualisation Day">
-<meta property="og:description" content="Visualisation Day">
-<meta property="og:image" content="profile.png">
-<meta property="og:site_name" content="Visualisation Day">
+<meta property="og:title" content="– Visualisation with ggplot2">
+<meta property="og:description" content="">
+<meta property="og:image" content="theme-images/GA-Logo-Bioinformatics-Training-black.png">
+<meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
 <body class="nav-sidebar docked fullcontent quarto-light">
@@ -85,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Visualisation Day
+      Visualisation with ggplot2
       </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
@@ -101,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation Day</a> 
+      <a href="./">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -151,59 +152,49 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="profile.png" class="about-image
-  rounded " style="width: 20em;">
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">From Start to Finish: Visualising Your Data</h1>
-<p class="subtitle lead">Visualisation Day</p>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header>
-    <div class="about-links">
-  <a href="https://github.com/GenomicsAotearoa/visualization_day" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="from-start-to-finish-visualising-your-data" class="level1">
+<h1>From Start to Finish: Visualising Your Data</h1>
 <p>Good visualisation is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualisations which accurately communicate a message.</p>
-<section id="this-workshop-has-five-sections" class="level2">
-<h2 data-anchor-id="this-workshop-has-five-sections">This workshop has five sections</h2>
+<section id="this-workshop-has-five-sections" class="level3">
+<h3 class="anchored" data-anchor-id="this-workshop-has-five-sections">This workshop has five sections</h3>
 <p>The basic code template for <code>ggplot2</code>.</p>
 <p>Visualisation for ourselves (exploratory analysis).</p>
 <p>Examples of good visualisation (with code).</p>
 <p>Iteratively building a figure.</p>
 <p>Visualisation from start to finish.</p>
 </section>
-<section id="why-are-we-doing-this" class="level2">
-<h2 data-anchor-id="why-are-we-doing-this">Why are we doing this?</h2>
+<section id="why-are-we-doing-this" class="level3">
+<h3 class="anchored" data-anchor-id="why-are-we-doing-this">Why are we doing this?</h3>
 <p>Because some plots look like <a href="https://docs.google.com/presentation/d/1PyuGRbqPpjMoswuTMbgOqHfe6Uc-wji7uEJkxyxI9Jw/edit#slide=id.p">this</a> (Credit to Dr.&nbsp;Joseph Guhlin for this presentation).</p>
 </section>
-<section id="credit" class="level2">
-<h2 data-anchor-id="credit">Credit</h2>
-<p>This workshop was developed by <a href="https://github.com/tylermcinnes">Tyler McInnes</a>, while he was a <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members">Bioinformatics Training Coordinator at Genomics Aotearoa</a></p>
+<section id="credit" class="level3">
+<h3 class="anchored" data-anchor-id="credit">Credit</h3>
+<p>This workshop was created by <a href="https://github.com/tylermcinnes">Tyler McInnes</a>, while he was a <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members">Bioinformatics Training Coordinator at Genomics Aotearoa</a>, and has been developed further by <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#get-to-know-the-team">Chloé van der Burg</a>.</p>
+</section>
+<section id="section" class="level3" style="background: #eaf1fb; text-align:center;">
+<h3 style="background: #eaf1fb; text-align:center;" class="anchored" data-anchor-id="section"></h3>
+<p><a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/"><img src="theme-images/GA-Logo-Bioinformatics-Training-black.png" class="img-fluid" style="width:80.0%"></a></p>
+<p>Made with <a href="https://docs.carpentries.org/policies/coc/">❤️</a> and <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html">Quarto</a></p>
+</section>
 
 
 </section>
-</main></div>
-</div>
- <!-- /main -->
-<div class="bottom-banner">
-  <div class="banner-left">
-    <img src="images/GA-Logo-BioinformaticsTraining-white.png" alt="GA traininglogo" class="banner-logo" style="height:45px; width:auto;">
-  </div>
-  <div class="banner-right">
-    Made with <span class="heart">❤️</span> and 
-    <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html" target="_blank" style="color: #4fc3f7; text-decoration: underline;">Quarto</a>
-  </div>
-</div>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     

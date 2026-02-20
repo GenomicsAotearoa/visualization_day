@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Building Better Plots – Visualisation Day</title>
+<title>viz_4_building_better – Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./viz_5_start_to_finish.html" rel="next">
+<link href="./viz_3_exemplarVisualisations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -105,10 +107,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Building Better Plots – Visualisation Day">
+<meta property="og:title" content="– Visualisation with ggplot2">
 <meta property="og:description" content="">
 <meta property="og:image" content="viz_4_building_better_files/figure-html/unnamed-chunk-3-1.png">
-<meta property="og:site_name" content="Visualisation Day">
+<meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -135,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation Day</a> 
+      <a href="./">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -188,7 +190,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The data</a>
+  <li><a href="#building-better-plots" id="toc-building-better-plots" class="nav-link active" data-scroll-target="#building-better-plots">Building Better Plots</a>
+  <ul class="collapse">
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a>
   <ul class="collapse">
   <li><a href="#familiarise-yourself-with-the-data" id="toc-familiarise-yourself-with-the-data" class="nav-link" data-scroll-target="#familiarise-yourself-with-the-data">Familiarise yourself with the data</a></li>
   </ul></li>
@@ -200,36 +204,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#better-visualisation" id="toc-better-visualisation" class="nav-link" data-scroll-target="#better-visualisation">Better visualisation</a>
   <ul class="collapse">
   <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme">Theme</a></li>
+  <li><a href="#alpha" id="toc-alpha" class="nav-link" data-scroll-target="#alpha">Alpha</a></li>
   <li><a href="#combining-geoms" id="toc-combining-geoms" class="nav-link" data-scroll-target="#combining-geoms">Combining geoms</a></li>
   <li><a href="#even-more-geoms" id="toc-even-more-geoms" class="nav-link" data-scroll-target="#even-more-geoms">(Even) more geoms</a></li>
   <li><a href="#saving-a-plot" id="toc-saving-a-plot" class="nav-link" data-scroll-target="#saving-a-plot">Saving a plot</a></li>
+  </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Building Better Plots</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="building-better-plots" class="level1">
+<h1>Building Better Plots</h1>
 <p>The purpose of this episode is to:</p>
 <ul>
 <li>solidify the template of ggplot2 in your mind so that you can remember and confidently create a basic plot</li>
@@ -238,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>introduce new geoms, familiarise ourselves with the use of arguments for different visual looks</li>
 </ul>
-<p>This episode follows the outline produced by the very skilled data visualizer Cédric Scherer, modified to work with some example data and updated with my own thoughts and opinions. Cédric’s <a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/">original tutorial</a> is well worth looking at, as they are a real expert in the field of visualisation.</p>
+<p>This episode follows the outline produced by the very skilled data visualiser Cédric Scherer, modified to work with some example data and updated with my own thoughts and opinions. Cédric’s <a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/">original tutorial</a> is well worth looking at, as they are a real expert in the field of visualisation.</p>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The data</h2>
 <p>The example dataset we are using for this session comes from <a href="https://www.wilderlab.co.nz/">Wilderlab</a>, a company based in Aotearoa who provide eDNA monitoring and testing services (primarily from water samples). When a client orders DNA testing through Wilderlab they have the option of making their results public as a way to “<em>provide a useful resource for scientists, conservationists, educators, and anyone else with an interest in Aotearoa’s biodiversity, water quality and biosecurity</em>”. We will access a small subset of the data which I have accessed and curated for the workshop. It is currently stored on github as a .tsv file.</p>
@@ -488,7 +480,7 @@ Solution
 <p>We can now trial different geoms to determine which type suits our visualisation needs.</p>
 <section id="exercise-use-groupcounts-and-your-choice-of-a-geom-function-to-plot-the-data-with-the-new-theme." class="level4">
 <h4 class="anchored" data-anchor-id="exercise-use-groupcounts-and-your-choice-of-a-geom-function-to-plot-the-data-with-the-new-theme."><strong>Exercise:</strong> use “groupCounts +” and your choice of a geom function to plot the data with the new theme.</h4>
-<p>Test multiple different geoms to experience how easily we can test different visualizations.</p>
+<p>Test multiple different geoms to experience how easily we can test different visualisations.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -550,8 +542,9 @@ Examples
 </div>
 </div>
 </section>
-<section id="alpha" class="level4">
-<h4 class="anchored" data-anchor-id="alpha">Alpha</h4>
+</section>
+<section id="alpha" class="level3">
+<h3 class="anchored" data-anchor-id="alpha">Alpha</h3>
 <p>A particularly useful argument with the <code>geom_point()</code> function is alpha, which controls the opacity/transparency of the points. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it’s usefulness will become more apparent shortly.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span> </span>
@@ -565,7 +558,6 @@ Examples
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="combining-geoms" class="level3">
 <h3 class="anchored" data-anchor-id="combining-geoms">Combining geoms</h3>
@@ -745,8 +737,9 @@ Making use of values
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"boxplot.png"</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
 <li>Save some of the ggplot2 code into an object, to quickly and easily iterate on a plot, letting us sketch out different plot types and styles.</li>
 <li>Use the theme function to save a set of traits that we can use across all of our visualisations, giving us a cohesive look across a single document.</li>
@@ -758,15 +751,6 @@ Making use of values
 </section>
 
 </main> <!-- /main -->
-<div class="bottom-banner">
-  <div class="banner-left">
-    <img src="images/GA-Logo-BioinformaticsTraining-white.png" alt="GA traininglogo" class="banner-logo" style="height:45px; width:auto;">
-  </div>
-  <div class="banner-right">
-    Made with <span class="heart">❤️</span> and 
-    <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html" target="_blank" style="color: #4fc3f7; text-decoration: underline;">Quarto</a>
-  </div>
-</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1166,6 +1150,18 @@ Making use of values
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./viz_3_exemplarVisualisations.html" class="pagination-link" aria-label="Exemplar visualisations - how far can we take it?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exemplar visualisations - how far can we take it?</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./viz_5_start_to_finish.html" class="pagination-link" aria-label="Start to Finish Visualising your Data">
+        <span class="nav-page-text">Start to Finish Visualising your Data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

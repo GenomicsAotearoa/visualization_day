@@ -1,8 +1,9 @@
 ---
-title: "Start to Finish Visualising your Data"
-output: html_document
+title: ""
 toc: true
 ---
+
+# Start to Finish Visualising your Data
 
 If you want to start practicing visualisations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
 
@@ -13,7 +14,7 @@ In this episode we are going to access some of the tidytuesday data and go throu
 
 ## Overview
 
-Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualize the data in a meaningful way.
+Together, we are going to go from start to finish and create a visualisation. Start to finish means we will need to explore the data, make decisions involving modifications and transformations, and finally, visualise the data in a meaningful way.
 
 *Note: Just the other day I saw a post on LinkedIn, someone had done a screencast recording of them going through a tidytuesday visualisation (in Python!). The poster warns us: "I have to admit, this screencast is 80% me orienting to this week's data". The comments section immediately responds that "80% orienting to the data is real life!"*
 

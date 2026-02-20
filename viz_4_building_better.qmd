@@ -1,8 +1,9 @@
 ---
-title: Building Better Plots
-output: html_document
+title: ""
 toc: true
 ---
+
+# Building Better Plots
 
 The purpose of this episode is to:
 
@@ -12,7 +13,7 @@ and
 
 - introduce new geoms, familiarise ourselves with the use of arguments for different visual looks 
 
-This episode follows the outline produced by the very skilled data visualizer Cédric Scherer, modified to work with some example data and updated with my own thoughts and opinions. Cédric's [original tutorial](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/) is well worth looking at, as they are a real expert in the field of visualisation.
+This episode follows the outline produced by the very skilled data visualiser Cédric Scherer, modified to work with some example data and updated with my own thoughts and opinions. Cédric's [original tutorial](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/) is well worth looking at, as they are a real expert in the field of visualisation.
 
 
 ## The data
@@ -171,7 +172,7 @@ We can now trial different geoms to determine which type suits our visualisation
 
 #### **Exercise:** use "groupCounts +" and your choice of a geom function to plot the data with the new theme. 
 
-Test multiple different geoms to experience how easily we can test different visualizations. 
+Test multiple different geoms to experience how easily we can test different visualisations. 
 
 ::: {.callout-tip collapse="true"}
 ## Examples
@@ -201,7 +202,7 @@ You will probably agree that some of these geoms are much more suitable than oth
 
 :::
 
-#### Alpha
+### Alpha
 
 A particularly useful argument with the `geom_point()` function is alpha, which controls the opacity/transparency of the points. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it's usefulness will become more apparent shortly.
 
@@ -352,7 +353,7 @@ ggsave("boxplot.png", height = 10, width = 8)
 
 ```
 
-### Summary
+## Summary
 
 - Save some of the ggplot2 code into an object, to quickly and easily iterate on a plot, letting us sketch out different plot types and styles. 
 - Use the theme function to save a set of traits that we can use across all of our visualisations, giving us a cohesive look across a single document.
