@@ -8,9 +8,6 @@ toc: true
 The purpose of this episode is to:
 
 - solidify the template of ggplot2 in your mind so that you can remember and confidently create a basic plot 
-
-and 
-
 - introduce new geoms, familiarise ourselves with the use of arguments for different visual looks 
 
 This episode follows the outline produced by the very skilled data visualiser Cédric Scherer, modified to work with some example data and updated with my own thoughts and opinions. Cédric's [original tutorial](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/) is well worth looking at, as they are a real expert in the field of visualisation.
@@ -22,9 +19,6 @@ The example dataset we are using for this session comes from [Wilderlab](https:/
 
 eDNA sequences are assigned a taxonomy, and when multiple sequences map to the same taxonomic unit (in our case to the level of the same genus), those additional sequences contribute to the variable called Count. I selected the 10 Groups (a classification level, *e.g.,* Birds, Fish, Diatoms, Plants) with the highest number of sequences (that is, the groups with the most species diversity), randomly selected 500 of these sequences for each group, and saved the data to a file. We can now look at Count (the abundance) of these sequences and see if this varies across Groups. 
 
-**Exercise**: Based on what you know about eDNA, predict and rank the 10 groups based on the average level of eDNA abundance. The 10 groups are:
-
-Birds, Ciliates, Diatoms, Fish, Insects, Mammals, Molluscs, Other, Plants, Worms
 
 ::: {.callout-tip collapse="true"}
 ## A contrived example
@@ -74,26 +68,35 @@ geom_boxplot()
 
 This figure shows us the Count variable is highly skewed (the majority of values are small, with some values many fold higher). 
 
-**Exercise:** use the `summary()` function and look at the outcome for the Count variable. Note the min, mean, median and maximum value. More advanced R users could use the `filter()` and `nrow()` functions to ask how many rows have a Count value that is 10 times greater than the Count median (or ask this question using whatever functions you are familiar with).   
+##### EXERCISE 🧠🏋️‍♀️ (3 mins)
+
+Use the `summary()` function on the `top_group_counts` dataset and look at the outcome for the Count variable. What does this tell us about how we need to plot the data?  
+
+More advanced R users could use the `filter()` and `nrow()` functions to ask how many rows have a Count value that is 10 times greater than the Count median (or ask this question using whatever functions you are familiar with).   
 
 ::: {.callout-tip collapse="true"}
 ## Solution
 
 ```{r}
 top_group_counts |> summary()
-# Note the outputs, specifically that for Count. 
-## Min = 5.0, Median = 51.0, Mean = 421.9, Max = 59445
-### This is a sign the data is skewed.
+```
 
-# How many rows have a Count value that is more than 10 times greater than the median? 
+Note the outputs, specifically that for Count. Min = 5.0, Median = 51.0, Mean = 421.9, Max = 59445.  This is a sign the data is skewed. We will need to take this into account when we plot the data, otherwise the majority of our data points will be squished together in a small area of the plot, and we won't be able to see any differences between groups. These data will need to be transformed using a log transformation. 
+
+Another way we could investigate this data is by calculating how many rows have a Count value that is more than 10 times greater than the median:
+
+```{r}
 top_group_counts |>
   filter(Count >= median(top_group_counts$Count)*10) |>
   nrow()
 
-# This shows 681 elements are more than 10* higher than the median - very skewed.
 ```
 
+This shows 681 elements are more than 10 times higher than the median - very skewed.
+
 :::
+
+#### Transform the data for visualisation
 
 We can address the issue of skewed data by taking the log of Count before we plot it.
 
@@ -112,17 +115,32 @@ geom_boxplot()
  
  Generally we will find that sometimes switching the layout like this can provide us with clearer visualisation, sometimes due to labels, sometimes for aesthetics. In this case, I think the group labels read much more clearly when stacked vertically on top of one another with the new layout. I encourage you to think about small changes like this when creating your visualisations.
 
-### Sort the data 
+#### Sort the data 
 
-Sorted data will be easier to interpret, with a lower cognitive load. Note: we should **only** sort data if there is *no inherent structure* - I don't believe Mammals are inherently 'higher' than Fish, so I can sort these groups based on another feature. Sometimes we will have internal structure, either some kind of hierarchy or grouping (e.g., case vs control) and it is not appropriate to apply sorting.
+Sorted data will be easier to interpret, with a lower cognitive load. Note: we should **only** sort data if there is *no inherent structure* in the categories. Mammals are not inherently 'higher' than Fish, so these groups can be sorted based on numerical summary of the data. Sometimes we will have internal structure, either some kind of hierarchy or grouping (e.g., treatment vs control, timepoints) and it is not appropriate to apply sorting.
 
-This is where we need to bring in some of our data transformation skills. This is *not* the focus of this episode, so we won't go into this, but we are using a function, `fct_reorder()`, to re-order the Group variable based on data from the Count variable, where Count is ordered based on median. The `mutate()` function can be used to create a new variable, or in this case rearrange an existing variable. 
+***How are we sorting?***
 
-(Disclaimer, building this workshop I knew what I wanted to do and used chatGPT to guide me through the process.)
+Each group contains multiple `Count`{style="color:black"}  values (because we are plotting boxplots). So we need a single summary statistic per group to decide the order.
+
+Here, we use the median count for each group.
+
+We then reorder the factor levels of `Group`{style="color:black"} so that groups appear from lowest median count to highest median count in the plot. This makes it visually clear which groups tend to have larger values.
+
+We use:  
+
+- `fct_reorder()` from forcats to reorder factor levels
+
+- `median`{style="color:black"} as the summary statistic
+
+- `mutate()` to update the existing `Group`{style="color:black"} variable
+
 ```{r}
 top_group_counts_sorted <- top_group_counts |> 
   mutate(Group = fct_reorder(Group, Count, .fun = median))
 ```
+
+What this does: *For each Group, calculate the median of Count, then reorder the levels of Group based on those median values.*
 
 Now plot the sorted data:
 ```{r}
@@ -131,7 +149,7 @@ mapping = aes(x = log(Count), y = Group)) +
 geom_boxplot()
 ```
 
-This is immediately clearer, with a considerably lower cognitive load. Easily observe that not only does the Fish group have a higher set of Counts, but it seems to break with the trend of the other Groups. 
+This is immediately clearer, with a considerably **lower cognitive load.** Easily observe that not only does the Fish group have a higher set of Counts, but it seems to break with the trend of the other Groups. 
 
 #### Outliers
 
@@ -139,20 +157,60 @@ In boxplots, outliers are identified as values that are more than 1.5 times the 
 
 ## Better visualisation
 
-We can now start to focus on the visualisation aspects: control plot themes such as labels, titles, spacing. We can explore geoms, and variations on geoms, to determine the best way to present the data. Finally, we can add additional geoms or mappings to display more data. 
-
-### Theme
+We can now start to focus on the visualisation aspects: control plot themes such as labels, titles, spacing, group colours. We can explore geoms, and variations on geoms, to determine the best way to present the data. Finally, we can add additional geoms or mappings to display more data. 
 
 Theme is a separate function that controls almost all visual elements of a ggplot. We can fine tune text elements (font size, shape, angle for axis text, create custom labels and titles), the legend (changing the position, setting a background, control the title and content), the 'panel' (panel is the background of the plot, in the above cases we have a grid), and many other features.
 
-A useful tip for working with ggplot is to save a set of basic features, such as the data, mapping, and theme to an object which can then be used for plotting with different geoms later. Notice below we use a slightly different format for writing our ggplot function - we omit "data = " and "mapping =", since those calls are always required and used.
+Notice below we use a slightly different format for writing our ggplot function - we omit `data = ` and `mapping =`, since those calls are always required and used.
+
+Let's build on the same plot we made above, but add some customisation.
 
 ```{r}
-groupCounts <- ggplot(top_group_counts_sorted, 
+ggplot(top_group_counts_sorted, 
+       mapping = aes(x = log(Count),
+                     y = Group,
+                     colour = Group)) + 
+  labs(title = "eDNA counts vary across groups", 
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  )  +
+  geom_boxplot()
+
+```
+
+#### EXERCISE 🧠🏋️‍♀️ (10 mins)
+
+Look at how colour has been visualised in the boxplot above. We assigned colour in  `aes()` to each group, which has resulted in the outlines of each of the boxplots being assigned individual default R colours. Keen-eyed observers will also see we now have a legend for our Group variable. By specifying the colour or the fill in the mapping `aes()`, a legend will be added automatically by ggplot. 
+
+One at a time, try out these changes to the plot and note how the visualisation changes:
+
+1. Within the mapping `aes()` function, change `colour = Group` to `fill = Group`.  
+2. In the `theme()` section, `legend.position = "none"` or to `"left"` or `"right"`.
+3. Add another geom layer, either `+ geom_jitter()` or `+ geom_point()` 
+4. Change the transparency of the geoms using `alpha = 0.5` and the colour or fill using the `aes()` function within the geom (like in point 1 with the global mapping `aes()`).
+
+Pay attention too to how changes in the mapping `aes()` globally affect how geoms are visualised. 
+
+Now that you have had a play around with these different options, try these challenges below.
+
+
+
+⚡️ **CHALLENGE 1: Create this plot**
+
+```{r}
+#| echo: false
+
+ggplot(top_group_counts_sorted, 
                       aes(x = log(Count), 
-                          y = Group, 
-                          colour = Group)) +
-  labs(title = "eDNA counts vary across species groups",
+                          y = Group,
+                          fill = Group)) +
+  labs(title = "eDNA counts vary across groups",
        x = "log(Count)", 
        y = "Group") +
   theme_minimal() +     
@@ -162,75 +220,199 @@ groupCounts <- ggplot(top_group_counts_sorted,
     axis.title = element_text(size = 14),
     axis.text = element_text(size = 10),
     panel.grid = element_blank()
-  ) 
+  )   +
+  geom_boxplot() 
 
-# Note, no plot is created yet. We will now use the groupCounts object in combination
-# with geom functions to create plots.
 ```
-
-We can now trial different geoms to determine which type suits our visualisation needs.
-
-#### **Exercise:** use "groupCounts +" and your choice of a geom function to plot the data with the new theme. 
-
-Test multiple different geoms to experience how easily we can test different visualisations. 
+***Hint:*** the options needed to make this plot are all in the 4 points above, where you had a play around with the different options.
 
 ::: {.callout-tip collapse="true"}
-## Examples
-
+# SOLUTION CHALLENGE 1:
 ```{r}
-groupCounts + 
+#| eval: false
+
+ggplot(top_group_counts_sorted, 
+                      aes(x = log(Count), 
+                          y = Group,
+                          fill = Group)) +
+  labs(title = "eDNA counts vary across groups",
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  ) +
   geom_boxplot() 
+
 ```
-
-
-```{r}
-groupCounts + 
-  geom_violin() 
-```
-
-```{r}
-groupCounts + 
-  geom_line()
-```
-
-```{r}
-groupCounts + 
-  geom_point()
-```
-
-You will probably agree that some of these geoms are much more suitable than others!
 
 :::
 
-### Alpha
+⚡️ **CHALLENGE 2: Create this plot**
 
-A particularly useful argument with the `geom_point()` function is alpha, which controls the opacity/transparency of the points. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it's usefulness will become more apparent shortly.
+```{r}
+#| echo: false
+
+ggplot(top_group_counts_sorted, 
+                      aes(x = log(Count), 
+                          y = Group)) +
+  labs(title = "eDNA counts vary across groups",
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  ) +
+  geom_jitter(colour="grey") +
+  geom_boxplot(alpha = 0.5, aes(colour = Group)) 
+
+```
+
+***Hint:*** the options needed to make this plot are all in the 4 points above, where you had a play around with the different options.
+
+::: {.callout-tip collapse="true" }
+# SOLUTION CHALLENGE 2:
+
+```{r}
+#| eval: false
+
+ggplot(top_group_counts_sorted, 
+                      aes(x = log(Count), 
+                          y = Group)) +
+  labs(title = "eDNA counts vary across groups",
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  ) +
+  geom_jitter(colour="grey") +
+  geom_boxplot(alpha = 0.5, aes(colour = Group))  
+
+```
+
+Note: the order of the layers matters! If you switch the order of the geoms, the boxplots will be drawn on top of the jitter points, and the jitter points will be obscured.
+:::
+
+
+
+
+### Fine tuning
+
+A useful tip for working with ggplot is to save a set of basic features, such as the data, mapping, and theme to an object which can then be used for plotting with different geoms later. 
+
+Let's keep the basic parameters that we like in a new obect called `groupCounts`, without a geom, then customise from there.
+
+
+```{r}
+groupCounts <- ggplot(top_group_counts_sorted, 
+                      aes(x = log(Count), 
+                          y = Group)) +
+  labs(title = "eDNA counts vary across groups", 
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  )
+```
+
+#### Size, alpha, colour
+
+A particularly useful argument with the `geom_point()` function is alpha, which controls the opacity/transparency of the points. You can think of alpha liek the amount of ink being printed on a page, with 1.0 as being like 100% ink and 0.5 as 50% ink. With reduced opacity we can see more clearly when points are placed on top of one another. It is less clear in this example because there are so many data points in a small space, but it's usefulness will become more apparent shortly. Let's map the colour here too to our Group variable using `aes(colour = Group)`. 
 
 ```{r}
 groupCounts + 
-  geom_point(size = 3, 
-              alpha = 0.2)
+    geom_point(size = 3, 
+              alpha = 0.2,
+              aes(colour = Group))
 ```
 
-### Combining geoms
+::: {.callout-note appearance="minimal" collapse="true"}
+# Why does colour have to be within the `aes()` function here?
+
+Try these two blocks of code and compare the difference:
+
+```{r}
+#| eval: false
+
+groupCounts + 
+    geom_point(size = 3, 
+              alpha = 0.2,
+              colour = Group)
+```
+
+```{r}
+#| eval: false
+ 
+groupCounts + 
+    geom_point(size = 3, 
+              alpha = 0.2,
+              colour = "red")
+```
+
+::: {.callout-tip collapse="true"}
+# SOLUTION
+
+In the first block of code, colour is outside of the `aes()` function, so it is not mapped to the Group variable. Instead, ggplot looks for an object called Group in the global environment and doesn't find it, so it throws an error.
+
+Output 1:
+
+```
+Error: object 'Group' not found
+```
+
+In the second block of code, colour is set to "red", which is a fixed value. This means that all points will be coloured red (and there will be no legend for Group -- but we set it as legend = none within our groupCounts object anyway).
+
+Output 2:
+
+
+```{r}
+#| echo: false
+ 
+groupCounts + 
+    geom_point(size = 3, 
+              alpha = 0.2,
+              colour = "red")
+```
+
+:::
+
+
+:::
+
+
+#### Combining geoms
 
 Geoms can be combined to create more complex plots by layering one set of information over another. 
 
 ```{r}
 groupCounts + 
-  geom_boxplot(colour = "gray", outlier.alpha = 0) +
-  geom_point(size = 3, alpha = 0.2)
+  geom_boxplot(colour = "gray", 
+               outlier.alpha = 0) +
+  geom_point(size = 3, 
+             alpha = 0.2,
+             aes(colour = Group))
 ```
 Note that we've included a new argument in `geom_boxplot(outlier.alpha = 0)`. The boxplot geom normally adds points that are considered outliers (greater than 1.5 times the interquartile range above or below the 1st or 3rd quartile). Since these points are going to be represented by the `geom_point()` function, we need to set outlier.alpha to 0 so that they are functionally invisible (and are therefore not printed twice). 
 
-While the above demonstrates the concept of combining geoms, it's not very functional. The high density of our points on a straight line is creating a strong effect that is over-powering other visualisations. We can change the points from being on a single line to spaced apart with the `geom_jitter()` function.
-
-```{r}
-groupCounts + 
-  geom_jitter(size = 2, 
-              alpha = 0.2, 
-              width = 0.2)
-```
+While the above demonstrates the concept of combining geoms, it's not very functional. The high density of our points on a straight line is creating a strong effect that is over-powering other visualisations. We can change the points from being on a single line to spaced apart with the `geom_jitter()` function, which adds random horizontal movement, and we can use the argument `width = 0.2` to control how far apart the points are spaced. 
 
 ```{r}
 groupCounts + 
@@ -238,10 +420,25 @@ groupCounts +
                 outlier.alpha = 0) +
   geom_jitter(size = 2, 
               alpha = 0.2, 
-              width = 0.2)
-# gray40 is a darker gray that is not quite black. I had to test multiple 
-# colours to find one that was clearly visible but not overwhelming.
+              width = 0.2,
+              aes(colour = Group))
 ```
+
+
+##### EXERCISE 🧠🏋️‍♀️ (3 mins)
+
+The function `geom_jitter()` adds random horizontal movement to our points, which can be controlled with the `width` argument.   
+
+- Try changing the width to:
+  -   `width = 0.0`
+  -   `width = 0.5`  
+  -   `width = 1` 
+  
+What do you notice about how the points are spaced?
+
+Do you think one of these widths is better than the others for visualising (and appropriate) for this data? Why or why not?
+
+Want to change the vertical spacing instead? Try the `height` argument as well as `width` and see how this changes the plot.
 
 ### (Even) more geoms
 
@@ -255,7 +452,8 @@ First, we will visualise the Group means with the `stat_summary()` function.
 groupCounts +
   geom_jitter(size = 2, 
               alpha = 0.2, 
-              width = 0.2) +
+              width = 0.2,
+              aes(colour = Group)) +
   stat_summary(fun = mean, 
                 geom = "point", 
                 size = 5, 
@@ -267,6 +465,62 @@ groupCounts +
 ## Making use of values
 
 In the code above we have specified the size of the stat_summary point to be a fixed value (5). In almost all cases within ggplot, you can select dynamic values for arguments *e.g.,* if we had a different number of observations per group, point size could reflect these differences. Making full use of all of these variables leads to very informative plots.
+
+::: {.callout-warning collapse="true" appearance="simple"}
+# Extra for experts
+
+Let's make the size of the stat_summary points reflect the number of unique species in each group.
+
+Count the number of unique species in each group:
+
+```{r}
+
+species_counts <- top_group_counts_sorted %>%
+  filter(Rank == "species") %>%        
+  group_by(Group) %>%
+  summarise(n_species = n_distinct(Name))
+```
+
+Make a new object, joining on the species_counts to our original top_group_counts_sorted object.  
+
+```{r}
+plot_data <- top_group_counts_sorted %>%
+  left_join(species_counts, by = "Group")
+```
+
+Remake our plot, but now with the size of the stat_summary points reflecting the number of unique species in each group. We also need to add a legend back in on the right, to see what the size of the points means in number of species.
+
+```{r}
+
+ggplot(plot_data, aes(x = log(Count), 
+                          y = Group)) +
+  labs(title = "eDNA counts vary across groups", 
+       x = "log(Count)", 
+       y = "Group") +
+  theme_minimal() +     
+  theme(
+    legend.position = "right",
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 10),
+    panel.grid = element_blank()
+  ) +
+  geom_jitter(size = 2,
+              alpha = 0.2,
+              width = 0.2,
+              aes(colour = Group),
+              show.legend = FALSE) + # alternatively use + guides(colour = "none")
+  stat_summary(
+    aes(size = n_species),
+    fun = mean,
+    geom = "point",
+    colour = "gray40"
+  )
+```
+
+
+
+:::
 
 :::
 

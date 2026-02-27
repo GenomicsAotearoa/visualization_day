@@ -151,6 +151,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./viz_1_ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation with ggplot2</span></a>
   </div>
@@ -190,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#start-to-finish-visualising-your-data" id="toc-start-to-finish-visualising-your-data" class="nav-link active" data-scroll-target="#start-to-finish-visualising-your-data">Start to Finish Visualising your Data</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#aims" id="toc-aims" class="nav-link" data-scroll-target="#aims">Aims</a></li>
@@ -203,12 +209,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis">Exploratory analysis</a>
   <ul class="collapse">
-  <li><a href="#brand-rating" id="toc-brand-rating" class="nav-link" data-scroll-target="#brand-rating">Brand Rating</a></li>
+  <li><a href="#brand-rating" id="toc-brand-rating" class="nav-link" data-scroll-target="#brand-rating">Brand Rating</a>
+  <ul class="collapse">
+  <li><a href="#assessing-the-means" id="toc-assessing-the-means" class="nav-link" data-scroll-target="#assessing-the-means">Assessing the means</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#assessing-data-biases-and-relationships" id="toc-assessing-data-biases-and-relationships" class="nav-link" data-scroll-target="#assessing-data-biases-and-relationships">Assessing data biases and relationships</a>
   <ul class="collapse">
   <li><a href="#relationship-between-rating-count-and-rating-value" id="toc-relationship-between-rating-count-and-rating-value" class="nav-link" data-scroll-target="#relationship-between-rating-count-and-rating-value">Relationship between rating count and rating value</a></li>
-  <li><a href="#relationship-between-rating-count-and-release-year" id="toc-relationship-between-rating-count-and-release-year" class="nav-link" data-scroll-target="#relationship-between-rating-count-and-release-year">Relationship between rating count and release year</a></li>
+  <li><a href="#relationship-between-rating-count-and-release-year" id="toc-relationship-between-rating-count-and-release-year" class="nav-link" data-scroll-target="#relationship-between-rating-count-and-release-year">Relationship between rating count and release year</a>
+  <ul class="collapse">
+  <li><a href="#decisions" id="toc-decisions" class="nav-link" data-scroll-target="#decisions">Decisions</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations">Transformations</a>
   <ul class="collapse">
@@ -216,7 +228,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">Visualisation</a>
   <ul class="collapse">
-  <li><a href="#building-a-visualisation---sketch-i" id="toc-building-a-visualisation---sketch-i" class="nav-link" data-scroll-target="#building-a-visualisation---sketch-i">Building a visualisation - sketch I</a></li>
+  <li><a href="#building-a-visualisation---sketch-i" id="toc-building-a-visualisation---sketch-i" class="nav-link" data-scroll-target="#building-a-visualisation---sketch-i">Building a visualisation - sketch I</a>
+  <ul class="collapse">
+  <li><a href="#exercise-test-out-some-other-geoms-and-see-if-you-can-identify-something-that-you-like" id="toc-exercise-test-out-some-other-geoms-and-see-if-you-can-identify-something-that-you-like" class="nav-link" data-scroll-target="#exercise-test-out-some-other-geoms-and-see-if-you-can-identify-something-that-you-like">Exercise: Test out some other geoms and see if you can identify something that you like</a></li>
+  </ul></li>
   <li><a href="#building-a-visualisation---sketch-ii" id="toc-building-a-visualisation---sketch-ii" class="nav-link" data-scroll-target="#building-a-visualisation---sketch-ii">Building a visualisation - sketch II</a></li>
   <li><a href="#refining-geom_point" id="toc-refining-geom_point" class="nav-link" data-scroll-target="#refining-geom_point">Refining geom_point()</a></li>
   <li><a href="#refining-our-use-of-the-data" id="toc-refining-our-use-of-the-data" class="nav-link" data-scroll-target="#refining-our-use-of-the-data">Refining our use of the data</a></li>

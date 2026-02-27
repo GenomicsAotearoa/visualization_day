@@ -7,12 +7,21 @@ website:
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
   sidebar:
     style: "docked"
+    left:
     contents:
-          - viz_1_ggplot.qmd
-          - viz_2_exploratoryAnalysis.qmd
-          - viz_3_exemplarVisualisations.qmd
-          - viz_4_building_better.qmd
-          - viz_5_start_to_finish.qmd
+    - text: "Home"
+      href: index.qmd
+    - text: "Visualisation with ggplot2"
+      href: viz_1_ggplot.qmd
+    - text: "Visualisation for ourselves - Exploratory Analysis"
+      href: viz_2_exploratoryAnalysis.qmd
+    - text: "Exemplar visualisations - how far can we take it?"
+      href: viz_3_exemplarVisualisations.qmd
+    - text: "Building Better Plots"
+      href: viz_4_building_better.qmd
+    - text: "Start to Finish Visualising your Data"
+      href: viz_5_start_to_finish.qmd
+
     tools: 
       - icon: github
         href: https://github.com/GenomicsAotearoa/visualization_day
@@ -27,6 +36,7 @@ format:
     css: styles.css
     navigation: true
     page-navigation: true
+    toc-depth: 4
 
 
 
