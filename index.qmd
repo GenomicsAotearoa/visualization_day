@@ -4,6 +4,8 @@ title: ""
 
 # From Start to Finish: Visualising Your Data
 
+![](theme-images/profile.png){.center}
+
 Good visualisation is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualisations which accurately communicate a message. 
 
 ### This workshop has five sections
