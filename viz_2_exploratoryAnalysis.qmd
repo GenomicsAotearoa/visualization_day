@@ -11,7 +11,7 @@ In this section we will perform some quick data visualisations that we can use f
 
 The aims for this section are to give you the opportunity to practice some of the most important code used in visualisations and to force you to think about visualisation: what types of figures work well for certain data, how to display the information you want to convey. 
 
-We will examine one type of graph to represent four different types of data: distribution, correlation, parts of a whole, and evolution (change over time). 
+We will examine one type of graph to represent four different types of data: **distribution**, **correlation**, **parts of a whole**, and **evolution (change over time)**. 
 
 ## Distribution
 
@@ -19,22 +19,27 @@ Distribution plots are a good place to start any data analysis, because many sta
 
 Distribution matters! 
 
-## Beeswarm plots with ggbeeswarm
+![](images/EDA_example_-_Always_plot_your_data.jpg)
+
+### Beeswarm plots with ggbeeswarm
 
 Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
 Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. 
 
-
-### Packages and setup
-Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages.
+Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. 
 
 ```{r}
-#install.packages("ggbeeswarm")
+#| eval: false
+install.packages("ggbeeswarm")
+```
+
+```{r}
+#| message: false
 
 library(ggbeeswarm)
 library(palmerpenguins)
-library(tidyverse) # We will use tidyverse later
+library(tidyverse) 
 ```
 
 ### Beeswarm plots
@@ -74,16 +79,7 @@ ggplot(data = penguins,
 
 `geom_quasirandom()` is a function very similar to `geom_beeswarm()`, but instead of strictly moving points, they are quasi-randomly moved. 
 
-#### Exercise: Compare the plot below with the plot above. What is different between them? 
-
-::: {.callout-tip collapse="true"}
-## Dangers of distributions
-
-Personally, I find these two plots give **very** different impressions of the data. In the plot below, the wide shape (particularly for the Chinstrap species) is reminiscent of a normal distribution and it subconciously reminds me of that. Looking at the plot above, I don't immediately think of a normal distribution. It's easy to imagine a situation where the wrong choice of plot and a lapse in concentration could give the wrong impression.
-
-Your choice of visualisation can have a strong impact on what people see. 
-
-:::
+Here we can repeat the same code as above, but change `geom_beeswarm()` to `geom_quasirandom()`.
 
 ```{r}
 #| warning: false
@@ -95,8 +91,42 @@ ggplot(data = penguins,
                     alpha = 0.7)
 ```
 
+##### EXERCISE 🧠🏋️‍♀️ (3 mins)
+
+Compare the quasirandom and beeswarm plots. What is different between them? 
+
+::: {.callout-caution collapse="true"}
+## Dangers of distributions
+
+Personally, I find these two plots give **very** different impressions of the data. In the quasirandom plot, the wide shape (particularly for the Chinstrap species) is reminiscent of a normal distribution and it subconciously reminds me of that. Looking at the beeswarm plot, I don't immediately think of a normal distribution. It's easy to imagine a situation where the wrong choice of plot and a lapse in concentration could give the wrong impression.
+
+Your choice of visualisation can have a strong impact on what people see. 
+
+::: {.callout-warning collapse="true" appearance="minimal"}
+# Taking the jitter further
+
+A commonly used function for jittering is `geom_jitter()`. Unlike geom_quasirandom(), which spaces points based on density, geom_jitter() adds a small amount of random variation to reduce overplotting. While useful for showing individual observations, jitter does not meaningfully represent distribution shape and can sometimes obscure density patterns. For visualising distributions, approaches such as beeswarm, violin, or boxplots are often more appropriate.
+
+```{r}
+#| warning: false
+
+ggplot(data = penguins, 
+       mapping = aes(x = species, 
+                     y = flipper_length_mm,
+                     colour = species)) +
+  geom_jitter(size = 2, 
+                   alpha = 0.7)
+```
+
+Looks like we have lost a lot of the distribution information here, that we could see more clearly in the beeswarm plot. This is a good example of how the wrong choice of plot can lead to a misleading visualisation.
+:::
+
+:::
+
+
+
 #### Theme and labels
-We can add two other functions to make this plot much easier to read. First, the `theme_minimal()` function is a quick way to set a global theme to the plot and make it less cluttered. The second function is `labs()`, which we use to add a title and x and y axes labels. We will cover themes more later, but adding `theme_minimal()` to every plot we do today will keep them looking tidy and coherent.
+We can add two other functions to make this plot much easier to read. First, the `theme_minimal()` function is a quick way to set a global theme to the plot and make it less cluttered. The second function is `labs()`, which we use to add a title, subtitle, caption and x and y axes labels. We will cover themes more later, but adding `theme_minimal()` to every plot we do today will keep them looking tidy and coherent.
 
 ```{r}
 #| warning: false
@@ -107,6 +137,7 @@ ggplot(data = penguins,
   geom_quasirandom(size = 2, alpha = 0.7) +
   theme_minimal() +
   labs(title = "Flipper Length Distribution by Species",
+      subtitle = "Source: Penguins dataset from the palmerpenguins package",
        x = "Species",
        y = "Flipper Length (mm)")
 ```
@@ -123,6 +154,11 @@ Here we will use `geom_tile()` to create a particular type of heatmap called a "
 
 That's a lot of commits! 
 
+#### Choose your own adventure 👣:
+
+::: {.callout-note collapse="true" appearance="simple"}
+# 1. Calendar heatmap example 
+
 #### Calendar heatmap
 
 We will create a simple calendar heatmap to demonstrate the concept. Remember, the goal here is to expose you to different types of plots and for you to practice using ggplot2.
@@ -138,7 +174,7 @@ month_data <- tibble(
   count = sample(1:20, 31, replace = TRUE)  # Random counts per day
 ) |>
   mutate(
-    wday = wday(date, label = TRUE, abbr = TRUE),  # Day of the week (Sun-Sat)
+    weekday = wday(date, label = TRUE, abbr = TRUE),  # Day of the week (Sun-Sat)
     week = (day(date) - 1) %/% 7 + 1  # Week number (1 to 5)
   )
 
@@ -151,7 +187,7 @@ Now we will create the plot with `geom_tile()`. Like with the `geom_boxplot()` w
 ```{r}
 ggplot(data = month_data,
        mapping = aes(x = week, 
-                      y = wday, 
+                      y = weekday, 
                       fill = count)) +
   geom_tile()
 ```
@@ -179,7 +215,7 @@ You do not need to do all of these changes, but try them out if you can! Remembe
 
 ```{r}
 ggplot(data = month_data,
-       mapping = aes(x = wday, 
+       mapping = aes(x = weekday, 
                       y = week, 
                       fill = count)) +
   geom_tile(colour = "white") +
@@ -194,6 +230,86 @@ ggplot(data = month_data,
 
 :::
 
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+# 2. Gene expression heatmap example 
+
+#### Gene expression heatmap
+
+We will create a simple gene expression heatmap to demonstrate the concept. 
+
+##### Generating example data
+
+First, we will generate some example data. Copy and paste this code, because it is not central to our understanding:
+
+```{r}
+set.seed(982)
+
+# 20 genes across 6 samples
+expression_data <- expand_grid(
+  gene = paste0("Gene_", 1:20),
+  sample = paste0("Sample_", 1:6)
+) |>
+  mutate(
+    expression = rnorm(n(), mean = 10, sd = 2)
+  )
+
+expression_data |> head()
+```
+
+**Note:** This format the data is in is called "long format", which is the format that ggplot2 is designed to work with. If you have data in "wide format" (where each sample is a column), you can use the `pivot_longer()` function from the tidyverse to convert it to long format. [Long vs wide data blog post.](https://www.statology.org/long-vs-wide-data/)
+
+##### geom_tile()
+
+Now we will create the plot with `geom_tile()`. Like with the `geom_boxplot()` we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. With `geom_tile()` we will always need to use `aes()` to specify the x and y, and we will also specify the variable that is used to determine the colour of each tile, which we do with "fill = ". In our example we will map the count variable to fill. 
+
+```{r}
+ggplot(expression_data,
+       aes(x = sample,
+           y = gene,
+           fill = expression)) +
+  geom_tile()
+```
+
+This is a good starting point in that we have functionally sketched the data into the plot type. However, we can see that it the layout does not match our expectations for a gene expression heatmap: it has no title, and axes labels, and it doesn't have particularly high contrast between high and low values.
+
+##### EXERCISE 🧠🏋️‍♀️ (5 mins)
+
+To correct these issues we will:   
+
+- Add the `scale_fill_viridis_c()` function to change the colour of the fill.   
+- Use the `labs()` function to add title, x and y axis labels, and rename the fill (legend) variable.   
+- Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid   separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
+
+::: {.callout-tip collapse="true" appearance="simple"}  
+# Solution 
+
+```{r}
+ggplot(expression_data,
+       aes(x = sample,
+           y = gene,
+           fill = expression)) +
+  geom_tile(colour = "white") +
+  scale_fill_viridis_c() + #Alternatively, you could use scale_fill_gradient(low = "blue", high = "red") for a different colour scheme
+  theme_minimal() +
+  labs(title = "Gene Expression Heatmap",
+       x = "Sample",
+       y = "Gene",
+       fill = "Expression (log2 counts)") 
+```
+**Note:** gene expression data needs to be transformed (*e.g.,* log2 transformed) before plotting. This is covered in more detail in our [RNA-seq Data Analysis](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/portfolio.html#rna-seq-data-analysis) workshop.
+
+
+Another way to plot heatmaps for gene expression data is with the `pheatmap` package, which has a lot of built in functionality for clustering and annotation. Specifically it allows you to to easily include a dendrogram to show the results of hierarchical clustering, which is a common way to visualise patterns in gene expression data.
+
+See here [R documentaion on pheatmap package](https://www.rdocumentation.org/packages/pheatmap/versions/1.0.13/topics/pheatmap). 
+
+:::
+
+
+:::
+
 ## Parts of a whole
 
 In this section we will take a break from executing code and look at some examples. This is an opportunity to introduce you to the excellent resource that is the [R-graph-gallery](https://r-graph-gallery.com/#LogoMenu). We will scroll down to the "Parts of a whole" section, and walk through how this resource not only shows you different types of plots you can create, but provides you with code and reproducible examples.
@@ -204,7 +320,7 @@ Back on the [main page](https://r-graph-gallery.com/#LogoMenu) we can see that t
 
 ## Evolution (over time)
 
-Here we will look at three variations of the line plot, which is used to show changes in a variable over time. 
+There are multiple 'Evolution' style plots, such as line plots, area, stakced area and time series plots. Here we will look at three variations of the line plot, which is used to show changes in a variable over time.
 
 ### Generate a dataset 
 
@@ -236,7 +352,7 @@ In future you can use any numeric value for `set.seed()`, so long as you keep it
 
 ### Line chart with geom_line()
 
-The simplest plot for change over time is `geom_line()`. 
+The simplest plot for change over time is `geom_line()`. The connected scatterplot is almost the same plot, but each observation is represented by a point. 
 
 ```{r}
 ggplot(stocks %>% filter(stock == "Stock C"), 
@@ -291,17 +407,60 @@ ggplot(stocks, aes(x = date,
 ```
 
 
-#### On the dubious rise of our stocks...
+#### EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our stocks...
+
+**...and the flaw with stacked area charts**
+
+Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
+
+Investigate more closely each stock price, by changing one stock at a time `filter(stock == "Stock A")` (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each stock? Is this visualised well in our stacked area chart (where `fill = stock`)?
+
+
 ::: {.callout-tip collapse="true"}
-## ...and the flaw with stacked area charts
+# Solution
 
-Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Looking more closely you will notice that Stock A has not increased in value and is almost exactly where it started. 
 
-Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
+```{r}
+#| echo: false
 
-You can check the actual change in value of Stock A by repeating the code for the line or single variable area plot, changing the code to filter(stock == "Stock A") (and updating the figure title of course). 
+ggplot(stocks %>% filter(stock == "Stock A"), 
+       aes(x = date, y = price)) +
+  geom_area(fill = "black", 
+            alpha = 0.4) +
+  geom_line(color = "black", 
+            linewidth = 0.5) +  # Keeps the line for clarity
+  labs(title = "Stock A Price Over Time (Area Chart)", 
+       x = "Date", 
+       y = "Price") +
+  theme_minimal()
 
-An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels. 
+ggplot(stocks %>% filter(stock == "Stock B"), 
+       aes(x = date, y = price)) +
+  geom_area(fill = "black", 
+            alpha = 0.4) +
+  geom_line(color = "black", 
+            linewidth = 0.5) +  # Keeps the line for clarity
+  labs(title = "Stock B Price Over Time (Area Chart)", 
+       x = "Date", 
+       y = "Price") +
+  theme_minimal()
+
+ggplot(stocks %>% filter(stock == "Stock C"), 
+       aes(x = date, y = price)) +
+  geom_area(fill = "black", 
+            alpha = 0.4) +
+  geom_line(color = "black", 
+            linewidth = 0.5) +  # Keeps the line for clarity
+  labs(title = "Stock C Price Over Time (Area Chart)", 
+       x = "Date", 
+       y = "Price") +
+  theme_minimal()
+```
+
+What you will notice that Stock A has not increased in value and is almost exactly where it started! But in our stacked area chart, it appears that every stock goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (*e.g.,* parts of a whole, percentages summing to 100%).
+
+An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels (*e.g.,* try add `+
+facet_grid(stock ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(~ . stock)` rearranges the layout to vertical instead of horizontal). 
 
 :::
 
