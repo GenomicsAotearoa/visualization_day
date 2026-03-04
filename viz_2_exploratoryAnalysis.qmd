@@ -75,37 +75,17 @@ ggplot(data = penguins,
 (Here, one could argue that increasing the size and decreasing the alpha has *decreased* the quality of our plot, but it's just for the purpose of demonstration).
 
 
-### geom_quasirandom and dangerous distributions
+### Jittering the points with geom_jitter()
 
-`geom_quasirandom()` is a function very similar to `geom_beeswarm()`, but instead of strictly moving points, they are quasi-randomly moved. 
+A commonly used function for jittering is `geom_jitter()`, which adds a small amount of random variation to each point to reduce overplotting. 
 
-Here we can repeat the same code as above, but change `geom_beeswarm()` to `geom_quasirandom()`.
-
-```{r}
-#| warning: false
-ggplot(data = penguins, 
-        mapping = aes(x = species, 
-                      y = flipper_length_mm,
-                      colour = species)) +
-  geom_quasirandom(size = 2, 
-                    alpha = 0.7)
-```
 
 ##### EXERCISE 🧠🏋️‍♀️ (3 mins)
 
-Compare the quasirandom and beeswarm plots. What is different between them? 
+Using the code above, change the geom to geom_jitter() and compare the outputs. Which one do you prefer and which one better represents the distribution of the data?
 
-::: {.callout-caution collapse="true"}
-## Dangers of distributions
-
-Personally, I find these two plots give **very** different impressions of the data. In the quasirandom plot, the wide shape (particularly for the Chinstrap species) is reminiscent of a normal distribution and it subconciously reminds me of that. Looking at the beeswarm plot, I don't immediately think of a normal distribution. It's easy to imagine a situation where the wrong choice of plot and a lapse in concentration could give the wrong impression.
-
-Your choice of visualisation can have a strong impact on what people see. 
-
-::: {.callout-warning collapse="true" appearance="minimal"}
-# Taking the jitter further
-
-A commonly used function for jittering is `geom_jitter()`. Unlike geom_quasirandom(), which spaces points based on density, geom_jitter() adds a small amount of random variation to reduce overplotting. While useful for showing individual observations, jitter does not meaningfully represent distribution shape and can sometimes obscure density patterns. For visualising distributions, approaches such as beeswarm, violin, or boxplots are often more appropriate.
+::: {.callout-tip collapse="true"}
+# Solution
 
 ```{r}
 #| warning: false
@@ -118,8 +98,10 @@ ggplot(data = penguins,
                    alpha = 0.7)
 ```
 
+
 Looks like we have lost a lot of the distribution information here, that we could see more clearly in the beeswarm plot. This is a good example of how the wrong choice of plot can lead to a misleading visualisation.
-:::
+
+While useful for showing individual observations, jitter does not meaningfully represent distribution shape and can sometimes obscure density patterns. For visualising distributions, approaches such as beeswarm, violin, or boxplots are often more appropriate.
 
 :::
 
@@ -130,11 +112,12 @@ We can add two other functions to make this plot much easier to read. First, the
 
 ```{r}
 #| warning: false
+
 ggplot(data = penguins, 
         mapping = aes(x = species,
                       y = flipper_length_mm,
                       color = species)) +
-  geom_quasirandom(size = 2, alpha = 0.7) +
+  geom_beeswarm() +
   theme_minimal() +
   labs(title = "Flipper Length Distribution by Species",
       subtitle = "Source: Penguins dataset from the palmerpenguins package",
@@ -320,7 +303,7 @@ Back on the [main page](https://r-graph-gallery.com/#LogoMenu) we can see that t
 
 ## Evolution (over time)
 
-There are multiple 'Evolution' style plots, such as line plots, area, stakced area and time series plots. Here we will look at three variations of the line plot, which is used to show changes in a variable over time.
+There are multiple 'Evolution' style plots, such as line plots, area, stacked area and time series plots. Here we will look at three variations of the line plot, which is used to show changes in a variable over time.
 
 ### Generate a dataset 
 
