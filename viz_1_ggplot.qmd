@@ -163,11 +163,13 @@ As there are only 3 variables (i.e., 3 species), ggplot has automatically used t
 You can use the `scales` package to see the colours and their hexadecimal colour codes in RStudio for any vector of hexadecimal colour codes. 
 
 First install the scales package:
+(we have commented it out here to prevent this server re-installing the package)
+
 
 ```{r}
 #| eval: false
 
-install.packages("scales")
+# install.packages("scales")
 ```
 
 ```{r}

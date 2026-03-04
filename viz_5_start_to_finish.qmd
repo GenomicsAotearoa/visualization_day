@@ -566,7 +566,8 @@ The viridis R package is one example of a package that claims* to have colour-bl
 ```{r message=FALSE}
 library(viridis)
 
-# install.packages("ggtext")
+# install.packages("ggtext") # (we have commented it out here to prevent this server re-installing the package)
+
 library(ggtext)
 
 ggplot(brandRatingData, 

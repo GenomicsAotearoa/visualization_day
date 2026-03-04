@@ -263,9 +263,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="beeswarm-plots-with-ggbeeswarm">Beeswarm plots with ggbeeswarm</h3>
 <p>Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.</p>
 <p>Beeswarm plots can be made using a standalone package (<code>install.packages("beeswarm")</code>) or using a package that extends ggplot2 (<code>install.packages("ggbeeswarm")</code>). We will use the latter, since it lets us work within the ggplot format we have looked at already.</p>
-<p>Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later.</p>
+<p>Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. (we have commented it out here to prevent this server re-installing the package)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggbeeswarm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("ggbeeswarm")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm)</span>

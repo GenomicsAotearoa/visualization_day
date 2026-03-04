@@ -28,10 +28,11 @@ Here we will use a type of plot, called a beeswarm plot, to highlight the power 
 Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. 
 
 Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. 
+(we have commented it out here to prevent this server re-installing the package)
 
 ```{r}
 #| eval: false
-install.packages("ggbeeswarm")
+#install.packages("ggbeeswarm")
 ```
 
 ```{r}
