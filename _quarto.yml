@@ -5,6 +5,7 @@ project:
 website:
   title: "Visualisation with ggplot2"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
+  favicon: theme-images/ggplot2-logo.png
   sidebar:
     style: "docked"
     left:
@@ -19,8 +20,12 @@ website:
       href: viz_3_exemplarVisualisations.qmd
     - text: "Building Better Plots"
       href: viz_4_building_better.qmd
-    - text: "Start to Finish Visualising your Data"
-      href: viz_5_start_to_finish.qmd
+    - text: "Supplementary"
+      collapsed: true
+      contents:
+       - text: "Start to Finish Visualising your Data"
+         href: viz_5_start_to_finish.qmd
+      
 
     tools: 
       - icon: github
