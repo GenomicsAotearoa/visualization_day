@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visual-interest-with-geom_area" id="toc-visual-interest-with-geom_area" class="nav-link" data-scroll-target="#visual-interest-with-geom_area">Visual interest with geom_area()</a></li>
   <li><a href="#stacked-area-chart" id="toc-stacked-area-chart" class="nav-link" data-scroll-target="#stacked-area-chart">Stacked area chart</a>
   <ul class="collapse">
-  <li><a href="#exercise-4-mins-on-the-dubious-rise-of-our-stocks" id="toc-exercise-4-mins-on-the-dubious-rise-of-our-stocks" class="nav-link" data-scroll-target="#exercise-4-mins-on-the-dubious-rise-of-our-stocks">EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our stocks…</a></li>
+  <li><a href="#exercise-4-mins-on-the-dubious-rise-of-our-strains" id="toc-exercise-4-mins-on-the-dubious-rise-of-our-strains" class="nav-link" data-scroll-target="#exercise-4-mins-on-the-dubious-rise-of-our-strains">EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our strains…</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
@@ -670,18 +670,18 @@ Solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">02</span>) <span class="co"># Please set this seed for this example</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create stock price data for three different stocks</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create yeast count data for three different strains</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2024-01-01"</span>), </span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">by =</span> <span class="st">"week"</span>, </span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">length.out =</span> <span class="dv">200</span>)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>strains <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">rep</span>(dates, <span class="at">times =</span> <span class="dv">3</span>),</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">stock =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Stock A"</span>, <span class="st">"Stock B"</span>, <span class="st">"Stock C"</span>), <span class="at">each =</span> <span class="fu">length</span>(dates)),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">price =</span> <span class="fu">c</span>(</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)),  <span class="co"># Stock A fluctuates around 100</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">80</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">4</span>)),   <span class="co"># Stock B fluctuates around 80</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">120</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">6</span>))   <span class="co"># Stock C fluctuates around 120</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">strain =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Strain A"</span>, <span class="st">"Strain B"</span>, <span class="st">"Strain C"</span>), <span class="at">each =</span> <span class="fu">length</span>(dates)),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">count =</span> <span class="fu">c</span>(</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)),  <span class="co"># Strain A fluctuates around 100</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">80</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">4</span>)),   <span class="co"># Strain B fluctuates around 80</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">120</span> <span class="sc">+</span> <span class="fu">cumsum</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">6</span>))   <span class="co"># Strain C fluctuates around 120</span></span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -706,13 +706,13 @@ What is set.seed?
 <h3 class="anchored" data-anchor-id="line-chart-with-geom_line">Line chart with geom_line()</h3>
 <p>The simplest plot for change over time is <code>geom_line()</code>. The connected scatterplot is almost the same plot, but each observation is represented by a point.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stock <span class="sc">==</span> <span class="st">"Stock C"</span>), </span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain C"</span>), </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> count)) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stock C Price Over Time"</span>, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strain C Count Over Time"</span>, </span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Price"</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -727,15 +727,15 @@ What is set.seed?
 <h3 class="anchored" data-anchor-id="visual-interest-with-geom_area">Visual interest with geom_area()</h3>
 <p>The <code>geom_area()</code> function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stock <span class="sc">==</span> <span class="st">"Stock B"</span>), </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain B"</span>), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> count)) <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">"black"</span>, </span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"black"</span>, </span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Keeps the line for clarity</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stock B Price Over Time (Area Chart)"</span>, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strain B Count Over Time (Area Chart)"</span>, </span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Price"</span>) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -758,16 +758,16 @@ What is set.seed?
 </div>
 <p><br>
 </p>
-<p>Let’s create a stacked area charts of our stocks:</p>
+<p>Let’s create a stacked area charts of our strains:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stocks, <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> price, </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> stock)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains, <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> count, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> strain)) <span class="sc">+</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span>  <span class="co"># Fill areas with transparency</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Area Chart of Stock Prices Over Time"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Area Chart of Strain Counts Over Time"</span>,</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Price"</span>, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Stock"</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Strain"</span>) <span class="sc">+</span></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -777,11 +777,11 @@ What is set.seed?
 </div>
 </div>
 </div>
-<section id="exercise-4-mins-on-the-dubious-rise-of-our-stocks" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-4-mins-on-the-dubious-rise-of-our-stocks">EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our stocks…</h4>
+<section id="exercise-4-mins-on-the-dubious-rise-of-our-strains" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-4-mins-on-the-dubious-rise-of-our-strains">EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our strains…</h4>
 <p><strong>…and the flaw with stacked area charts</strong></p>
-<p>Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.</p>
-<p>Investigate more closely each stock price, by changing one stock at a time <code>filter(stock == "Stock A")</code> (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each stock? Is this visualised well in our stacked area chart (where <code>fill = stock</code>)?</p>
+<p>Looking at the stacked area plot you would be forgiven for thinking all three strains have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.</p>
+<p>Investigate more closely each strain count, by changing one strain at a time <code>filter(strain== "Strain A")</code> (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each strain? Is this visualised well in our stacked area chart (where <code>fill = strain</code>)?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -817,8 +817,8 @@ Solution
 </div>
 </div>
 </div>
-<p>What you will notice that Stock A has not increased in value and is almost exactly where it started! But in our stacked area chart, it appears that every stock goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (<em>e.g.,</em> parts of a whole, percentages summing to 100%).</p>
-<p>An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels (<em>e.g.,</em> try add <code>+ facet_grid(stock ~ .)</code> to the stacked area code block earlier. Swapping the tilde, dot and stock order <code>(~ . stock)</code> rearranges the layout to vertical instead of horizontal).</p>
+<p>What you will notice that Strain A has not increased in count and is almost exactly where it started! But in our stacked area chart, it appears that every strain goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (<em>e.g.,</em> parts of a whole, percentages summing to 100%).</p>
+<p>An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (<em>e.g.,</em> try add <code>+ facet_grid(strain ~ .)</code> to the stacked area code block earlier. Swapping the tilde, dot and stock order <code>(~ . strain)</code> rearranges the layout to vertical instead of horizontal).</p>
 </div>
 </div>
 </div>

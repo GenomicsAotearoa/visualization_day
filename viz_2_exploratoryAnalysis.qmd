@@ -327,18 +327,18 @@ There are multiple 'Evolution' style plots, such as line plots, area, stakced ar
 ```{r}
 set.seed(02) # Please set this seed for this example
 
-# Create stock price data for three different stocks
+# Create yeast count data for three different strains
 dates <- seq.Date(from = as.Date("2024-01-01"), 
                   by = "week", 
                   length.out = 200)
 
-stocks <- tibble(
+strains <- tibble(
   date = rep(dates, times = 3),
-  stock = rep(c("Stock A", "Stock B", "Stock C"), each = length(dates)),
-  price = c(
-    100 + cumsum(rnorm(length(dates), mean = 0, sd = 5)),  # Stock A fluctuates around 100
-    80 + cumsum(rnorm(length(dates), mean = 0, sd = 4)),   # Stock B fluctuates around 80
-    120 + cumsum(rnorm(length(dates), mean = 0, sd = 6))   # Stock C fluctuates around 120
+  strain = rep(c("Strain A", "Strain B", "Strain C"), each = length(dates)),
+  count = c(
+    100 + cumsum(rnorm(length(dates), mean = 0, sd = 5)),  # Strain A fluctuates around 100
+    80 + cumsum(rnorm(length(dates), mean = 0, sd = 4)),   # Strain B fluctuates around 80
+    120 + cumsum(rnorm(length(dates), mean = 0, sd = 6))   # Strain C fluctuates around 120
   )
 )
 ```
@@ -355,13 +355,13 @@ In future you can use any numeric value for `set.seed()`, so long as you keep it
 The simplest plot for change over time is `geom_line()`. The connected scatterplot is almost the same plot, but each observation is represented by a point. 
 
 ```{r}
-ggplot(stocks %>% filter(stock == "Stock C"), 
+ggplot(strains %>% filter(strain == "Strain C"), 
         aes(x = date, 
-            y = price)) +
+            y = count)) +
   geom_line() +
-  labs(title = "Stock C Price Over Time", 
+  labs(title = "Strain C Count Over Time", 
         x = "Date", 
-        y = "Price") +
+        y = "Count") +
   theme_minimal()
 ```
 
@@ -370,15 +370,15 @@ ggplot(stocks %>% filter(stock == "Stock C"),
 The `geom_area()` function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.
 
 ```{r}
-ggplot(stocks %>% filter(stock == "Stock B"), 
-        aes(x = date, y = price)) +
+ggplot(strains %>% filter(strain == "Strain B"), 
+        aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
             linewidth = 0.5) +  # Keeps the line for clarity
-  labs(title = "Stock B Price Over Time (Area Chart)", 
+  labs(title = "Strain B Count Over Time (Area Chart)", 
         x = "Date", 
-        y = "Price") +
+        y = "Count") +
   theme_minimal()
 ```
 
@@ -392,28 +392,28 @@ The stacked area chart can be used to create a strong visual impact, especially 
 
 \
 
-Let's create a stacked area charts of our stocks:
+Let's create a stacked area charts of our strains:
 
 ```{r}
-ggplot(stocks, aes(x = date, 
-                    y = price, 
-                    fill = stock)) +
+ggplot(strains, aes(x = date, 
+                    y = count, 
+                    fill = strain)) +
   geom_area(alpha = 0.6) +  # Fill areas with transparency
-  labs(title = "Stacked Area Chart of Stock Prices Over Time",
+  labs(title = "Stacked Area Chart of Strain Counts Over Time",
        x = "Date", 
-       y = "Price", 
-       fill = "Stock") +
+       y = "Count", 
+       fill = "Strain") +
   theme_minimal()
 ```
 
 
-#### EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our stocks...
+#### EXERCISE 🧠🏋️‍♀️ (4 mins) On the dubious rise of our strains...
 
 **...and the flaw with stacked area charts**
 
-Looking at the stacked area plot you would be forgiven for thinking all three stocks have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
+Looking at the stacked area plot you would be forgiven for thinking all three strains have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
 
-Investigate more closely each stock price, by changing one stock at a time `filter(stock == "Stock A")` (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each stock? Is this visualised well in our stacked area chart (where `fill = stock`)?
+Investigate more closely each strain count, by changing one strain at a time `filter(strain== "Strain A")` (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each strain? Is this visualised well in our stacked area chart (where `fill = strain`)?
 
 
 ::: {.callout-tip collapse="true"}
@@ -423,44 +423,44 @@ Investigate more closely each stock price, by changing one stock at a time `filt
 ```{r}
 #| echo: false
 
-ggplot(stocks %>% filter(stock == "Stock A"), 
-       aes(x = date, y = price)) +
+ggplot(strains %>% filter(strain == "Strain A"), 
+       aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
             linewidth = 0.5) +  # Keeps the line for clarity
-  labs(title = "Stock A Price Over Time (Area Chart)", 
+  labs(title = "Strain A Count Over Time (Area Chart)", 
        x = "Date", 
-       y = "Price") +
+       y = "Count") +
   theme_minimal()
 
-ggplot(stocks %>% filter(stock == "Stock B"), 
-       aes(x = date, y = price)) +
+ggplot(strains %>% filter(strain == "Strain B"), 
+       aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
             linewidth = 0.5) +  # Keeps the line for clarity
-  labs(title = "Stock B Price Over Time (Area Chart)", 
+  labs(title = "Strain B Count Over Time (Area Chart)", 
        x = "Date", 
-       y = "Price") +
+       y = "Count") +
   theme_minimal()
 
-ggplot(stocks %>% filter(stock == "Stock C"), 
-       aes(x = date, y = price)) +
+ggplot(strains %>% filter(strain == "Strain C"), 
+       aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
             linewidth = 0.5) +  # Keeps the line for clarity
-  labs(title = "Stock C Price Over Time (Area Chart)", 
+  labs(title = "Strain C Count Over Time (Area Chart)", 
        x = "Date", 
-       y = "Price") +
+       y = "Count") +
   theme_minimal()
 ```
 
-What you will notice that Stock A has not increased in value and is almost exactly where it started! But in our stacked area chart, it appears that every stock goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (*e.g.,* parts of a whole, percentages summing to 100%).
+What you will notice that Strain A has not increased in count and is almost exactly where it started! But in our stacked area chart, it appears that every strain goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (*e.g.,* parts of a whole, percentages summing to 100%).
 
-An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple stocks at once by creating individual panels (*e.g.,* try add `+
-facet_grid(stock ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(~ . stock)` rearranges the layout to vertical instead of horizontal). 
+An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (*e.g.,* try add `+
+facet_grid(strain ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(~ . strain)` rearranges the layout to vertical instead of horizontal). 
 
 :::
 
