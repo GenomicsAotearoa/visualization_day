@@ -315,8 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="jittering-the-points-with-geom_jitter" class="level3">
 <h3 class="anchored" data-anchor-id="jittering-the-points-with-geom_jitter">Jittering the points with geom_jitter()</h3>
 <p>A commonly used function for jittering is <code>geom_jitter()</code>, which adds a small amount of random variation to each point to reduce overplotting.</p>
-<section id="exercise-3-mins" class="level5">
-<h5 class="anchored" data-anchor-id="exercise-3-mins">EXERCISE 🧠🏋️‍♀️ (3 mins)</h5>
+<section id="exercise-2-mins" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-2-mins">EXERCISE 🧠🏋️‍♀️ (2 mins)</h5>
 <p>Using the code above, change the geom to geom_jitter() and compare the outputs. Which one do you prefer and which one better represents the distribution of the data?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -353,7 +353,7 @@ Solution
 </section>
 <section id="theme-and-labels" class="level4">
 <h4 class="anchored" data-anchor-id="theme-and-labels">Theme and labels</h4>
-<p>We can add two other functions to make this plot much easier to read. First, the <code>theme_minimal()</code> function is a quick way to set a global theme to the plot and make it less cluttered. The second function is <code>labs()</code>, which we use to add a title, subtitle, caption and x and y axes labels. We will cover themes more later, but adding <code>theme_minimal()</code> to every plot we do today will keep them looking tidy and coherent.</p>
+<p>We can add two other functions to make this plot much easier to read. First, the <code>theme_minimal()</code> function is a quick way to set a global theme to the plot and make it less cluttered. The second function is <code>labs()</code>, which we use to add a title, subtitle, caption and x and y axes labels.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
@@ -373,6 +373,16 @@ Solution
 </div>
 </div>
 </div>
+<section id="exercise-1-min" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-1-min">EXERCISE 🧠🏋️‍♀️ (1 min)</h5>
+<p>Have a play with different themes, which one do you like best for this plot? Can you find even more suggested themes in RStudio that you like better?</p>
+<ul>
+<li><code>theme_minimal()</code></li>
+<li><code>theme_classic()</code></li>
+<li><code>theme_bw()</code></li>
+</ul>
+<p>We will add <code>theme_minimal()</code> to every plot we do today to keep them looking tidy and coherent.</p>
+</section>
 </section>
 </section>
 </section>
@@ -627,7 +637,10 @@ Solution
 <h2 class="anchored" data-anchor-id="parts-of-a-whole">Parts of a whole</h2>
 <p>In this section we will take a break from executing code and look at some examples. This is an opportunity to introduce you to the excellent resource that is the <a href="https://r-graph-gallery.com/#LogoMenu">R-graph-gallery</a>. We will scroll down to the “Parts of a whole” section, and walk through how this resource not only shows you different types of plots you can create, but provides you with code and reproducible examples.</p>
 <p>You can jump straight to our first example, <a href="https://r-graph-gallery.com/waffle.html">the waffle chart, here</a>. The R-graph-gallery gives an overview of the type of chart and highlights some of the key ways to get started. In the case of the waffle chart we can either use a dedicated package or explore how to build a waffle chart with ggplot2 syntax. Finally, there are three examples of high quality waffle charts - click on any of these three charts to get a detailed explanation of the code used to create the chart and an example dataset. This <a href="https://r-graph-gallery.com/web-waffle-for-time-evolution.html">example by Muhammad Azhar</a> is my favourite, and they have all the code required to help you build your own version.</p>
-<p>Back on the <a href="https://r-graph-gallery.com/#LogoMenu">main page</a> we can see that this same level of information exists for other chart types too. Take two minutes to pick one of the Parts of a Whole plots and explore some of the information about this type of chart.</p>
+<section id="exercise-2-mins-1" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-2-mins-1">EXERCISE 🧠🏋️‍♀️ (2 mins)</h5>
+<p>Back on the <a href="https://r-graph-gallery.com/#LogoMenu">main page</a> we can see that this same level of information exists for other chart types too. Take two minutes to pick one of the <strong>Parts of a Whole</strong> plots and explore some of the information about this type of chart.</p>
+</section>
 </section>
 <section id="evolution-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="evolution-over-time">Evolution (over time)</h2>
@@ -785,7 +798,7 @@ Solution
 </div>
 </div>
 <p>What you will notice that Strain A has not increased in count and is almost exactly where it started! But in our stacked area chart, it appears that every strain goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (<em>e.g.,</em> parts of a whole, percentages summing to 100%).</p>
-<p>An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (<em>e.g.,</em> try add <code>+ facet_grid(strain ~ .)</code> to the stacked area code block earlier. Swapping the tilde, dot and stock order <code>(~ . strain)</code> rearranges the layout to vertical instead of horizontal).</p>
+<p>An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (<em>e.g.,</em> try add <code>+ facet_grid(strain ~ .)</code> to the stacked area code block earlier. Swapping the tilde, dot and stock order <code>(. ~ strain)</code> rearranges the layout to vertical instead of horizontal).</p>
 </div>
 </div>
 </div>

@@ -81,7 +81,7 @@ ggplot(data = penguins,
 A commonly used function for jittering is `geom_jitter()`, which adds a small amount of random variation to each point to reduce overplotting. 
 
 
-##### EXERCISE 🧠🏋️‍♀️ (3 mins)
+##### EXERCISE 🧠🏋️‍♀️ (2 mins)
 
 Using the code above, change the geom to geom_jitter() and compare the outputs. Which one do you prefer and which one better represents the distribution of the data?
 
@@ -109,7 +109,7 @@ While useful for showing individual observations, jitter does not meaningfully r
 
 
 #### Theme and labels
-We can add two other functions to make this plot much easier to read. First, the `theme_minimal()` function is a quick way to set a global theme to the plot and make it less cluttered. The second function is `labs()`, which we use to add a title, subtitle, caption and x and y axes labels. We will cover themes more later, but adding `theme_minimal()` to every plot we do today will keep them looking tidy and coherent.
+We can add two other functions to make this plot much easier to read. First, the `theme_minimal()` function is a quick way to set a global theme to the plot and make it less cluttered. The second function is `labs()`, which we use to add a title, subtitle, caption and x and y axes labels. 
 
 ```{r}
 #| warning: false
@@ -125,6 +125,16 @@ ggplot(data = penguins,
        x = "Species",
        y = "Flipper Length (mm)")
 ```
+
+##### EXERCISE 🧠🏋️‍♀️ (1 min)
+
+Have a play with different themes, which one do you like best for this plot? Can you find even more suggested themes in RStudio that you like better?
+
+- `theme_minimal()`
+- `theme_classic()`
+- `theme_bw()`
+
+We will add `theme_minimal()` to every plot we do today to keep them looking tidy and coherent.
 
 ## Correlation
 
@@ -300,7 +310,9 @@ In this section we will take a break from executing code and look at some exampl
 
 You can jump straight to our first example, [the waffle chart, here](https://r-graph-gallery.com/waffle.html). The R-graph-gallery gives an overview of the type of chart and highlights some of the key ways to get started. In the case of the waffle chart we can either use a dedicated package or explore how to build a waffle chart with ggplot2 syntax. Finally, there are three examples of high quality waffle charts - click on any of these three charts to get a detailed explanation of the code used to create the chart and an example dataset. This [example by Muhammad Azhar](https://r-graph-gallery.com/web-waffle-for-time-evolution.html) is my favourite, and they have all the code required to help you build your own version.
 
-Back on the [main page](https://r-graph-gallery.com/#LogoMenu) we can see that this same level of information exists for other chart types too. Take two minutes to pick one of the Parts of a Whole plots and explore some of the information about this type of chart. 
+##### EXERCISE 🧠🏋️‍♀️ (2 mins)
+
+Back on the [main page](https://r-graph-gallery.com/#LogoMenu) we can see that this same level of information exists for other chart types too. Take two minutes to pick one of the **Parts of a Whole** plots and explore some of the information about this type of chart. 
 
 ## Evolution (over time)
 
@@ -444,7 +456,7 @@ ggplot(strains |> filter(strain == "Strain C"),
 What you will notice that Strain A has not increased in count and is almost exactly where it started! But in our stacked area chart, it appears that every strain goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (*e.g.,* parts of a whole, percentages summing to 100%).
 
 An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (*e.g.,* try add `+
-facet_grid(strain ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(~ . strain)` rearranges the layout to vertical instead of horizontal). 
+facet_grid(strain ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(. ~ strain)` rearranges the layout to vertical instead of horizontal). 
 
 :::
 
