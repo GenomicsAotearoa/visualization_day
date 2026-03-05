@@ -595,7 +595,7 @@ top10_group_avg <- top_group_counts_sorted |>
 groupCounts +
   geom_vline(aes(xintercept = top10_group_avg), 
                   colour = "gray50", 
-                  size = 0.6) +
+                  linewidth = 0.6) +
   stat_summary(colour = "gray40",
                 fun = mean, 
                 geom = "point", 
