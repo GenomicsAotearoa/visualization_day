@@ -530,16 +530,16 @@ Count the number of unique species in each group:
 
 ```{r}
 
-species_counts <- top_group_counts_sorted %>%
-  filter(Rank == "species") %>%        
-  group_by(Group) %>%
+species_counts <- top_group_counts_sorted |>
+  filter(Rank == "species") |>        
+  group_by(Group) |>
   summarise(n_species = n_distinct(Name))
 ```
 
 Make a new object, joining on the species_counts to our original top_group_counts_sorted object.  
 
 ```{r}
-plot_data <- top_group_counts_sorted %>%
+plot_data <- top_group_counts_sorted |>
   left_join(species_counts, by = "Group")
 ```
 

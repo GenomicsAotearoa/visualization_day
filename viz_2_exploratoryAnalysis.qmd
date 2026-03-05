@@ -264,7 +264,7 @@ To correct these issues we will:
 
 - Add the `scale_fill_viridis_c()` function to change the colour of the fill.   
 - Use the `labs()` function to add title, x and y axis labels, and rename the fill (legend) variable.   
-- Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid   separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
+- Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
 
 ::: {.callout-tip collapse="true" appearance="simple"}  
 # Solution 
@@ -287,7 +287,7 @@ ggplot(expression_data,
 
 Another way to plot heatmaps for gene expression data is with the `pheatmap` package, which has a lot of built in functionality for clustering and annotation. Specifically it allows you to to easily include a dendrogram to show the results of hierarchical clustering, which is a common way to visualise patterns in gene expression data.
 
-See here [R documentaion on pheatmap package](https://www.rdocumentation.org/packages/pheatmap/versions/1.0.13/topics/pheatmap). 
+See here [R documentation on pheatmap package](https://www.rdocumentation.org/packages/pheatmap/versions/1.0.13/topics/pheatmap). 
 
 :::
 
@@ -339,7 +339,7 @@ In future you can use any numeric value for `set.seed()`, so long as you keep it
 The simplest plot for change over time is `geom_line()`. The connected scatterplot is almost the same plot, but each observation is represented by a point. 
 
 ```{r}
-ggplot(strains %>% filter(strain == "Strain C"), 
+ggplot(strains |> filter(strain == "Strain C"), 
         aes(x = date, 
             y = count)) +
   geom_line() +
@@ -354,7 +354,7 @@ ggplot(strains %>% filter(strain == "Strain C"),
 The `geom_area()` function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.
 
 ```{r}
-ggplot(strains %>% filter(strain == "Strain B"), 
+ggplot(strains |> filter(strain == "Strain B"), 
         aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
@@ -407,7 +407,7 @@ Investigate more closely each strain count, by changing one strain at a time `fi
 ```{r}
 #| echo: false
 
-ggplot(strains %>% filter(strain == "Strain A"), 
+ggplot(strains |> filter(strain == "Strain A"), 
        aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
@@ -418,7 +418,7 @@ ggplot(strains %>% filter(strain == "Strain A"),
        y = "Count") +
   theme_minimal()
 
-ggplot(strains %>% filter(strain == "Strain B"), 
+ggplot(strains |> filter(strain == "Strain B"), 
        aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
@@ -429,7 +429,7 @@ ggplot(strains %>% filter(strain == "Strain B"),
        y = "Count") +
   theme_minimal()
 
-ggplot(strains %>% filter(strain == "Strain C"), 
+ggplot(strains |> filter(strain == "Strain C"), 
        aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +

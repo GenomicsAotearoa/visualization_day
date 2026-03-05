@@ -612,7 +612,7 @@ Solution
 </div>
 <p><strong>Note:</strong> gene expression data needs to be transformed (<em>e.g.,</em> log2 transformed) before plotting. This is covered in more detail in our <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/portfolio.html#rna-seq-data-analysis">RNA-seq Data Analysis</a> workshop.</p>
 <p>Another way to plot heatmaps for gene expression data is with the <code>pheatmap</code> package, which has a lot of built in functionality for clustering and annotation. Specifically it allows you to to easily include a dendrogram to show the results of hierarchical clustering, which is a common way to visualise patterns in gene expression data.</p>
-<p>See here <a href="https://www.rdocumentation.org/packages/pheatmap/versions/1.0.13/topics/pheatmap">R documentaion on pheatmap package</a>.</p>
+<p>See here <a href="https://www.rdocumentation.org/packages/pheatmap/versions/1.0.13/topics/pheatmap">R documentation on pheatmap package</a>.</p>
 </div>
 </div>
 </div>
@@ -673,7 +673,7 @@ What is set.seed?
 <h3 class="anchored" data-anchor-id="line-chart-with-geom_line">Line chart with geom_line()</h3>
 <p>The simplest plot for change over time is <code>geom_line()</code>. The connected scatterplot is almost the same plot, but each observation is represented by a point.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain C"</span>), </span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">|&gt;</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain C"</span>), </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> count)) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -694,7 +694,7 @@ What is set.seed?
 <h3 class="anchored" data-anchor-id="visual-interest-with-geom_area">Visual interest with geom_area()</h3>
 <p>The <code>geom_area()</code> function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain B"</span>), </span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strains <span class="sc">|&gt;</span> <span class="fu">filter</span>(strain <span class="sc">==</span> <span class="st">"Strain B"</span>), </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> count)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="st">"black"</span>, </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
