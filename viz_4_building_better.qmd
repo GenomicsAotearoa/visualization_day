@@ -313,7 +313,7 @@ Note: the order of the layers matters! If you switch the order of the geoms, the
 
 A useful tip for working with ggplot is to save a set of basic features, such as the data, mapping, and theme to an object which can then be used for plotting with different geoms later. 
 
-Let's keep the basic parameters that we like in a new obect called `groupCounts`, without a geom, then customise from there.
+Let's keep the basic parameters that we like in a new object called `groupCounts`, without a geom, then customise from there.
 
 
 ```{r}
@@ -332,6 +332,16 @@ groupCounts <- ggplot(top_group_counts_sorted,
     panel.grid = element_blank()
   )
 ```
+
+::: {.callout-important}
+# Wait! Anything else you want to customise here before we move on?
+
+You may want to further customise the text in `theme()` and `labs()` to better visualise your plot. Suggested possible changes:
+
+- Remove the y axis title using either `labs(y = "")` or `theme(axis.title.y = element_blank())`
+- Change the font of each label using the `family = "font of choice"` argument within `theme( ... = element_text(family = "font of choice"))`. *e.g.,* try "Helvetica" or "Mukta"
+- Change font/text size of specific axis text *e.g.,* using `theme(axis.text.x = element_text(size = #))` 
+:::
 
 #### Size, alpha, colour
 
@@ -398,7 +408,7 @@ groupCounts +
 :::
 
 
-#### Combining geoms
+#### Geoms on geoms on geoms
 
 Geoms can be combined to create more complex plots by layering one set of information over another. 
 
@@ -440,9 +450,54 @@ Do you think one of these widths is better than the others for visualising (and 
 
 Want to change the vertical spacing instead? Try the `height` argument as well as `width` and see how this changes the plot.
 
-### (Even) more geoms
 
-There are some really cool things we can do by combining geoms, and here your imagination and creativity is (probably) the limiting factor rather than ggplot. 
+##### EXERCISE 🧠🏋️‍♀️ (2 mins)
+
+
+Now that we have our favourite parameters saved in our groupCounts object, we can test out more geoms for visualising distribution.
+
+Try out these two geoms, what do you think? Do they suit this dataset? Can you fine tune them to make them look better (*e.g.,* with the alpha argument).
+
+- `geom_violin()`
+- `ggridges::geom_density_ridges()` 
+
+::: {.callout-tip collapse="true"}
+# SOLUTION
+
+```{r}
+#| eval: false
+
+groupCounts + geom_violin(aes(colour= Group,fill = Group))
+```
+
+```{r}
+#| echo: false
+
+groupCounts + geom_violin(aes(colour= Group,fill = Group))
+```
+
+
+```{r}
+#| eval: false
+
+library(ggridges)
+
+groupCounts + geom_density_ridges(aes(colour= Group,fill = Group))
+```
+
+```{r}
+#| echo: false
+
+library(ggridges)
+
+groupCounts + geom_density_ridges(aes(colour= Group,fill = Group))
+```
+
+:::
+
+### Visualise the data story
+
+There are some really cool things we can do by combining geoms, and here your imagination and creativity is (probably) the limiting factor rather than ggplot. For today, we'll continue using `geom_jitter()` for our plot. 
 
 Let's look at how each of our Groups compares to the average (and in this case, we will use mean instead of the median we have been using with our box plots). 
 
@@ -460,14 +515,14 @@ groupCounts +
                 colour = "gray40")
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip}
 
 ## Making use of values
 
-In the code above we have specified the size of the stat_summary point to be a fixed value (5). In almost all cases within ggplot, you can select dynamic values for arguments *e.g.,* if we had a different number of observations per group, point size could reflect these differences. Making full use of all of these variables leads to very informative plots.
+In the code above we have specified the size of the s`tat_summary()` point to be a fixed value (5). In almost all cases within ggplot, you can select dynamic values for arguments *e.g.,* if we had a different number of observations per group, point size could reflect these differences. Making full use of all of these variables leads to very informative plots.
 
 ::: {.callout-warning collapse="true" appearance="simple"}
-# Extra for experts
+# Extra for experts - customise point size
 
 Let's make the size of the stat_summary points reflect the number of unique species in each group.
 
@@ -496,7 +551,8 @@ ggplot(plot_data, aes(x = log(Count),
                           y = Group)) +
   labs(title = "eDNA counts vary across groups", 
        x = "log(Count)", 
-       y = "Group") +
+       y = "Group",
+       size = "Number of unique species") +
   theme_minimal() +     
   theme(
     legend.position = "right",
@@ -569,10 +625,15 @@ groupCounts +
                 alpha = 0.75)
 ```
 
-If we are trying to highlight the difference between a Group mean and the global mean, this can be amplified by adding text to our image. 
+If we are trying to highlight the difference between a Group mean and the global mean, this can be amplified by adding text to our image. (This isn't necessarily something you would do in many types of plots, but is useful to draw attention to key points *e.g*., a single gene of interest in a scatter plot).
 
 ```{r}
-groupMeans <- top_group_counts_sorted |> group_by(Group) |> summarise(groupMean = log(mean(Count))) |> pull(groupMean)
+
+#First create a vector of the group means, to use in the text annotation below:
+groupMeans <- top_group_counts_sorted |> 
+  group_by(Group) |> 
+  summarise(groupMean = log(mean(Count))) |> 
+  pull(groupMean)
 
 groupCounts +
   geom_jitter(size = 2, 
@@ -589,16 +650,75 @@ groupCounts +
                 size = 5, 
                 alpha = 0.8) +
   annotate(
-    "text", x = 7.8, y = 10, size = 2.8, color = "gray20", lineheight = .9,
+    "text", x = 8, y = 10, size = 2.8, color = "gray20", lineheight = .9,
     label = glue::glue("Counts for fish are significantly higher\nthan other groups (7.6)")
   ) +
     annotate(
-    "text", x = 5.25, y = 1, size = 2.8, color = "gray20",
+    "text", x = 5.5, y = 1, size = 2.8, color = "gray20",
     label = "Total group average (4.2)"
   )
 ```
 
-This isn't necessarily something you would do in many types of plots, but is useful to draw attention to key points (often, *e.g*., a single gene of interest in a scatter plot). 
+#### Final CHALLENGE ⚡️ 
+
+Customise the colours in the above plot to be more aesthetically pleasing. 
+
+You can use common palettes such as viridis, pick [colours by name](https://sape.inf.usi.ch/quick-reference/ggplot2/colour), or try choose your own palette from the [R graph gallery color palette picker](https://r-graph-gallery.com/color-palette-finder)
+
+::: {.callout-tip collapse="true"}
+# SOLUTION 🌈
+
+There are multiple ways to customise colours in this plot.
+
+You could add:
+
+```{r}
+#| eval: false
+
++ scale_colour_viridis(discrete=T)
+```
+
+and you can change the palette options and directions within viridis:
+
+```{r}
+#| eval: false
++ scale_color_viridis(discrete = T, direction = -1, option = "magma")
+```
+
+or set colours manually:
+
+```{r}
+#| eval: false
++ scale_colour_manual(values = c("steelblue", "coral", "darkgreen", "goldenrod", "purple", "cyan", "magenta", "orange", "brown", "pink"))
+```
+
+
+
+Here is a full example:
+
+```{r}
+set.seed(123)
+groupCounts +
+  geom_jitter(size = 2, 
+              alpha = 0.4, 
+              width = 0.2,
+              aes(colour = Group,
+      )) +
+  geom_vline(aes(xintercept = top10_group_avg), 
+             colour = "gray50", 
+             linewidth = 0.6) +
+  stat_summary(colour = "gray20",
+               fun = mean, 
+               geom = "point", 
+               size = 5, 
+               alpha = 1) +
+  scale_colour_manual(values = c("#693829FF", "#894B33FF", "#A56A3EFF", "#CFB267FF", "#D9C5B6FF", "#9CA9BAFF", "#5480B5FF", "#3D619DFF", "#405A95FF", "#345084FF")) 
+
+```
+
+:::
+
+
 
 
 ### Saving a plot
@@ -606,9 +726,11 @@ This isn't necessarily something you would do in many types of plots, but is use
 `ggsave()` will save the most recently created plot. We can run the code below to save a plot with a given set of dimensions. The default is inches, but we can set this to cm or pixels with the argument `units = "cm"` or `units = "px"`.
 
 ```{r}
-ggsave("boxplot.png", height = 10, width = 8)
+ggsave("edna_plot.png", height = 10, width = 8)
 
 ```
+
+
 
 ## Summary
 
