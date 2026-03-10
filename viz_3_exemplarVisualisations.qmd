@@ -40,10 +40,12 @@ Key things to note about this visualisation:
 
 [Dr Nicola Rennie](https://nrennie.rbind.io) is a data visualisation specialist and active community leader (*note*, the link can be used to find a list of Dr Rennie's publications, and some of those offer in-depth run-throughs of visualisation practices). Nicola has created a Shiny app to function as a [gallery](https://nrennie.rbind.io/30DayChartChallenge/) for all their 30daychartchallenge entries. Not only is this a stunning gallery with a wide array of chart types and top quality visualisation ideas, but [all of the code is available on github](https://github.com/nrennie/30DayChartChallenge/tree/main) (to navigate to the R code: click on a given year (*e.g.,* 2022), then click on scripts, then open the file for a given plot).
 
-#### Excerise: Take a few minutes to explore Nicola's gallery and make some observations about the charts. What do you like? Do you see anything you would do differently? Can you identify a use for one of these charts for visualizing your own data?
+##### EXERCISE 🧠🏋️‍♀️ (BREAKOUT ROOMS; 10 mins)
+
+Take a few minutes to explore Nicola's gallery and make some observations about the charts. What do you like? Do you see anything you would do differently? Can you identify a use for one of these charts for visualising your own data?
 
 ::: {.callout-tip collapse="true"}
-## Observations from the gallery
+## Some observations from the gallery 
 
 2024, Day 13 (Family) - very simple plot, the yellow-green is quite an interesting colour. Nice use of highlighting the female boxes in that colour and also having the text box share that colour. Good demonstration of a plot I would have been tempted to make in powerpoint.
 
