@@ -42,6 +42,8 @@ format:
     navigation: true
     page-navigation: true
     toc-depth: 4
+    link-external-newwindow: true
+
 
 
 
