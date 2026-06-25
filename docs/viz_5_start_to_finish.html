@@ -337,38 +337,38 @@ dbl  (3): Release_Year, Rating_Value, Rating_Count
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>parfumo_data_clean <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Number              Name              Brand            Release_Year  
- Length:59325       Length:59325       Length:59325       Min.   :1709   
- Class :character   Class :character   Class :character   1st Qu.:2005   
- Mode  :character   Mode  :character   Mode  :character   Median :2013   
-                                                          Mean   :2006   
-                                                          3rd Qu.:2018   
-                                                          Max.   :2024   
-                                                          NA's   :20316  
- Concentration       Rating_Value     Rating_Count     Main_Accords      
- Length:59325       Min.   : 0.000   Min.   :   2.00   Length:59325      
- Class :character   1st Qu.: 6.900   1st Qu.:   6.00   Class :character  
- Mode  :character   Median : 7.400   Median :  19.00   Mode  :character  
-                    Mean   : 7.347   Mean   :  60.65                     
-                    3rd Qu.: 7.900   3rd Qu.:  62.00                     
-                    Max.   :10.000   Max.   :2732.00                     
-                    NA's   :29279    NA's   :29279                       
-  Top_Notes         Middle_Notes        Base_Notes         Perfumers        
- Length:59325       Length:59325       Length:59325       Length:59325      
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-     URL           
- Length:59325      
- Class :character  
- Mode  :character  
-                   
-                   
-                   
-                   </code></pre>
+<pre><code>       Number             Name             Brand        Release_Year  
+ Length   :59325   Length   :59325   Length   :59325   Min.   :1709   
+ N.unique :  362   N.unique :55119   N.unique : 1451   1st Qu.:2005   
+ N.blank  :    0   N.blank  :    0   N.blank  :    0   Median :2013   
+ Min.nchar:    1   Min.nchar:    1   Min.nchar:    2   Mean   :2006   
+ Max.nchar:    5   Max.nchar:  120   Max.nchar:   52   3rd Qu.:2018   
+ NAs      :57905   NAs      :    1   NAs      :    1   Max.   :2024   
+                                                       NAs    :20316  
+   Concentration    Rating_Value     Rating_Count        Main_Accords  
+ Length   :59325   Min.   : 0.000   Min.   :   2.00   Length   :59325  
+ N.unique :  412   1st Qu.: 6.900   1st Qu.:   6.00   N.unique :19159  
+ N.blank  :    0   Median : 7.400   Median :  19.00   N.blank  :    0  
+ Min.nchar:    5   Mean   : 7.347   Mean   :  60.65   Min.nchar:    5  
+ Max.nchar:   40   3rd Qu.: 7.900   3rd Qu.:  62.00   Max.nchar:   48  
+ NAs      :46842   Max.   :10.000   Max.   :2732.00   NAs      :27100  
+                   NAs    :29279    NAs    :29279                      
+     Top_Notes        Middle_Notes       Base_Notes        Perfumers    
+ Length   :59325   Length   :59325   Length   :59325   Length   :59325  
+ N.unique :21743   N.unique :22050   N.unique :18023   N.unique : 2448  
+ N.blank  :    0   N.blank  :    0   N.blank  :    0   N.blank  :    0  
+ Min.nchar:    3   Min.nchar:    3   Min.nchar:    3   Min.nchar:    4  
+ Max.nchar:  281   Max.nchar:  407   Max.nchar:  337   Max.nchar:  111  
+ NAs      :28186   NAs      :28176   NAs      :28171   NAs      :38781  
+                                                                        
+        URL       
+ Length   :59325  
+ N.unique :59281  
+ N.blank  :    0  
+ Min.nchar:    3  
+ Max.nchar:  146  
+                  
+                  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>parfumo_data_clean <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -472,38 +472,38 @@ Interpreting these results
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parfumo_data_clean <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Number              Name              Brand            Release_Year  
- Length:59325       Length:59325       Length:59325       Min.   :1709   
- Class :character   Class :character   Class :character   1st Qu.:2005   
- Mode  :character   Mode  :character   Mode  :character   Median :2013   
-                                                          Mean   :2006   
-                                                          3rd Qu.:2018   
-                                                          Max.   :2024   
-                                                          NA's   :20316  
- Concentration       Rating_Value     Rating_Count     Main_Accords      
- Length:59325       Min.   : 0.000   Min.   :   2.00   Length:59325      
- Class :character   1st Qu.: 6.900   1st Qu.:   6.00   Class :character  
- Mode  :character   Median : 7.400   Median :  19.00   Mode  :character  
-                    Mean   : 7.347   Mean   :  60.65                     
-                    3rd Qu.: 7.900   3rd Qu.:  62.00                     
-                    Max.   :10.000   Max.   :2732.00                     
-                    NA's   :29279    NA's   :29279                       
-  Top_Notes         Middle_Notes        Base_Notes         Perfumers        
- Length:59325       Length:59325       Length:59325       Length:59325      
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-     URL           
- Length:59325      
- Class :character  
- Mode  :character  
-                   
-                   
-                   
-                   </code></pre>
+<pre><code>       Number             Name             Brand        Release_Year  
+ Length   :59325   Length   :59325   Length   :59325   Min.   :1709   
+ N.unique :  362   N.unique :55119   N.unique : 1451   1st Qu.:2005   
+ N.blank  :    0   N.blank  :    0   N.blank  :    0   Median :2013   
+ Min.nchar:    1   Min.nchar:    1   Min.nchar:    2   Mean   :2006   
+ Max.nchar:    5   Max.nchar:  120   Max.nchar:   52   3rd Qu.:2018   
+ NAs      :57905   NAs      :    1   NAs      :    1   Max.   :2024   
+                                                       NAs    :20316  
+   Concentration    Rating_Value     Rating_Count        Main_Accords  
+ Length   :59325   Min.   : 0.000   Min.   :   2.00   Length   :59325  
+ N.unique :  412   1st Qu.: 6.900   1st Qu.:   6.00   N.unique :19159  
+ N.blank  :    0   Median : 7.400   Median :  19.00   N.blank  :    0  
+ Min.nchar:    5   Mean   : 7.347   Mean   :  60.65   Min.nchar:    5  
+ Max.nchar:   40   3rd Qu.: 7.900   3rd Qu.:  62.00   Max.nchar:   48  
+ NAs      :46842   Max.   :10.000   Max.   :2732.00   NAs      :27100  
+                   NAs    :29279    NAs    :29279                      
+     Top_Notes        Middle_Notes       Base_Notes        Perfumers    
+ Length   :59325   Length   :59325   Length   :59325   Length   :59325  
+ N.unique :21743   N.unique :22050   N.unique :18023   N.unique : 2448  
+ N.blank  :    0   N.blank  :    0   N.blank  :    0   N.blank  :    0  
+ Min.nchar:    3   Min.nchar:    3   Min.nchar:    3   Min.nchar:    4  
+ Max.nchar:  281   Max.nchar:  407   Max.nchar:  337   Max.nchar:  111  
+ NAs      :28186   NAs      :28176   NAs      :28171   NAs      :38781  
+                                                                        
+        URL       
+ Length   :59325  
+ N.unique :59281  
+ N.blank  :    0  
+ Min.nchar:    3  
+ Max.nchar:  146  
+                  
+                  </code></pre>
 </div>
 </div>
 <p>The <code>summary()</code> function is very useful here. Looking at the column for Rating_Value, I can see that the mean and median values are around 7.3-7.4, and the range is 0 - 10. At this time I’m also looking at the Rating_Count variable, and seeing that the range there is 2 - 2,732. That tells me that some perfumes were only rated twice. I’m very suspicious that the brands Natura and Sarahs Creations have only a single perfume which was rated only two or three times, which allows them to get perfect scores. Similarly, any other brand with a score that seems too good to be true could be the result of this low-sampling bias.</p>

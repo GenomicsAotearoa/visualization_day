@@ -321,12 +321,12 @@ There are multiple 'Evolution' style plots, such as line plots, area, stacked ar
 ### Generate a dataset 
 
 ```{r}
-set.seed(02) # Please set this seed for this example
+set.seed(12345) # Please set the seed for this example
 
 # Create yeast count data for three different strains
-dates <- seq.Date(from = as.Date("2024-01-01"), 
-                  by = "week", 
-                  length.out = 200)
+dates <- seq.Date(from = as.Date("2026-01-01"), 
+                  to = as.Date("2026-01-31"), 
+                  by = "day")
 
 strains <- tibble(
   date = rep(dates, times = 3),
@@ -351,11 +351,11 @@ In future you can use any numeric value for `set.seed()`, so long as you keep it
 The simplest plot for change over time is `geom_line()`. The connected scatterplot is almost the same plot, but each observation is represented by a point. 
 
 ```{r}
-ggplot(strains |> filter(strain == "Strain C"), 
+ggplot(strains |> filter(strain == "Strain A"), 
         aes(x = date, 
             y = count)) +
   geom_line() +
-  labs(title = "Strain C Count Over Time", 
+  labs(title = "Strain A Count Over Time", 
         x = "Date", 
         y = "Count") +
   theme_minimal()
@@ -366,19 +366,61 @@ ggplot(strains |> filter(strain == "Strain C"),
 The `geom_area()` function uses the same principal but also includes a filled or shaded area below the line. This is the same data, but due to the shading makes the whole plot look less empty.
 
 ```{r}
-ggplot(strains |> filter(strain == "Strain B"), 
+ggplot(strains |> filter(strain == "Strain A"), 
         aes(x = date, y = count)) +
   geom_area(fill = "black", 
             alpha = 0.4) +
   geom_line(color = "black", 
             linewidth = 0.5) +  # Keeps the line for clarity
-  labs(title = "Strain B Count Over Time (Area Chart)", 
+  labs(title = "Strain A Count Over Time (Area Chart)", 
         x = "Date", 
         y = "Count") +
   theme_minimal()
 ```
 
-The choice of `geom_line()` or `geom_area()` is purely aesthetic. 
+The choice of `geom_line()` or `geom_area()` is *almost* purely aesthetic, but you will notice the topology of these plots look a little different, even though they are both for Strain A.
+
+##### DISCUSSION 🤔 (2 mins)
+
+Why does the topology of the strain A `geom_line()` and `geom_area()` look so different?
+
+
+::: {.callout-tip collapse="true"}
+# SOLUTION
+
+`geom_line()` has no baseline, so the y-axis autoscales to the range of the data, making the fluctuations look much more dramatic.
+
+`geom_area()` anchors to the baseline, visually compressing the fluctuation.  
+
+To make these plots more similar, you could choose to anchor the charts using custom y-axis limits with the `coord_cartesian()` function.
+
+***Example 1:*** Anchor the y-axis to the minimum and maximum counts in your counts dataframe, to maintain consistency across all plots:
+
+```{r}
+ggplot(strains |> filter(strain == "Strain A"), 
+       aes(x = date, y = count)) +
+  geom_area(fill = "black", alpha = 0.4) +
+  geom_line(color = "black", linewidth = 0.5) +
+  coord_cartesian(ylim = c(min(strains$count), max(strains$count))) +
+  labs(title = "Strain A Count Over Time (Area Chart)", x = "Date", y = "Count") +
+  theme_minimal()
+```
+
+***Example 2:*** Anchor the y-axis to custom coordinates to keep the fluctuation more visible:
+
+```{r}
+ggplot(strains |> filter(strain == "Strain A"), 
+       aes(x = date, y = count)) +
+  geom_area(fill = "black", alpha = 0.4) +
+  geom_line(color = "black", linewidth = 0.5) +
+  coord_cartesian(ylim = c(75, 120)) +
+  labs(title = "Strain A Count Over Time (Area Chart)", x = "Date", y = "Count") +
+  theme_minimal()
+```
+
+:::
+
+
 
 ### Stacked area chart
 
@@ -388,7 +430,7 @@ The stacked area chart can be used to create a strong visual impact, especially 
 
 \
 
-Let's create a stacked area charts of our strains:
+Let's create a stacked area charts of our strains, by adding the argument `fill = strain` to our global mapping parameters:
 
 ```{r}
 ggplot(strains, aes(x = date, 
@@ -409,11 +451,33 @@ ggplot(strains, aes(x = date,
 
 Looking at the stacked area plot you would be forgiven for thinking all three strains have increased over time. Because stacked area plots can be misleading, they are not always recommended as a type of visualisation.
 
-Investigate more closely each strain count, by changing one strain at a time `filter(strain== "Strain A")` (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each strain? Is this visualised well in our stacked area chart (where `fill = strain`)?
+Investigate more closely each strain count, by changing one strain at a time `filter(strain == "Strain A")` (and updating the figure title of course) and plotting the area and line chart. What do you notice about the fluctuation over time for each strain? Is this visualised well in our stacked area chart (where `fill = strain`)?
+
+
+::: {.callout-caution collapse="true" appearance="minimal"}
+# 🤯 Help! What code should I be using here?
+
+Use the following code as your base and try out each of the three strains one at a time:
+
+```{r}
+#| eval: false
+
+ggplot(strains |> filter(strain == "Strain X"), # change the strain here
+       aes(x = date, y = count)) +
+  geom_area(fill = "black", 
+            alpha = 0.4) +
+  geom_line(color = "black", 
+            linewidth = 0.5) +  
+  labs(title = "Strain X Count Over Time (Area Chart)", # change the strain here
+       x = "Date", 
+       y = "Count") +
+  theme_minimal()
+```
+:::
 
 
 ::: {.callout-tip collapse="true"}
-# Solution
+# SOLUTION
 
 
 ```{r}
@@ -453,7 +517,9 @@ ggplot(strains |> filter(strain == "Strain C"),
   theme_minimal()
 ```
 
-What you will notice that Strain A has not increased in count and is almost exactly where it started! But in our stacked area chart, it appears that every strain goes up. You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (*e.g.,* parts of a whole, percentages summing to 100%).
+What you will notice that Strain A and B have increased in count a little over time, where as Strain C goes up quite a bit. But in our stacked area chart, it appears that every strain goes up uniformally. 
+
+***You should only use a stacked area chart when you are interested in the total value of all variables together, and not the individual values of each variable (e.g., parts of a whole, percentages summing to 100%).***
 
 An alternative to stacked area plots is the use of facet, which will allow us to visualise multiple strains at once by creating individual panels (*e.g.,* try add `+
 facet_grid(strain ~ .)` to the stacked area code block earlier. Swapping the tilde, dot and stock order `(. ~ strain)` rearranges the layout to vertical instead of horizontal). 
