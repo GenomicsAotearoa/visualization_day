@@ -28,7 +28,7 @@ Each gene-by-sample combination gets its own row. This makes it straightforward 
 
 ## The problem: a lot of data is naturally wide
 
-In contrast, RNA-seq count matrices are typically stored in **wide format**, where each sample is its own column:
+In contrast, data such as RNA-seq count matrices are typically stored in **wide format**, where each sample is its own column:
 
 | gene   | sample1 | sample2 | sample3 | sample4 |
 |--------|---------|---------|---------|---------|
