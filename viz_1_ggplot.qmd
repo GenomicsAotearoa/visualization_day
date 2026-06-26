@@ -17,16 +17,15 @@ toc: true
 
 ## Load packages and prep data
 
-Load the palmerpenguins package for an example dataset, ggplot2 for the plotting functions, and dplyr for the pipe (|>).
+Load the palmerpenguins package for an example dataset and ggplot2 for the plotting functions. 
 
 ```{r}
 #| message=FALSE
 
 # install.packages("palmerpenguins")
-# install.packages("tidyverse") # tidyverse contains ggplot2 and dplyr
+# install.packages("tidyverse") # tidyverse contains ggplot2 
 library(palmerpenguins)
 library(ggplot2)
-library(dplyr)
 ```
 The palmerpenguins package has loaded a hidden object into your R environment, called penguins, which has data we will use for plotting.
 
@@ -37,6 +36,32 @@ penData <- penguins |> na.omit()
 
 penData |> head()
 ```
+
+
+::: {.callout-caution collapse="true" appearance="minimal"}
+# 🤯 Help! What is that pipe symbol `|>`  ??
+
+The pipe was originally introduced in the `magrittr` package (part of the tidyverse) as `%>%`, 
+and became so popular that R adopted its own version called the native pipe `|>` in R 4.1.0. It is a very convienent way to sequentially make changes to a dataset, without having to use many nested functions like we would have to do using base R. 
+
+The pipe takes the data or output on the left and 'pipes' it into the function on the right. 
+
+The code above could alternatively be written in base R as:
+
+
+```{r}
+#| eval: false
+
+penData <- na.omit(penguins) 
+
+head(penData)
+```
+
+This pipe `|>` is actually called the native pipe, and is the one used in R version onwards. You will also see the orignal pipe `%>%` a lot too – they function almost exactly the same, but there are niche scenarios where only one version works. We won't be getting into pipes or tidyverse functions in depth in this workshop. 
+
+
+:::
+
 
 ## The ggplot format
 
