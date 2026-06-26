@@ -25,15 +25,10 @@ Distribution matters!
 
 Here we will use a type of plot, called a beeswarm plot, to highlight the power of visualisation.
 
-Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. 
+Beeswarm plots can be made using a standalone package (`install.packages("beeswarm")`) or using a package that extends ggplot2 (`install.packages("ggbeeswarm")`). We will use the latter, since it lets us work within the ggplot format we have looked at already. This package has been pre-installed on the REANNZ training environment. 
 
-Install the ggbeeswarm package, then load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. 
-(we have commented it out here to prevent this server re-installing the package)
+Load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. 
 
-```{r}
-#| eval: false
-#install.packages("ggbeeswarm")
-```
 
 ```{r}
 #| message: false
@@ -58,6 +53,8 @@ ggplot(data = penguins,
 
 With this plain plot we can see what beeswarm is doing - when points on the y axis share a value they are moved horizontally so that overlapping points can be identified. This concept is commonly referred to as "jitter", and "jitter plots" are a class of chart. Beeswarm plots are an implementation of jitter plots that aim to be compact with as little as possible overlap of points. This gives us the ability to see density through the width of the plot, similar to how a violin plot (geom_violin) works. 
 
+Let's add in the violin plot as another geom layer to further visualise our distribution. At the same time, we'll add in some more arguments for adjusting the visualisation.
+
 Distribution plots are a good opportunity to introduce two new parameters we can adjust in ggplot: size and alpha. 
 
 - **Size** is simply the size of the data point. We can assign a single value for all points, or can assign a continuous variable. 
@@ -68,25 +65,75 @@ Distribution plots are a good opportunity to introduce two new parameters we can
 #| warning: false
 ggplot(data = penguins,
         mapping = aes(x = species,
-                      y = flipper_length_mm,
-                      colour = species)) +
-  geom_beeswarm(size = 2, alpha = 0.7)
+                      y = flipper_length_mm)) +
+  geom_beeswarm(size = 2) + # changes the point size
+  geom_violin(alpha = 0.4) # makes the violin layer 40% opaque
 ```
 
-(Here, one could argue that increasing the size and decreasing the alpha has *decreased* the quality of our plot, but it's just for the purpose of demonstration).
+##### EXERCISE 🧠🏋️‍♀️ (1 min)
+ggplot2 builds up geoms in layers, therefore the geom_beeswarm layer is plotted first, then the geom_violin layer is plotted on top. 
+
+Try the following and see how the plot changes:
+
+1. Change the `alpha = 0.4` argument in geom_violin to `alpha = 1` and `alpha = 0` 
+2. Swap the order of the two geoms, so that `geom_violin` is plotted first and `geom_beeswarm` second.
+
+
+##### DISCUSSION 🤔 (3 mins)
+
+Did you notice anything unusual about the *distribution story* being told by our `geom_beeswarm` and `geom_violin` layers?
+
+The violin for Chinstrap in particular appears wide in the middle, yet the beeswarm points suggest there aren't many individuals with flipper lengths in that range. This mismatch happens because `geom_violin` draws a smoothed curve that can create the impression of more density than what the raw points support, especially with smaller samples.
+
+By default, `geom_violin` uses `scale = "area"`, which gives every violin the same total area regardless of how many observations it represents. This is reasonable when group sizes are similar and you want to compare the *shape* of distributions. But when group sizes differ:
+
+```{r}
+penguins |> 
+  count(species)
+```
+
+...it can be misleading, because a violin based on 68 observations looks just as "confident" as one based on 152. We can address this with `scale = "count"`, which scales violin width proportionally to sample size:
+
+```{r}
+#| warning: false
+
+ggplot(data = penguins,
+       mapping = aes(x = species,
+                     y = flipper_length_mm)) +
+  geom_beeswarm(size = 2) + 
+  geom_violin(alpha = 0.4, scale = "count") # default is scale = "area" 
+```
+
+With `scale = "count"`, the Chinstrap violin is visibly narrower than the others, visually demonstrating that this group has fewer observations and its distribution shape should be interpreted with more caution.
+
+This gives us a more realistic view of our distribution in the context of the count *i.e.,* the number of samples per group. It is not necessarily wrong to use one or the other scale for violin plot – you need to decide as the researcher how to best represent the story your data to tells! 
+
 
 
 ### Jittering the points with geom_jitter()
 
-A commonly used function for jittering is `geom_jitter()`, which adds a small amount of random variation to each point to reduce overplotting. 
+A commonly used function for visualising data points that overlap is `geom_jitter()`. "Jittering" adds a small amount of random variation to each point to reduce overplotting. The beeswarm plot is similar in that it reduces overplotting (*i.e.,* overlapping points), but it does so in a more structured way which creates a compact visualisation. True jittering, like the `geom_jitter()` adds *random* variation. 
 
 
-##### EXERCISE 🧠🏋️‍♀️ (2 mins)
+##### EXERCISE 🧠🏋️‍♀️ (1 min)
 
-Using the code above, change the geom to geom_jitter() and compare the outputs. Which one do you prefer and which one better represents the distribution of the data?
+Using the code below as a base, add `geom_jitter()` and compare the output to our earlier plots using beeswarm and violin. Which geom do you prefer and which one better represents the distribution of the data?
+
+*Optional: change size and alpha arguments in your `geom_jitter()` too.*
+
+```{r}
+#| eval: false
+#|  
+ggplot(data = penguins, 
+       mapping = aes(x = species, 
+                     y = flipper_length_mm,
+                     colour = species)) 
+```
+
+
 
 ::: {.callout-tip collapse="true"}
-# Solution
+# SOLUTION
 
 ```{r}
 #| warning: false
@@ -104,6 +151,9 @@ Looks like we have lost a lot of the distribution information here, that we coul
 
 While useful for showing individual observations, jitter does not meaningfully represent distribution shape and can sometimes obscure density patterns. For visualising distributions, approaches such as beeswarm, violin, or boxplots are often more appropriate.
 
+> Note: because the variation is random, everytime you generate this plot it will look slightly different!
+You can make the plot reproducible using set.seed() – we'll do this in a later examples too. 
+
 :::
 
 
@@ -117,7 +167,7 @@ We can add two other functions to make this plot much easier to read. First, the
 ggplot(data = penguins, 
         mapping = aes(x = species,
                       y = flipper_length_mm,
-                      color = species)) +
+                      colour = species)) +
   geom_beeswarm() +
   theme_minimal() +
   labs(title = "Flipper Length Distribution by Species",
@@ -321,7 +371,7 @@ There are multiple 'Evolution' style plots, such as line plots, area, stacked ar
 ### Generate a dataset 
 
 ```{r}
-set.seed(12345) # Please set the seed for this example
+set.seed(12345) # Set the seed and run as one code block
 
 # Create yeast count data for three different strains
 dates <- seq.Date(from = as.Date("2026-01-01"), 
