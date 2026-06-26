@@ -183,16 +183,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Supplementary</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link">
+  <a href="./Supplementary/S1_Rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Supplementary/S2_data-manipulation-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data manipulation for ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Supplementary/S3_viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start to Finish Visualising your Data</span></a>
   </div>
 </li>
@@ -274,19 +286,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="beeswarm-plots">Beeswarm plots</h3>
 <p>Like with the <code>geom_boxplot()</code> we looked at in the previous episode, we need to specify where the data comes from and how the data is mapped. Beeswarm plots are simple and we will initially only need to specify the x and y axis data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Note:</strong> <em>When running this code, ggplot gives us a warning that rows were removed due to missing values. This workshop material has a hidden line of code to suppress these warnings.</em></p>
 <p>With this plain plot we can see what beeswarm is doing - when points on the y axis share a value they are moved horizontally so that overlapping points can be identified. This concept is commonly referred to as “jitter”, and “jitter plots” are a class of chart. Beeswarm plots are an implementation of jitter plots that aim to be compact with as little as possible overlap of points. This gives us the ability to see density through the width of the plot, similar to how a violin plot (geom_violin) works.</p>
 <p>Let’s add in the violin plot as another geom layer to further visualise our distribution. At the same time, we’ll add in some more arguments for adjusting the visualisation.</p>
 <p>Distribution plots are a good opportunity to introduce two new parameters we can adjust in ggplot: size and alpha.</p>
@@ -295,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Alpha</strong> is the level of transparency. When data points are too large (from the size argument), or too numerous, the points can overlap one another (a problem called “overplotting”). This is particularly problematic outside of beeswarm. When we set alpha to something less than 1, the points become somewhat transparent. Therefore, if two points overlap one another, it is clear from the change in colour (as two transparent but overlapping points are darker than a single point).</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># changes the point size</span></span>
@@ -303,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -323,20 +334,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The violin for Chinstrap in particular appears wide in the middle, yet the beeswarm points suggest there aren’t many individuals with flipper lengths in that range. This mismatch happens because <code>geom_violin</code> draws a smoothed curve that can create the impression of more density than what the raw points support, especially with smaller samples.</p>
 <p>By default, <code>geom_violin</code> uses <code>scale = "area"</code>, which gives every violin the same total area regardless of how many observations it represents. This is reasonable when group sizes are similar and you want to compare the <em>shape</em> of distributions. But when group sizes differ:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penData<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  species       n
-  &lt;fct&gt;     &lt;int&gt;
-1 Adelie      152
-2 Chinstrap    68
-3 Gentoo      124</code></pre>
+<pre><code>
+   Adelie Chinstrap    Gentoo 
+      146        68       119 </code></pre>
 </div>
 </div>
-<p>…it can be misleading, because a violin based on 68 observations looks just as “confident” as one based on 152. We can address this with <code>scale = "count"</code>, which scales violin width proportionally to sample size:</p>
+<p>…it can be misleading, because a violin based on 68 observations looks just as “confident” as one based on 146. We can address this with <code>scale = "count"</code>, which scales violin width proportionally to sample size:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
@@ -344,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -361,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using the code below as a base, add <code>geom_jitter()</code> and compare the output to our earlier plots using beeswarm and violin. Which geom do you prefer and which one better represents the distribution of the data?</p>
 <p><em>Optional: change size and alpha arguments in your <code>geom_jitter()</code> too.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> flipper_length_mm,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colour =</span> species)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -379,7 +386,7 @@ SOLUTION
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species, </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> flipper_length_mm,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colour =</span> species)) <span class="sc">+</span></span>
@@ -388,7 +395,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -406,7 +413,7 @@ SOLUTION
 <h4 class="anchored" data-anchor-id="theme-and-labels">Theme and labels</h4>
 <p>We can add two other functions to make this plot much easier to read. First, the <code>theme_minimal()</code> function is a quick way to set a global theme to the plot and make it less cluttered. The second function is <code>labs()</code>, which we use to add a title, subtitle, caption and x and y axes labels.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penData, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> flipper_length_mm,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colour =</span> species)) <span class="sc">+</span></span>
@@ -419,7 +426,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -508,7 +515,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -554,7 +561,7 @@ Solution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -622,7 +629,7 @@ Solution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -666,7 +673,7 @@ Solution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -748,7 +755,7 @@ What is set.seed?
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -771,7 +778,7 @@ What is set.seed?
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -807,7 +814,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -824,7 +831,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -859,7 +866,7 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -913,21 +920,21 @@ SOLUTION
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-22-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_2_exploratoryAnalysis_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

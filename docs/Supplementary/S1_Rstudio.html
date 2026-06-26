@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visualisation with ggplot2</title>
+<title>s1_rstudio – Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./viz_1_ggplot.html" rel="next">
-<link href="./theme-images/ggplot2-logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2b9b11468e6a1fa41e6b82fe5f3fd8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Supplementary/S2_data-manipulation-ggplot2.html" rel="next">
+<link href="../viz_4_building_better.html" rel="prev">
+<link href="../theme-images/ggplot2-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2b9b11468e6a1fa41e6b82fe5f3fd8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,14 +72,14 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="– Visualisation with ggplot2">
 <meta property="og:description" content="">
-<meta property="og:image" content="theme-images/viz_mainpage_image.png">
+<meta property="og:image" content="./figures/rstudio_session_default.png">
 <meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -87,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Supplementary</a></li><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Getting started with RStudio</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -102,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation with ggplot2</a> 
+      <a href="../">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -117,31 +118,31 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_1_ggplot.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_1_ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation with ggplot2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_2_exploratoryAnalysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_2_exploratoryAnalysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation for ourselves - Exploratory Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_3_exemplarVisualisations.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_3_exemplarVisualisations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exemplar visualisations - how far can we take it?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_4_building_better.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_4_building_better.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Better Plots</span></a>
   </div>
 </li>
@@ -156,19 +157,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Supplementary/S1_Rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="../Supplementary/S1_Rstudio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Getting started with RStudio</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Supplementary/S2_data-manipulation-ggplot2.html" class="sidebar-item-text sidebar-link">
+  <a href="../Supplementary/S2_data-manipulation-ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data manipulation for ggplot2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Supplementary/S3_viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link">
+  <a href="../Supplementary/S3_viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Start to Finish Visualising your Data</span></a>
   </div>
 </li>
@@ -179,58 +180,71 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducing-rstudio-server" id="toc-introducing-rstudio-server" class="nav-link active" data-scroll-target="#introducing-rstudio-server">Introducing RStudio Server</a>
+  <ul>
+  <li><a href="#overview-and-customisation-of-the-rstudio-layout" id="toc-overview-and-customisation-of-the-rstudio-layout" class="nav-link" data-scroll-target="#overview-and-customisation-of-the-rstudio-layout">Overview and customisation of the RStudio layout</a></li>
+  <li><a href="#code-and-global-options" id="toc-code-and-global-options" class="nav-link" data-scroll-target="#code-and-global-options">Code and Global options</a></li>
+  <li><a href="#rstudio-contextual-help" id="toc-rstudio-contextual-help" class="nav-link" data-scroll-target="#rstudio-contextual-help">RStudio contextual help</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Supplementary</a></li><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Getting started with RStudio</a></li></ol></nav></header>
 
 
 
 
-<section id="from-start-to-finish-visualising-your-data" class="level1">
-<h1>From Start to Finish: Visualising Your Data</h1>
+<section id="introducing-rstudio-server" class="level1">
+<h1>Introducing RStudio Server</h1>
+<p>In these lessons, we will be making use of a software called <a href="https://posit.co/downloads">RStudio</a>, an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">Integrated Development Environment (IDE)</a>. RStudio, like most IDEs, provides a graphical interface to R, making it more user-friendly, and providing dozens of useful features. We will introduce additional benefits of using RStudio as you cover the lessons. In this case, we are specifically using <a href="https://www.rstudio.com/products/RStudio/#Server">RStudio Server</a>, a version of RStudio that can be accessed in your web browser. RStudio Server has the same features of the Desktop version of RStudio you could download as standalone software.</p>
+<p><img src="./figures/rstudio_session_default.png" class="img-fluid" style="width:100.0%"></p>
+<section id="overview-and-customisation-of-the-rstudio-layout" class="level2">
+<h2 class="anchored" data-anchor-id="overview-and-customisation-of-the-rstudio-layout">Overview and customisation of the RStudio layout</h2>
+<p>The first thing you’ll want to do is open a new R script to write all your code in. Click the new script button in the top left corner:</p>
+<p><img src="./figures/rstudio-newrscript.png" class="img-fluid"></p>
 <p><br>
 </p>
-<p><img src="theme-images/viz_mainpage_image.png" class="img-fluid"></p>
-<p><br>
-</p>
-<p>Good visualisation is about more than just writing the correct code. Visualisation is communication, and good communication requires thinking about how we as the scientist/data analyst/creator convey our message to the reader. This one-day workshop will provide you with a toolbox of skills and code examples to help you create clear, visually interesting visualisations which accurately communicate a message.</p>
-<section id="whats-covered-in-this-workshop" class="level3">
-<h3 class="anchored" data-anchor-id="whats-covered-in-this-workshop">What’s covered in this workshop</h3>
+<p>Here are the major windows (or panes) of the RStudio environment:</p>
+<p><img src="./figures/rstudio_session_4pane_layout.png" class="img-fluid"></p>
 <ul>
-<li>The basic code template for <code>ggplot2</code>.<br>
-</li>
-<li>Types of data visualisations and their impact on how we interpret the data.<br>
-</li>
-<li>Examples of good visualisations from the community (with code).<br>
-</li>
-<li>Evolving a plot from a simple boxplot, building up new geom layers and refining the visualisation.</li>
+<li><p><strong>Source</strong>: This pane is where you will write/view R scripts. Some outputs (such as if you view a dataset using <code>View()</code>) will appear as a tab here.</p></li>
+<li><p><strong>Console/Terminal/Jobs</strong>: This is actually where you see the execution of commands. This is the same display you would see if you were using R at the command line without RStudio. You can work interactively (<em>i.e.,</em>&nbsp;enter R commands here), but for the most part we will run a script (or lines in a script) in the source pane and watch their execution and output here. The “Terminal” tab give you access to the BASH terminal (the Linux operating system, unrelated to R). RStudio also allows you to run jobs (analyses) in the background. This is useful if some analysis will take a while to run. You can see the status of those jobs in the background.</p></li>
+<li><p><strong>Environment/History</strong>: Here, RStudio will show you what datasets and objects (variables) you have created and which are defined in memory. You can also see some properties of objects/datasets such as their type and dimensions. The “History” tab contains a history of the R commands you’ve executed R.</p></li>
+<li><p><strong>Files/Plots/Packages/Help/Viewer</strong>: This multi-purpose pane will show you the contents of directories on your computer. You can also use the “Files” tab to navigate and set the working directory. The “Plots” tab will show the output of any plots generated. In “Packages” you will see what packages are actively loaded, or you can attach installed packages. “Help” will display help files for R functions and packages. “Viewer” will allow you to view local web content (<em>e.g.,</em>&nbsp;HTML outputs). In the “Files” tab you can select a file and download it from your cloud instance (click the “more” button) to your local computer. Uploads are also possible.</p></li>
 </ul>
+<p>All of the panes in RStudio have configuration options. For example, you can minimise/maximise a pane, or by moving your mouse in the space between panes you can resize as needed. The most important customisation options for pane layout are in the <code>View</code> menu. Other options such as font sizes, colors/themes, and more are in the <code>Tools</code> menu under <code>Global Options</code>.</p>
 </section>
-<section id="whats-not-covered-in-this-workshop" class="level3">
-<h3 class="anchored" data-anchor-id="whats-not-covered-in-this-workshop">What’s not covered in this workshop</h3>
+<section id="code-and-global-options" class="level2">
+<h2 class="anchored" data-anchor-id="code-and-global-options">Code and Global options</h2>
+<p>These are a few suggestion we have for improving your viewing and coding experience</p>
 <ul>
-<li>Performing statistical analysis on data.<br>
-</li>
-<li>Interactive or animated plotting.<br>
-</li>
-<li>Extensive data manipulation and wrangling.</li>
+<li>Under <kbd>Code</kbd> enable ‘Rainbow Parentheses’ and ‘Soft Wrap Long Lines’</li>
 </ul>
+<p><img src="figures/rstudio-code.png" class="img-fluid"></p>
+<ul>
+<li>Got to <kbd>Tools</kbd> -&gt; <kbd>Global options</kbd></li>
+</ul>
+<p><img src="figures/rstudio-globaloptions.png" class="img-fluid"></p>
+<ul>
+<li>Under <kbd>Appearance</kbd> change the editor font size to larger (or smaller, whatever you prefer) and change the theme if you like different colours. The default editor theme is Textmate. Don’t forget to hit <kbd>Apply</kbd>!</li>
+</ul>
+<p><img src="figures/rstudio-appearance.png" class="img-fluid"></p>
 </section>
-<section id="why-are-we-doing-this" class="level3">
-<h3 class="anchored" data-anchor-id="why-are-we-doing-this">Why are we doing this?</h3>
-<p>Because some plots look like <a href="https://docs.google.com/presentation/d/1PyuGRbqPpjMoswuTMbgOqHfe6Uc-wji7uEJkxyxI9Jw/edit#slide=id.p">this</a> (Credit to Dr.&nbsp;Joseph Guhlin for this presentation).</p>
-</section>
-<section id="attribution" class="level3">
-<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
-<p>This workshop was created by <a href="https://github.com/tylermcinnes">Tyler McInnes</a>, while he was a <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#past-team-members">Bioinformatics Training Coordinator at Genomics Aotearoa</a>, and has been developed further by <a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/meetTheTeam.html#get-to-know-the-team">Chloé van der Burg</a>.</p>
-</section>
-<section id="section" class="level3" style="background: #eaf1fb; text-align:center;">
-<h3 style="background: #eaf1fb; text-align:center;" class="anchored" data-anchor-id="section"></h3>
-<p><a href="https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/"><img src="theme-images/GA-Logo-Bioinformatics-Training-black.png" class="img-fluid" style="width:80.0%"></a></p>
-<p>Made with <a href="https://docs.carpentries.org/policies/coc/">❤️</a> and <a href="https://genomicsaotearoa.github.io/reproducibility_with_git_and_quarto/quarto_overview.html">Quarto</a></p>
-</section>
+<section id="rstudio-contextual-help" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-contextual-help">RStudio contextual help</h2>
+<p>Here is one last bonus we will mention about RStudio. It’s difficult to remember all of the arguments and definitions associated with a given function. When you start typing the name of a function and hit the <kbd>Tab</kbd> key, RStudio will display functions and associated help:</p>
+<p><img src="./figures/studio_contexthelp1.png" class="img-fluid"></p>
+<p>Once you type a function, hitting the <kbd>Tab</kbd> inside the parentheses will show you the function’s arguments and provide additional help for each of these arguments.</p>
+<p><img src="./figures/studio_contexthelp2.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -640,10 +654,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../viz_4_building_better.html" class="pagination-link" aria-label="Building Better Plots">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Building Better Plots</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./viz_1_ggplot.html" class="pagination-link" aria-label="Visualisation with ggplot2">
-        <span class="nav-page-text">Visualisation with ggplot2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Supplementary/S2_data-manipulation-ggplot2.html" class="pagination-link" aria-label="Data manipulation for ggplot2">
+        <span class="nav-page-text">Data manipulation for ggplot2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>viz_5_start_to_finish – Visualisation with ggplot2</title>
+<title>s3_viz_5_start_to_finish – Visualisation with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,25 +58,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./viz_4_building_better.html" rel="prev">
-<link href="./theme-images/ggplot2-logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2b9b11468e6a1fa41e6b82fe5f3fd8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Supplementary/S2_data-manipulation-ggplot2.html" rel="prev">
+<link href="../theme-images/ggplot2-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2b9b11468e6a1fa41e6b82fe5f3fd8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,10 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="– Visualisation with ggplot2">
 <meta property="og:description" content="">
-<meta property="og:image" content="viz_5_start_to_finish_files/figure-html/unnamed-chunk-8-1.png">
+<meta property="og:image" content="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-8-1.png">
 <meta property="og:site_name" content="Visualisation with ggplot2">
 </head>
 
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./viz_5_start_to_finish.html">Supplementary</a></li><li class="breadcrumb-item"><a href="./viz_5_start_to_finish.html">Start to Finish Visualising your Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Supplementary</a></li><li class="breadcrumb-item"><a href="../Supplementary/S3_viz_5_start_to_finish.html">Start to Finish Visualising your Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Visualisation with ggplot2</a> 
+      <a href="../">Visualisation with ggplot2</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/GenomicsAotearoa/visualization_day" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
@@ -152,46 +152,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_1_ggplot.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_1_ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation with ggplot2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_2_exploratoryAnalysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_2_exploratoryAnalysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation for ourselves - Exploratory Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_3_exemplarVisualisations.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_3_exemplarVisualisations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exemplar visualisations - how far can we take it?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_4_building_better.html" class="sidebar-item-text sidebar-link">
+  <a href="../viz_4_building_better.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building Better Plots</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Supplementary</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Supplementary/S1_Rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started with RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Supplementary/S2_data-manipulation-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data manipulation for ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Supplementary/S3_viz_5_start_to_finish.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Start to Finish Visualising your Data</span></a>
   </div>
 </li>
@@ -255,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./viz_5_start_to_finish.html">Supplementary</a></li><li class="breadcrumb-item"><a href="./viz_5_start_to_finish.html">Start to Finish Visualising your Data</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Supplementary/S1_Rstudio.html">Supplementary</a></li><li class="breadcrumb-item"><a href="../Supplementary/S3_viz_5_start_to_finish.html">Start to Finish Visualising your Data</a></li></ol></nav></header>
 
 
 
@@ -528,7 +540,7 @@ Interpreting these results
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -567,7 +579,7 @@ Warning: 29279 rows removed.
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -896,7 +908,7 @@ Variables in tidyverse
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -967,7 +979,7 @@ The importance of transforming your data
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1008,7 +1020,7 @@ The importance of transforming your data
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1083,7 +1095,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_5_start_to_finish_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="S3_viz_5_start_to_finish_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1520,8 +1532,8 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./viz_4_building_better.html" class="pagination-link" aria-label="Building Better Plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Building Better Plots</span>
+      <a href="../Supplementary/S2_data-manipulation-ggplot2.html" class="pagination-link" aria-label="Data manipulation for ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data manipulation for ggplot2</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

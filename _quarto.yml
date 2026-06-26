@@ -20,11 +20,17 @@ website:
       href: viz_3_exemplarVisualisations.qmd
     - text: "Building Better Plots"
       href: viz_4_building_better.qmd
-    - text: "Supplementary"
-      collapsed: true
+    - section: "Supplementary"
       contents:
+       - text: "Getting started with RStudio"
+         href: Supplementary/S1_Rstudio.qmd
+       - text: "Data manipulation for ggplot2"
+         href: Supplementary/S2_data-manipulation-ggplot2.qmd
        - text: "Start to Finish Visualising your Data"
-         href: viz_5_start_to_finish.qmd
+         href: Supplementary/S3_viz_5_start_to_finish.qmd
+
+
+         
       
 
     tools: 

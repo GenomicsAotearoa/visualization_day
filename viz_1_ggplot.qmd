@@ -15,6 +15,7 @@ toc: true
   </p>
 </div>
 
+
 ## Load packages and prep data
 
 Load the palmerpenguins package for an example dataset and ggplot2 for the plotting functions. 
@@ -29,38 +30,21 @@ library(ggplot2)
 ```
 The palmerpenguins package has loaded a hidden object into your R environment, called penguins, which has data we will use for plotting.
 
-The penguins object from the palmerpenguins dataset includes NAs. For simplicity we will remove these NAs, and call our new object penData.
+
 
 ```{r}
-penData <- penguins |> na.omit()
-
-penData |> head()
+head(penguins)
 ```
 
 
-::: {.callout-caution collapse="true" appearance="minimal"}
-# 🤯 Help! What is that pipe symbol `|>`  ??
-
-The pipe was originally introduced in the `magrittr` package (part of the tidyverse) as `%>%`, 
-and became so popular that R adopted its own version called the native pipe `|>` in R 4.1.0. It is a very convienent way to sequentially make changes to a dataset, without having to use many nested functions like we would have to do using base R. 
-
-The pipe takes the data or output on the left and 'pipes' it into the function on the right. 
-
-The code above could alternatively be written in base R as:
-
+The penguins object from the palmerpenguins dataset includes **NAs**. For simplicity we will remove these NAs, and call our new object penData.
 
 ```{r}
-#| eval: false
-
-penData <- na.omit(penguins) 
+penData <- na.omit(penguins)
 
 head(penData)
 ```
 
-This pipe `|>` is actually called the native pipe, and is the one used in R version onwards. You will also see the orignal pipe `%>%` a lot too – they function almost exactly the same, but there are niche scenarios where only one version works. We won't be getting into pipes or tidyverse functions in depth in this workshop. 
-
-
-:::
 
 
 ## The ggplot format
@@ -71,30 +55,32 @@ ggplot2 is a way to create visualisations within the tidyverse. Once you recogni
 
 The format for the ggplot2 template is as follows:
   
--   Specify the data
+-   Specify the data as a dataframe in long format  
 
--   Map variables *e.g.,* map count data in column a to the x axis
+-   Map variables *i.e.,* map species column to the x axis and the bill length column to the y axis 
 
--   Create the plot
+-   Chose the geom to create the plot type
 
 ```{r}
-# The code to create a plot, using the template above:
-ggplot(data = penData,
-       mapping = aes(x = species,
+#| eval: false
+ggplot(data = penData, mapping = aes(x = species, y = bill_length_mm)) +
+  geom_boxplot()
+
+```
+
+It is good practise to also use *indentations* to format our code. This will be necessary as our code gets more and more complicated. Each time you reach a new argument (separated by a comma) hit <KBD>enter</KBD> or <KBD>return</KBD>, and R will automatically format the code on a new line. Try re-write the code above as below, then run the code to generate the plot. 
+
+```{r}
+ggplot(data = penData, 
+       mapping = aes(x = species, 
                      y = bill_length_mm)) +
   geom_boxplot()
 
-# Here we have specified that the data will come from the penData object
-# Data from the species variable will be on the x axis
-# Data from the bill_length_mm variable will be on the y axis
-# The type of plot is a boxplot  
 ```
 
 Some things to note about the format:
   
   -   Indentations are important. We use new lines and tabs to keep the code organised. Generally you'll want to specify only one thing per line (*e.g.,* data, x axis and y axis get there own lines).
-
--   The ggplot formula is a slight break away from the use of pipes.
 
 -   There are actually two separate functions here: the `ggplot()` function, which is used to specify the data and map the variables, and the `geom_boxplot()` function which is used to create the actual plot. Because we want these two functions to work together, at the very end of the `ggplot()` function, we have added a "+" symbol. RStudio interprets this to mean "The ggplot function has finished, but it must be interpreted in the context of the next function".
 
@@ -145,8 +131,10 @@ Geoffrey Thomson has created a beautiful colour package for ggplot that allows y
 Here's how to use it:
 
 First, install the package from github:  
-(we have commented it out here to prevent this server re-installing the package)
-```{r message=FALSE}
+(we have commented it out here as these packages are already installed on the REANNZ training environment)
+```{r}
+#| eval: false
+
 # install.packages("devtools")
 # devtools::install_github("G-Thomson/Manu")
 ```
@@ -188,7 +176,7 @@ As there are only 3 variables (i.e., 3 species), ggplot has automatically used t
 You can use the `scales` package to see the colours and their hexadecimal colour codes in RStudio for any vector of hexadecimal colour codes. 
 
 First install the scales package:
-(we have commented it out here to prevent this server re-installing the package)
+(we have commented it out here as this package is already installed on the REANNZ training environment)
 
 
 ```{r}

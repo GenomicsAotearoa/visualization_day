@@ -29,6 +29,15 @@ Beeswarm plots can be made using a standalone package (`install.packages("beeswa
 
 Load the ggbeeswarm and palmerpenguins packages. We will also use tidyverse later. 
 
+```{r}
+#| echo: false
+#| message: false
+
+
+library(palmerpenguins)
+penData <- na.omit(penguins)
+
+```
 
 ```{r}
 #| message: false
@@ -44,12 +53,12 @@ Like with the `geom_boxplot()` we looked at in the previous episode, we need to 
 
 ```{r}
 #| warning: false
-ggplot(data = penguins,
+ggplot(data = penData,
         mapping = aes(x = species,
                       y = flipper_length_mm)) +
   geom_beeswarm()
 ```
-**Note:** *When running this code, ggplot gives us a warning that rows were removed due to missing values. This workshop material has a hidden line of code to suppress these warnings.*
+
 
 With this plain plot we can see what beeswarm is doing - when points on the y axis share a value they are moved horizontally so that overlapping points can be identified. This concept is commonly referred to as "jitter", and "jitter plots" are a class of chart. Beeswarm plots are an implementation of jitter plots that aim to be compact with as little as possible overlap of points. This gives us the ability to see density through the width of the plot, similar to how a violin plot (geom_violin) works. 
 
@@ -63,7 +72,7 @@ Distribution plots are a good opportunity to introduce two new parameters we can
 
 ```{r}
 #| warning: false
-ggplot(data = penguins,
+ggplot(data = penData,
         mapping = aes(x = species,
                       y = flipper_length_mm)) +
   geom_beeswarm(size = 2) + # changes the point size
@@ -88,16 +97,15 @@ The violin for Chinstrap in particular appears wide in the middle, yet the beesw
 By default, `geom_violin` uses `scale = "area"`, which gives every violin the same total area regardless of how many observations it represents. This is reasonable when group sizes are similar and you want to compare the *shape* of distributions. But when group sizes differ:
 
 ```{r}
-penguins |> 
-  count(species)
+table(penData$species)
 ```
 
-...it can be misleading, because a violin based on 68 observations looks just as "confident" as one based on 152. We can address this with `scale = "count"`, which scales violin width proportionally to sample size:
+...it can be misleading, because a violin based on 68 observations looks just as "confident" as one based on 146. We can address this with `scale = "count"`, which scales violin width proportionally to sample size:
 
 ```{r}
 #| warning: false
 
-ggplot(data = penguins,
+ggplot(data = penData,
        mapping = aes(x = species,
                      y = flipper_length_mm)) +
   geom_beeswarm(size = 2) + 
@@ -124,7 +132,7 @@ Using the code below as a base, add `geom_jitter()` and compare the output to ou
 ```{r}
 #| eval: false
 #|  
-ggplot(data = penguins, 
+ggplot(data = penData, 
        mapping = aes(x = species, 
                      y = flipper_length_mm,
                      colour = species)) 
@@ -138,7 +146,7 @@ ggplot(data = penguins,
 ```{r}
 #| warning: false
 
-ggplot(data = penguins, 
+ggplot(data = penData, 
        mapping = aes(x = species, 
                      y = flipper_length_mm,
                      colour = species)) +
@@ -164,7 +172,7 @@ We can add two other functions to make this plot much easier to read. First, the
 ```{r}
 #| warning: false
 
-ggplot(data = penguins, 
+ggplot(data = penData, 
         mapping = aes(x = species,
                       y = flipper_length_mm,
                       colour = species)) +
@@ -410,6 +418,7 @@ ggplot(strains |> filter(strain == "Strain A"),
         y = "Count") +
   theme_minimal()
 ```
+
 
 ### Visual interest with geom_area()
 
