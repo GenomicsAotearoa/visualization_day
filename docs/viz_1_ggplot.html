@@ -286,6 +286,22 @@ In this section we will cover the basic format of ggplot functions. We will note
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>na.omit()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The <code>na.omit()</code> function will remove all rows for which an NA exists anywhere in the row. This gives us a nice clean dataset for today, but you may want to use it cautiously on your own data. For example, in our penguins dataset there could be perfectly usable data about an individual’s bill and flipper lengths, but if the sex was not recorded and is therefore an NA, the entire row (<em>i.e.,</em> all the data for one individual) would be omitted using <code>na.omit()</code>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="the-ggplot-format" class="level2">
 <h2 class="anchored" data-anchor-id="the-ggplot-format">The ggplot format</h2>
@@ -357,7 +373,7 @@ In this section we will cover the basic format of ggplot functions. We will note
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -366,7 +382,7 @@ Create this plot with NZ bird themed colours
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Geoffrey Thomson has created a beautiful colour package for ggplot that allows you to chose NZ native birds as colour palette themes for making plots. <a href="https://g-thomson.github.io/Manu/">See their website here for more details.</a></p>
 <p>Here’s how to use it:</p>
@@ -425,7 +441,7 @@ Create this plot with NZ bird themed colours
 </div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -434,7 +450,7 @@ Tip: See hexadecimal colour codes for more colour options
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You can use the <code>scales</code> package to see the colours and their hexadecimal colour codes in RStudio for any vector of hexadecimal colour codes.</p>
 <p>First install the scales package: (we have commented it out here as this package is already installed on the REANNZ training environment)</p>

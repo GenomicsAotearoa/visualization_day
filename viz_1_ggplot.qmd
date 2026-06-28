@@ -46,6 +46,14 @@ head(penData)
 ```
 
 
+::: {.callout-note collapse="true" appearance="simple"}
+# `na.omit()`
+
+The `na.omit()` function will remove all rows for which an NA exists anywhere in the row. This gives us a nice clean dataset for today, but you may want to use it cautiously on your own data. For example, in our penguins dataset there could be perfectly usable data about an individual's bill and flipper lengths, but if the sex was not recorded and is therefore an NA, the entire row (*i.e.,* all the data for one individual) would be omitted using `na.omit()`. 
+
+
+:::
+
 
 ## The ggplot format
 

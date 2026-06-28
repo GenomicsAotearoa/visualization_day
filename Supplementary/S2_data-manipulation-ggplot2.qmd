@@ -121,6 +121,22 @@ counts_annotated
 
 Now each row carries both the count value and the experimental context for that sample – making it easy to map condition or timepoint to a ggplot2 aesthetic.
 
+
+::: {.callout-note collapse="true" appearance="simple"}
+# `left_join()`
+
+It's a good idea to use one of the [dplyr `join()` functions](https://dplyr.tidyverse.org/reference/mutate-joins.html) here (left_join typically being the most popular) to join the metadata to the counts long object. Left join will keep all observations in the "x" or left dataframe (our counts dataframe) and will automatically repeat values from the "y" dataframe (the metadata) where they match multiple times – this is important here as the same sample ID is repeated multiple times in our counts long object for each unique gene. We use `by = "sample"` argument as the column that exists in both dataframes and for most biological datasets we can reasonably expect to have metadata recorded by sample. 
+
+***Handy tip:*** name the column the same in each dataframe to join it as the code above. If they are named differently (*e.g.,* counts is "sample" and metadata is "samplename"), you can instead write the function as below, where the name on the left corresponds to the column name in the first dataframe and the name on the right corresponds to the column name in the second dataframe:
+
+```{r}
+#| eval: false
+
+counts_annotated <- left_join(counts_long, metadata, by = c("sample" = "samplename"))
+```
+:::
+
+
 ## Plotting the result
 
 With the data in long format and metadata attached, we can go straight into ggplot2:
