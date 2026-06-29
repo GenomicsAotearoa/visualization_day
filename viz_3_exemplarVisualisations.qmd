@@ -87,7 +87,7 @@ A collection of resources - if you have any recommendations, feel free to [Conta
 
 ### The r-graph-gallery
 
-[The R graph Gallery](https://r-graph-gallery.com/ggplot2-package.html) has a section on ggplot and it highlights some of the exciting features: custom fonts, pre-built themes, interactive plots - there's a lot going on. 
+[The R graph Gallery](https://r-graph-gallery.com/ggplot2-package.html) has a section on ggplot and it highlights some of the exciting features: custom fonts, pre-built themes, interactive plots - there's a lot going on. Note that many of the graphs are built using ggplot, but not all.  
 
 ### from Data to Viz
 
@@ -114,6 +114,12 @@ It was written Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. [H
 
  
 :::
+
+### Awesome ggplot2
+
+A curated list of awesome ggplot2 extensions and packages, including plot layers, themes and aesthetics, presentation, composition and scales, interactive, network, spatial, 3D plots, time, icons, patterns and images, data and models, miscellaneous and more!
+
+[Awesome ggplot2 on GitHub](https://github.com/erikgahner/awesome-ggplot2)
 
 
 

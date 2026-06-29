@@ -310,7 +310,7 @@ expression_data <- expand_grid(
 expression_data |> head()
 ```
 
-**Note:** This format the data is in is called "long format", which is the format that ggplot2 is designed to work with. If you have data in "wide format" (where each sample is a column), you can use the `pivot_longer()` function from the tidyverse to convert it to long format. [Long vs wide data blog post.](https://www.statology.org/long-vs-wide-data/)
+**Note:** This format the data is in is called "long format", which is the format that ggplot2 is designed to work with. If you have data in "wide format" (where each sample is a column), you can use the `pivot_longer()` function from the tidyverse to convert it to long format. See this [Long vs wide data blog post here](https://www.statology.org/long-vs-wide-data/) or check out our [Supplementary page on data manipulation.](Supplementary/S2_data-manipulation-ggplot2.qmd)
 
 ##### geom_tile()
 
@@ -364,9 +364,40 @@ See here [R documentation on pheatmap package](https://www.rdocumentation.org/pa
 
 ## Parts of a whole
 
-In this section we will take a break from executing code and look at some examples. This is an opportunity to introduce you to the excellent resource that is the [R-graph-gallery](https://r-graph-gallery.com/#LogoMenu). We will scroll down to the "Parts of a whole" section, and walk through how this resource not only shows you different types of plots you can create, but provides you with code and reproducible examples.
+A simple example of a 'Parts of a whole' graph is the stacked bar plot. Let's do an example of one here using our palmer penguins dataset again, then take a break from executing code and look at some examples. 
 
-You can jump straight to our first example, [the waffle chart, here](https://r-graph-gallery.com/waffle.html). The R-graph-gallery gives an overview of the type of chart and highlights some of the key ways to get started. In the case of the waffle chart we can either use a dedicated package or explore how to build a waffle chart with ggplot2 syntax. Finally, there are three examples of high quality waffle charts - click on any of these three charts to get a detailed explanation of the code used to create the chart and an example dataset. This [example by Muhammad Azhar](https://r-graph-gallery.com/web-waffle-for-time-evolution.html) is my favourite, and they have all the code required to help you build your own version.
+To create a **stacked bar plot**, we set the x-axis as our categorical variable and the fill as the variable we want to see proportions for. We don't need to set the y-axis variable as it will default to the count of our fill. We also don't need to use a new geom for this plot – we use `geom_bar()`.
+
+```{r}
+ggplot(penData, aes(x = species, fill = sex)) +
+  geom_bar() +
+  theme_classic()
+```
+
+The Y-axis defaults to the count for each species. Looks like a pretty even 50/50 female/male split in the data, despite large differences in the overall individual observations for each species. 
+
+We can use a few different arguments to customise the format. The default argument used in geom_bar() is `position="stack"` which is would return the same plot as above. Change the geom_bar argument to `position="fill"` to scale our plot to percentages rather than count. The `scale_y_continuous(labels = scales::percent)` argument converts the y-axis labels to percentages:
+
+```{r}
+ggplot(penData, aes(x = species, fill = sex)) +
+  geom_bar(position="fill") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_classic()
+```
+
+
+
+
+
+This is an opportunity to introduce you to the excellent resource that is the [R-graph-gallery](https://r-graph-gallery.com/#LogoMenu). We will scroll down to the "Parts of a whole" section, and walk through how this resource not only shows you different types of plots you can create, but provides you with code and reproducible examples.
+
+You can jump straight to our first example, [the waffle chart, here](https://r-graph-gallery.com/waffle.html). The R-graph-gallery gives an overview of the type of chart and highlights some of the key ways to get started. In the case of the waffle chart we can either use a dedicated package or explore how to build a waffle chart with ggplot2 syntax. Finally, there are three examples of high quality waffle charts - click on any of these three charts to get a detailed explanation of the code used to create the chart and an example dataset. 
+
+This example below waffle chart by Muhammad Azharis a nice one, and they have all the code required to help you build your own version. 
+
+[![Waffle chart made by Muhammad Azhar](images/waffleplot_muhammadazhar.png)](https://r-graph-gallery.com/web-waffle-for-time-evolution.html)
+
+
 
 ##### EXERCISE 🧠🏋️‍♀️ (2 mins)
 
