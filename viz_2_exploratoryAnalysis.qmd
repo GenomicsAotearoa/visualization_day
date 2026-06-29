@@ -393,7 +393,7 @@ This is an opportunity to introduce you to the excellent resource that is the [R
 
 You can jump straight to our first example, [the waffle chart, here](https://r-graph-gallery.com/waffle.html). The R-graph-gallery gives an overview of the type of chart and highlights some of the key ways to get started. In the case of the waffle chart we can either use a dedicated package or explore how to build a waffle chart with ggplot2 syntax. Finally, there are three examples of high quality waffle charts - click on any of these three charts to get a detailed explanation of the code used to create the chart and an example dataset. 
 
-This example below waffle chart by Muhammad Azharis a nice one, and they have all the code required to help you build your own version. 
+This example below waffle chart by Muhammad Azhar is a nice one, and they have all the code required to help you build your own version. 
 
 [![Waffle chart made by Muhammad Azhar](images/waffleplot_muhammadazhar.png)](https://r-graph-gallery.com/web-waffle-for-time-evolution.html)
 
