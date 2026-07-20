@@ -580,6 +580,8 @@ ggplot(plot_data, aes(x = log(Count),
 
 :::
 
+\
+
 :::
 
 
@@ -589,9 +591,8 @@ Next, we can add the overall mean for these groups as a vertical line:
 #| warning: false
 
 # Calculate the average number of Counts across all samples:
-top10_group_avg <- top_group_counts_sorted |> 
-  summarize(t10_avg = mean(log(Count))) |> 
-  pull(t10_avg)
+top10_group_avg <- mean(log(top_group_counts_sorted$Count))
+
 
 # Plot:
 groupCounts +
@@ -630,12 +631,11 @@ groupCounts +
 If we are trying to highlight the difference between a Group mean and the global mean, this can be amplified by adding text to our image. (This isn't necessarily something you would do in many types of plots, but is useful to draw attention to key points *e.g*., a single gene of interest in a scatter plot).
 
 ```{r}
-
-#First create a vector of the group means, to use in the text annotation below:
-groupMeans <- top_group_counts_sorted |> 
-  group_by(Group) |> 
-  summarise(groupMean = log(mean(Count))) |> 
-  pull(groupMean)
+# Pull out mean of fish group, to use in the text annotation below:
+fishMean <- top_group_counts_sorted %>%
+  filter(Group == "Fish") %>%
+  summarise(fishMean = log(mean(Count))) %>%
+  pull(fishMean)
 
 groupCounts +
   geom_jitter(size = 2, 
@@ -653,7 +653,7 @@ groupCounts +
                alpha = 0.8) +
   annotate(
     "text", x = 8, y = 10, size = 2.8, color = "gray20", lineheight = .9,
-    label = glue::glue("Counts for fish are significantly higher\nthan other groups ({round(groupMeans[10], 2)})")
+    label = glue::glue("Counts for fish are significantly higher\nthan other groups ({round(fishMean, 2)})")
   ) +
   annotate(
     "text", x = 5.5, y = 1, size = 2.8, color = "gray20",
@@ -665,10 +665,39 @@ groupCounts +
 
 Customise the colours in the above plot to be more aesthetically pleasing. 
 
-You can use common palettes such as viridis, pick [colours by name](https://sape.inf.usi.ch/quick-reference/ggplot2/colour), or try choose your own palette from the [R graph gallery color palette picker](https://r-graph-gallery.com/color-palette-finder)
+You can use common palettes such as viridis, pick [colours by name](https://sape.inf.usi.ch/quick-reference/ggplot2/colour), or try choose your own palette from the [R graph gallery color palette picker](https://r-graph-gallery.com/color-palette-finder).
+
+> Hint: If you use the R graph gallery colour picker option linked above, the library paleteer is not installed on this training environment. But you can chose a palette you like, then hit the download button to get a vector of the hexadecimal codes.  
+
+**Viridis**
+
+We used viridis earlier in the workshop, try adding this line on to the code:
+
+
+```{r}
+#| eval: false
++ scale_color_viridis(discrete = T, option = "mako", direction = -1)
+```
+
+Explore the different options using `?scale_colour_viridis`.
+
+- What other `option` arguments are there?  
+
+- What effect does changing `direction` to `1` or `-1` have?
+
+**Manually add colours**
+
+You can also add colours manually for each group using `scale_colour_manual(values = c("...")`. You'll need to make sure you have the same number of colours in your vector as number of Groups (n= 10).  You can use either the predefined colour names (link earlier ,or type `colors()` to see all names) or any hexadecimal code in a vector.  
+
+```{r}
+#| eval: false
++ scale_colour_manual(values = c("coral4","peru", "burlywood","maroon4","violetred4","darkorchid4", "lightslateblue", "midnightblue", "aquamarine4","chartreuse4"))
+```
+
+
 
 ::: {.callout-tip collapse="true"}
-# SOLUTION 🌈
+# SOLUTIONS 🌈
 
 There are multiple ways to customise colours in this plot.
 
@@ -694,12 +723,22 @@ or set colours manually:
 + scale_colour_manual(values = c("steelblue", "coral", "darkgreen", "goldenrod", "purple", "cyan", "magenta", "orange", "brown", "pink"))
 ```
 
+or sample 10 colours at random from the predefined list:
+
+```{r}
+#| eval: false
++ scale_colour_manual(values = c(sample(colors(), 10)))
+```
 
 
 Here is a full example:
 
 ```{r}
-set.seed(123)
+
+# save vector of favourite colours as hexadecimal codes
+my_colour_palette <- c("#693829FF", "#894B33FF", "#A56A3EFF", "#CFB267FF", "#D9C5B6FF", "#9CA9BAFF", "#5480B5FF", "#3D619DFF", "#405A95FF", "#345084FF")
+
+set.seed(123) #jitter adds randomisation, set seed allows visual reproducibility
 groupCounts +
   geom_jitter(size = 2, 
               alpha = 0.4, 
@@ -714,7 +753,16 @@ groupCounts +
                geom = "point", 
                size = 5, 
                alpha = 1) +
-  scale_colour_manual(values = c("#693829FF", "#894B33FF", "#A56A3EFF", "#CFB267FF", "#D9C5B6FF", "#9CA9BAFF", "#5480B5FF", "#3D619DFF", "#405A95FF", "#345084FF")) 
+  # change "text" to "label" to put white box around text 
+  annotate(
+    "label", x = 8, y = 10, size = 2.8, color = "gray20", lineheight = .9,
+    label = glue::glue("Counts for fish are significantly higher\nthan other groups ({round(fishMean, 2)})")
+  ) +
+  annotate(
+    "label", x = 5.5, y = 1, size = 2.8, color = "gray20",
+    label = glue::glue("Total group average ({round(top10_group_avg, 2)})")
+  ) +
+  scale_colour_manual(values = my_colour_palette) 
 
 ```
 

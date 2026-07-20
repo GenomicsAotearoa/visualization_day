@@ -108,7 +108,7 @@ In all cases, these new arguments and functions follow the template as outlined 
 
 This example creates a more complex plot, but these new arguments and functions follow the template as outlined above. We continue to use indentations and new lines to keep our code organised and tidy. 
 
-Load the viridis library, which supplies a colour scheme that is sensitive to colour-blindness.
+Load [the viridis library](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html), which supplies a colour scheme that is sensitive to colour-blindness.
 New arguments map species to the colour variable, so that each point is coloured by species.
 Sex is mapped to shape. Note that shape can only take discrete variables.
 
@@ -126,9 +126,9 @@ ggplot(data = penData,
                      shape = sex)) +
   geom_point() + 
   scale_colour_viridis(discrete = TRUE) +
-  labs(x = "Bill depth (mm)",
+  labs(x = "Bill length (mm)",
        y = "Flipper length (mm)") +
-  ggtitle("Bill depth vs flipper length") 
+  ggtitle("Bill length vs flipper length") 
 ```
 
 ::: {.callout-tip collapse="true"}
@@ -169,9 +169,9 @@ ggplot(data = penData,
                      shape = sex)) +
   geom_point() + 
   scale_colour_manual(values = kereru) +
-  labs(x = "Bill depth (mm)",
+  labs(x = "Bill length (mm)",
        y = "Flipper length (mm)") +
-  ggtitle("Bill depth vs flipper length") 
+  ggtitle("Bill length vs flipper length") 
 ```
 
 As there are only 3 variables (i.e., 3 species), ggplot has automatically used the first 3 colours from the colour palette. 
@@ -194,6 +194,7 @@ First install the scales package:
 ```
 
 ```{r}
+#| message: false
 library(scales)
 ```
 

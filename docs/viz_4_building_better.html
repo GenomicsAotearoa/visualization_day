@@ -950,28 +950,29 @@ Extra for experts - customise point size
 </div>
 </div>
 </div>
+<p><br>
+</p>
 </div>
 </div>
 <p>Next, we can add the overall mean for these groups as a vertical line:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average number of Counts across all samples:</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>top10_group_avg <span class="ot">&lt;-</span> top_group_counts_sorted <span class="sc">|&gt;</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">t10_avg =</span> <span class="fu">mean</span>(<span class="fu">log</span>(Count))) <span class="sc">|&gt;</span> </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(t10_avg)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot:</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> top10_group_avg), </span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> <span class="st">"gray50"</span>, </span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">colour =</span> <span class="st">"gray40"</span>,</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">fun =</span> mean, </span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">"point"</span>, </span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>, </span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">colour =</span> Group))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>top10_group_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">log</span>(top_group_counts_sorted<span class="sc">$</span>Count))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot:</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> top10_group_avg), </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> <span class="st">"gray50"</span>, </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">colour =</span> <span class="st">"gray40"</span>,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">fun =</span> mean, </span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">"point"</span>, </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.2</span>, </span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">colour =</span> Group))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1006,11 +1007,11 @@ Extra for experts - customise point size
 </div>
 <p>If we are trying to highlight the difference between a Group mean and the global mean, this can be amplified by adding text to our image. (This isn’t necessarily something you would do in many types of plots, but is useful to draw attention to key points <em>e.g</em>., a single gene of interest in a scatter plot).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First create a vector of the group means, to use in the text annotation below:</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>groupMeans <span class="ot">&lt;-</span> top_group_counts_sorted <span class="sc">|&gt;</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span> </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">groupMean =</span> <span class="fu">log</span>(<span class="fu">mean</span>(Count))) <span class="sc">|&gt;</span> </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(groupMean)</span>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull out mean of fish group, to use in the text annotation below:</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>fishMean <span class="ot">&lt;-</span> top_group_counts_sorted <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"Fish"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fishMean =</span> <span class="fu">log</span>(<span class="fu">mean</span>(Count))) <span class="sc">%&gt;%</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(fishMean)</span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
@@ -1028,7 +1029,7 @@ Extra for experts - customise point size
 <span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
 <span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
 <span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">lineheight =</span> .<span class="dv">9</span>,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Counts for fish are significantly higher</span><span class="sc">\n</span><span class="st">than other groups ({round(groupMeans[10], 2)})"</span>)</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Counts for fish are significantly higher</span><span class="sc">\n</span><span class="st">than other groups ({round(fishMean, 2)})"</span>)</span>
 <span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
 <span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">5.5</span>, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">color =</span> <span class="st">"gray20"</span>,</span>
@@ -1045,14 +1046,32 @@ Extra for experts - customise point size
 <section id="final-challenge" class="level4">
 <h4 class="anchored" data-anchor-id="final-challenge">Final CHALLENGE ⚡️</h4>
 <p>Customise the colours in the above plot to be more aesthetically pleasing.</p>
-<p>You can use common palettes such as viridis, pick <a href="https://sape.inf.usi.ch/quick-reference/ggplot2/colour">colours by name</a>, or try choose your own palette from the <a href="https://r-graph-gallery.com/color-palette-finder">R graph gallery color palette picker</a></p>
+<p>You can use common palettes such as viridis, pick <a href="https://sape.inf.usi.ch/quick-reference/ggplot2/colour">colours by name</a>, or try choose your own palette from the <a href="https://r-graph-gallery.com/color-palette-finder">R graph gallery color palette picker</a>.</p>
+<blockquote class="blockquote">
+<p>Hint: If you use the R graph gallery colour picker option linked above, the library paleteer is not installed on this training environment. But you can chose a palette you like, then hit the download button to get a vector of the hexadecimal codes.</p>
+</blockquote>
+<p><strong>Viridis</strong></p>
+<p>We used viridis earlier in the workshop, try adding this line on to the code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> T, <span class="at">option =</span> <span class="st">"mako"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Explore the different options using <code>?scale_colour_viridis</code>.</p>
+<ul>
+<li><p>What other <code>option</code> arguments are there?</p></li>
+<li><p>What effect does changing <code>direction</code> to <code>1</code> or <code>-1</code> have?</p></li>
+</ul>
+<p><strong>Manually add colours</strong></p>
+<p>You can also add colours manually for each group using <code>scale_colour_manual(values = c("...")</code>. You’ll need to make sure you have the same number of colours in your vector as number of Groups (n= 10). You can use either the predefined colour names (link earlier ,or type <code>colors()</code> to see all names) or any hexadecimal code in a vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"coral4"</span>,<span class="st">"peru"</span>, <span class="st">"burlywood"</span>,<span class="st">"maroon4"</span>,<span class="st">"violetred4"</span>,<span class="st">"darkorchid4"</span>, <span class="st">"lightslateblue"</span>, <span class="st">"midnightblue"</span>, <span class="st">"aquamarine4"</span>,<span class="st">"chartreuse4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-SOLUTION 🌈
+SOLUTIONS 🌈
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1061,38 +1080,54 @@ SOLUTION 🌈
 <p>There are multiple ways to customise colours in this plot.</p>
 <p>You could add:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_viridis</span>(<span class="at">discrete=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_viridis</span>(<span class="at">discrete=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and you can change the palette options and directions within viridis:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> T, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">option =</span> <span class="st">"magma"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> T, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">option =</span> <span class="st">"magma"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or set colours manually:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"coral"</span>, <span class="st">"darkgreen"</span>, <span class="st">"goldenrod"</span>, <span class="st">"purple"</span>, <span class="st">"cyan"</span>, <span class="st">"magenta"</span>, <span class="st">"orange"</span>, <span class="st">"brown"</span>, <span class="st">"pink"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"coral"</span>, <span class="st">"darkgreen"</span>, <span class="st">"goldenrod"</span>, <span class="st">"purple"</span>, <span class="st">"cyan"</span>, <span class="st">"magenta"</span>, <span class="st">"orange"</span>, <span class="st">"brown"</span>, <span class="st">"pink"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or sample 10 colours at random from the predefined list:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fu">sample</span>(<span class="fu">colors</span>(), <span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a full example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">colour =</span> Group,</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">+</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> top10_group_avg), </span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">"gray50"</span>, </span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">colour =</span> <span class="st">"gray20"</span>,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun =</span> mean, </span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom =</span> <span class="st">"point"</span>, </span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">5</span>, </span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#693829FF"</span>, <span class="st">"#894B33FF"</span>, <span class="st">"#A56A3EFF"</span>, <span class="st">"#CFB267FF"</span>, <span class="st">"#D9C5B6FF"</span>, <span class="st">"#9CA9BAFF"</span>, <span class="st">"#5480B5FF"</span>, <span class="st">"#3D619DFF"</span>, <span class="st">"#405A95FF"</span>, <span class="st">"#345084FF"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save vector of favourite colours as hexadecimal codes</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>my_colour_palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#693829FF"</span>, <span class="st">"#894B33FF"</span>, <span class="st">"#A56A3EFF"</span>, <span class="st">"#CFB267FF"</span>, <span class="st">"#D9C5B6FF"</span>, <span class="st">"#9CA9BAFF"</span>, <span class="st">"#5480B5FF"</span>, <span class="st">"#3D619DFF"</span>, <span class="st">"#405A95FF"</span>, <span class="st">"#345084FF"</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co">#jitter adds randomisation, set seed allows visual reproducibility</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>groupCounts <span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">colour =</span> Group,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> top10_group_avg), </span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">"gray50"</span>, </span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">colour =</span> <span class="st">"gray20"</span>,</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun =</span> mean, </span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom =</span> <span class="st">"point"</span>, </span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">5</span>, </span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change "text" to "label" to put white box around text </span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">8</span>, <span class="at">y =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">lineheight =</span> .<span class="dv">9</span>,</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Counts for fish are significantly higher</span><span class="sc">\n</span><span class="st">than other groups ({round(fishMean, 2)})"</span>)</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span>, <span class="at">x =</span> <span class="fl">5.5</span>, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">color =</span> <span class="st">"gray20"</span>,</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Total group average ({round(top10_group_avg, 2)})"</span>)</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> my_colour_palette) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="viz_4_building_better_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="viz_4_building_better_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1106,7 +1141,7 @@ SOLUTION 🌈
 <h3 class="anchored" data-anchor-id="saving-a-plot">Saving a plot</h3>
 <p><code>ggsave()</code> will save the most recently created plot. We can run the code below to save a plot with a given set of dimensions. The default is inches, but we can set this to cm or pixels with the argument <code>units = "cm"</code> or <code>units = "px"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"edna_plot.png"</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"edna_plot.png"</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
