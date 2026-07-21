@@ -142,6 +142,40 @@ top_group_counts_sorted <- top_group_counts |>
 
 What this does: *For each Group, calculate the median of Count, then reorder the levels of Group based on those median values.*
 
+
+::: {.callout-note collapse="true" appearance="simple"}
+# Use `factor()` to factorise the Group column instead:
+
+The `fct_reorder()` function comes from the forcats package from tidyverse, but base R has its own factorising function `factor()`.  You may be more familiar with how `factor()`  works, so let's look at how we could achieve the above with that (it's a bit more convoluted!)
+
+First we need to create a vector of the variables in Group, in the order we want them to plot in.
+ 
+```{r}
+group_order <- top_group_counts |> 
+  group_by(Group) |> 
+  summarise(median_count = median(Count)) |> 
+  arrange(median_count) |> 
+  pull(Group)
+
+group_order
+```
+
+The code above will group all rows by the "Group" column, to then calculate the median of the "Count" rows based on "Group" (and place this value in a new column called median_count), then arrange the median_count column from lowest to highest, and pull out the Group column as a vector.
+
+Now that we have a vector of our Group names in the order we want them in, we can factorise our dataframe column:
+
+```{r}
+#| eval: false
+
+top_group_counts_sorted <- top_group_counts
+
+top_group_counts_sorted$Group <- factor(top_group_counts_sorted$Group, levels = group_order)
+
+```
+
+:::
+
+
 Now plot the sorted data:
 ```{r}
 ggplot(data = top_group_counts_sorted,
