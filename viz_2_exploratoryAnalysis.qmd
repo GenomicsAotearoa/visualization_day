@@ -326,11 +326,11 @@ ggplot(expression_data,
 
 This is a good starting point in that we have functionally sketched the data into the plot type. However, we can see that it the layout does not match our expectations for a gene expression heatmap: it has no title, and axes labels, and it doesn't have particularly high contrast between high and low values.
 
-##### EXERCISE 🧠🏋️‍♀️ (5 mins)
+##### EXERCISE 🧠🏋️‍♀️ (3 mins)
 
 To correct these issues we will:   
 
-- Add the `scale_fill_viridis_c()` function to change the colour of the fill.   
+- Add the `scale_fill_viridis_c()` function to change the colour of the fill. The `_c` is for the continuous scale version of this function.   
 - Use the `labs()` function to add title, x and y axis labels, and rename the fill (legend) variable.   
 - Additionally, we will add colour = "white" as an argument for `geom_tile()`, which will result in a fine white grid separating our tiles, and add the `theme_minimal()` function to reduce the visual clutter of the grey background in the plot.
 
@@ -343,14 +343,29 @@ ggplot(expression_data,
            y = gene,
            fill = expression)) +
   geom_tile(colour = "white") +
-  scale_fill_viridis_c() + #Alternatively, you could use scale_fill_gradient(low = "blue", high = "red") for a different colour scheme
+  scale_fill_viridis_c() + 
   theme_minimal() +
   labs(title = "Gene Expression Heatmap",
        x = "Sample",
        y = "Gene",
-       fill = "Expression (log2 counts)") 
+       fill = "Expression (log2 counts)") # Changes the legend title. 
 ```
 **Note:** gene expression data needs to be transformed (*e.g.,* log2 transformed) before plotting. This is covered in more detail in our [RNA-seq Data Analysis](https://genomicsaotearoa.github.io/BioinformaticsTrainingProgramme/portfolio.html#rna-seq-data-analysis) workshop.
+
+You can also set your own custom scale colours using:  
+ 
+```{r} 
+#| eval: false
++ scale_fill_gradient(low = "blue",high = "red")
+```
+```{r} 
+#| eval: false
+
++ scale_fill_gradient2(low = "blue", mid = "white",high = "red", midpoint = mean(expression_data$expression))
+```
+
+- The midpoint can be whatever value (numeric) you think is appropriate for the data. This will anchor the `mid` colour to this value and scale the low and high colours appropriately. Here we decided the mean is probably a good value. 
+
 
 
 Another way to plot heatmaps for gene expression data is with the `pheatmap` package, which has a lot of built in functionality for clustering and annotation. Specifically it allows you to to easily include a dendrogram to show the results of hierarchical clustering, which is a common way to visualise patterns in gene expression data.

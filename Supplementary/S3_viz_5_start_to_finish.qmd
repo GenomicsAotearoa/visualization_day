@@ -3,7 +3,17 @@ title: ""
 toc: true
 ---
 
+
+
 # Start to Finish Visualising your Data
+
+::: {.callout-warning appearance="default"}
+# This section has now been retired from the main content. 
+
+Use this material to practise orientating yourself to a new unknown dataset, how to use visualisations to assess and construct your 'mental model' of the data and how to use this to inform your decisions on further analysis of the dataset. 
+
+
+:::
 
 If you want to start practicing visualisations, a really great place to start is with tidytuesday. Tidytuesday is a community initiative that publishes a weekly dataset in an easy to access format. Every week, people create a visualisation of the data and share it on some form of social media (or just keep it to themselves). In 2024 tidytuesday had the aim of being featured in 10+ training courses. They hit more than 30+!
 
