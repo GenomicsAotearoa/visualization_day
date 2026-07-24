@@ -814,6 +814,38 @@ ggsave("edna_plot.png", height = 10, width = 8)
 
 ```
 
+#### Tips and tricks for saving plots
+ 
+ 1. It is a good idea to save your plots as SVG (scalable vector graphics) or PDF formats. These scale well and are editable in external software such as inkscape or Adobe Illustrator. You can always reexport these formats as image format (PNG, JPG etc) files if needed for a journal, without going back to R to remake them. `ggsave()` supports svg and pdf exporting automatically *e.g.,* `ggsave("plot.pdf")` or `ggsave("plot.svg")` but you may need to `install.packages("svglite")` if you are having issues with the SVG format. 
+ 2. Plots do not have transparent backgrounds by default. You can delete background panels in programs such as Illustrator from pdf and svg files, but it requires a little more hassle. You can however add on theming options to remove the background when generating yout plot, before saving:
+  
+```{r}
+#| eval: false
+  
+  theme(
+    panel.background = element_rect(fill = "transparent", colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA)
+  )
+
+```
+
+3. The RStudio plot window auto-scales your plot, making it difficult to tell how the plot will look once you save it. One way you can mitigate this is by opening a graphics device at the dimensions you want to save your plot in, and view your plot in this to assess if the element sizing all look correct:
+
+```{r}
+#| eval: false
+
+# Opens the graphic device at set dimensions
+dev.new(width = 10, height = 8, unit = "cm", noRStudioGD = TRUE)
+
+# prints ggplot object called my_plot in the device
+print(my_plot)
+
+```
+
+4. There is an [R package called `camcorder`]( https://thebioengineer.github.io/camcorder/) that allows you to track and automatically save graphics generated with ggplot2.
+
+
+
 
 
 ## Summary

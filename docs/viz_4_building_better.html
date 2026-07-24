@@ -247,7 +247,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#final-challenge" id="toc-final-challenge" class="nav-link" data-scroll-target="#final-challenge">Final CHALLENGE ⚡️</a></li>
   </ul></li>
-  <li><a href="#saving-a-plot" id="toc-saving-a-plot" class="nav-link" data-scroll-target="#saving-a-plot">Saving a plot</a></li>
+  <li><a href="#saving-a-plot" id="toc-saving-a-plot" class="nav-link" data-scroll-target="#saving-a-plot">Saving a plot</a>
+  <ul class="collapse">
+  <li><a href="#tips-and-tricks-for-saving-plots" id="toc-tips-and-tricks-for-saving-plots" class="nav-link" data-scroll-target="#tips-and-tricks-for-saving-plots">Tips and tricks for saving plots</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
@@ -1180,6 +1183,32 @@ SOLUTIONS 🌈
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"edna_plot.png"</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="tips-and-tricks-for-saving-plots" class="level4">
+<h4 class="anchored" data-anchor-id="tips-and-tricks-for-saving-plots">Tips and tricks for saving plots</h4>
+<ol type="1">
+<li>It is a good idea to save your plots as SVG (scalable vector graphics) or PDF formats. These scale well and are editable in external software such as inkscape or Adobe Illustrator. You can always reexport these formats as image format (PNG, JPG etc) files if needed for a journal, without going back to R to remake them. <code>ggsave()</code> supports svg and pdf exporting automatically <em>e.g.,</em> <code>ggsave("plot.pdf")</code> or <code>ggsave("plot.svg")</code> but you may need to <code>install.packages("svglite")</code> if you are having issues with the SVG format.</li>
+<li>Plots do not have transparent backgrounds by default. You can delete background panels in programs such as Illustrator from pdf and svg files, but it requires a little more hassle. You can however add on theming options to remove the background when generating yout plot, before saving:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>The RStudio plot window auto-scales your plot, making it difficult to tell how the plot will look once you save it. One way you can mitigate this is by opening a graphics device at the dimensions you want to save your plot in, and view your plot in this to assess if the element sizing all look correct:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Opens the graphic device at set dimensions</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.new</span>(<span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">unit =</span> <span class="st">"cm"</span>, <span class="at">noRStudioGD =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prints ggplot object called my_plot in the device</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(my_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>There is an <a href="https://thebioengineer.github.io/camcorder/">R package called <code>camcorder</code></a> that allows you to track and automatically save graphics generated with ggplot2.</li>
+</ol>
+</section>
 </section>
 </section>
 <section id="summary" class="level2">
