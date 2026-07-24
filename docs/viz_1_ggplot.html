@@ -335,7 +335,7 @@ In this section we will cover the basic format of ggplot functions. We will note
 <ul>
 <li><p>Indentations are important. We use new lines and tabs to keep the code organised. Generally you’ll want to specify only one thing per line (<em>e.g.,</em> data, x axis and y axis get there own lines).</p></li>
 <li><p>There are actually two separate functions here: the <code>ggplot()</code> function, which is used to specify the data and map the variables, and the <code>geom_boxplot()</code> function which is used to create the actual plot. Because we want these two functions to work together, at the very end of the <code>ggplot()</code> function, we have added a “+” symbol. RStudio interprets this to mean “The ggplot function has finished, but it must be interpreted in the context of the next function”.</p></li>
-<li><p><code>geom_boxplot()</code> is the function for making boxplots. To make a bar plot we would use <code>geom_bar()</code>, to make a scatter plot we use <code>geom_point()</code> <em>etc.,</em>. Type <code>geom_</code> in the console and scroll the dropdown menu to see the different geom types - there are plenty!</p></li>
+<li><p><code>geom_boxplot()</code> is the function for making boxplots, in the style of Tukey, and <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html#summary-statistics">this differs slightly to how hinges are calculated in the baseR <code>boxplot()</code></a>. To make a bar plot we would use <code>geom_bar()</code>, to make a scatter plot we use <code>geom_point()</code> <em>etc.,</em>. Type <code>geom_</code> in the console and scroll the dropdown menu to see the different geom types - there are plenty!</p></li>
 </ul>
 </section>
 <section id="extending-the-ggplot-format" class="level2">

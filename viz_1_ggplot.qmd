@@ -92,7 +92,7 @@ Some things to note about the format:
 
 -   There are actually two separate functions here: the `ggplot()` function, which is used to specify the data and map the variables, and the `geom_boxplot()` function which is used to create the actual plot. Because we want these two functions to work together, at the very end of the `ggplot()` function, we have added a "+" symbol. RStudio interprets this to mean "The ggplot function has finished, but it must be interpreted in the context of the next function".
 
--   `geom_boxplot()` is the function for making boxplots. To make a bar plot we would use `geom_bar()`, to make a scatter plot we use `geom_point()` *etc.,*. Type `geom_` in the console and scroll the dropdown menu to see the different geom types - there are plenty!
+-   `geom_boxplot()` is the function for making boxplots, in the style of Tukey, and [this differs slightly to how hinges are calculated in the baseR `boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html#summary-statistics). To make a bar plot we would use `geom_bar()`, to make a scatter plot we use `geom_point()` *etc.,*. Type `geom_` in the console and scroll the dropdown menu to see the different geom types - there are plenty!
 
 ## Extending the ggplot format
 
